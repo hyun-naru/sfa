@@ -9056,10 +9056,23 @@ input[type=checkbox][class*=chk_].radio_cm:checked:disabled:hover + label::befor
   margin-right: 8px;
 }
 .client_num div:first-child::before,
-.tabl_area .sdlist .sdlist_info li:first-child::before {
+.tabl_area .sdlist .sdlist_info:not(.fw_wrap) li:first-child::before {/* smr */
   display: none;
 }
-
+/* smr */
+.sdlist_wrap {
+  overflow: hidden;
+}
+.tabl_area .sdlist .sdlist_info.fw_wrap {
+  gap: 10px 0px;     
+  margin-left: -20px;
+}
+.sdlist_info.fw_wrap li {
+  padding-left: 10px;
+  display: inline-flex;
+    align-items: center;
+}
+/* //smr */
 .tabl_area.sd_info table tr td {
   padding: 16px 6px !important;
 }
@@ -17955,14 +17968,30 @@ h2 + .sort_wrap {
     height: 40px;
   }
 }
+/* 26.06.12 */
+.sort_wrap .sortRight > div,
 .sort_wrap .sortRight button:not(:first-child) {
   margin-left: 10px;
 }
+.sort_wrap + .sort_wrap {
+  margin-top: 12px;
+}
+.sort_wrap.end {
+  margin-bottom: 12px;
+  justify-content: end;
+}
+.sort_wrap.end > div, 
+.sort_wrap .sortRight > div {
+ display: flex;
+}
+.sort_wrap.end button {
+  margin-left: 10px;
+}
+/* //26.06.12 */
 
 .popWrap .sort_wrap:first-of-type {
   margin-top: 0;
 }
-
 /*================================================== TabBox ==================================================*/
 .tabBoxWrap .tabBoxList {
   display: -webkit-box;
@@ -22370,8 +22399,3 @@ button.swiper-pagination-bullet-active:before {
     min-width: 1100px;
 }
 /* // 2025 캠페인 추가 25.11.13 */
-/*tab_page*/
-/* html:has(.tab_page iframe) {
-  overflow: hidden;
-} */
-

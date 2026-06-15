@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>Template</title>
+  <link rel="stylesheet" href="../../css/main.css">
+  <script type="text/javascript" src="../../js/pub.include.js"></script><!-- 퍼블리싱 (html) 에서만 사용하는 코드입니다. 실제 개발 페이지에선 사용하면 안됨 -->
+  <script type="text/javascript" src="../../js/ui.common.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header"></div>
+
+    <!-- container (s) -->
+    <div class="container" id="content">
+<!-- ★★★★ 퍼블리셔 페이지 내용 시작 (s) -->
+        <div class="section">
+            <h1 class="tit01">징계 관리</h1>
+            <ul class="formList div3">
+                <li>
+                    <div class="th">채널</div>
+                    <div class="td">
+                        <select class="ipt">
+                            <option selected="">전체</option>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <div class="th">본부</div>
+                    <div class="td">
+                        <select class="ipt">
+                            <option selected="">전체</option>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <div class="th">지점</div>
+                    <div class="td">
+                        <select class="ipt">
+                            <option selected="">전체</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="oneThirdDiv">
+                    <div class="th">팀</div>
+                    <div class="td">
+                        <select class="ipt">
+                            <option selected="">전체</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="twoThirdsDiv">
+                    <div class="th">판매인</div>
+                    <div class="td">
+                        <select class="ipt mid">
+                            <option selected="">전체</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+            <div class="btn_wrap">
+                <button type="button" class="btn_white">초기화</button>
+                <button type="button" class="btn_primary">조회</button>
+            </div>
+            
+            <div class="sort_wrap">
+                <div class="sort">
+                    <ul class="count">
+                        <li>총 <span class="count_num count_num_accent">106</span>건</li>
+                        <li><span class="count_num count_num_accent">1</span>/100페이지</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tabl_area">
+                <!-- 조회 테이블 (s)-->
+                <table>
+                    <caption></caption>
+                    <colgroup>
+                        <col style="width: 9%;">
+                        <col style="width: 8%;">
+                        <col style="width: 8%;">
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                        <col style="width: 14%;">
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                        <col style="width: 9%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>대리점</th>
+                            <th>본부</th>
+                            <th>지점</th>
+                            <th>판매인</th>
+                            <th>징계일</th>
+                            <th>징계유형</th>
+                            <th>적용기간</th>
+                            <th>구분</th>
+                            <th>등록일</th>
+                            <th>등록자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span>ㅇㅇㅇㅇ대리점</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ본부</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ지점</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                            <td>
+                                <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>영업정지</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02</span> ~ <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>외부 징계</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02 13:00</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>ㅇㅇㅇㅇ대리점</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ본부</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ지점</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                            <td>
+                                <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>경고</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02</span> ~ <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>내부 징계</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02 13:00</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>ㅇㅇㅇㅇ대리점</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ본부</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ지점</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                            <td>
+                                <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>해촉</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02</span> ~ <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>내부 징계</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02 13:00</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>ㅇㅇㅇㅇ대리점</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ본부</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ지점</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                            <td>
+                                <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>영업정지</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02</span> ~ <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>외부 징계</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02 13:00</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>ㅇㅇㅇㅇ대리점</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ본부</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ지점</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                            <td>
+                                <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>경고</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02</span> ~ <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>내부 징계</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02 13:00</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>ㅇㅇㅇㅇ대리점</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ본부</span>
+                            </td>
+                            <td>
+                                <span>ㅇㅇㅇㅇ지점</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                            <td>
+                                <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>해촉</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02</span> ~ <span>2023.09.02</span>
+                            </td>
+                            <td>
+                                <span>내부 징계</span>
+                            </td>
+                            <td>
+                                <span>2023.09.02 13:00</span>
+                            </td>
+                            <td>
+                                <span>김하나</span><br>(<span>890101</span>)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--// 조회 테이블 (e)-->
+                <!-- No Result (s) -->
+                <div class="noresultWrap">
+                    <img src="./resources/pt/images/icons/ico_noresult.svg" alt="아이콘:결과없음" class="icon icon_noresult">
+                    <div class="noresultText">조회 결과가 없습니다.</div>
+                </div>
+            </div>
+            <!--// No Result (e) -->
+        </div>
+        <div class="pagination" role="navigation" aria-label="페이지 선택 영역">
+            <button type="button" class="icoBtn_first" aria-label="처음"></button>
+            <button type="button" class="icoBtn_prev" aria-label="이전"></button>
+            <ul>
+                <li class="on"><em><span class="blind">현재 페이지</span>1</em></li>
+                <li><a href="#"><span class="blind">페이지</span>2</a></li>
+                <li><a href="#"><span class="blind">페이지</span>3</a></li>
+                <li><a href="#"><span class="blind">페이지</span>4</a></li>
+                <li><a href="#"><span class="blind">페이지</span>5</a></li>
+                <li><a href="#"><span class="blind">페이지</span>6</a></li>
+                <li><a href="#"><span class="blind">페이지</span>7</a></li>
+                <li><a href="#"><span class="blind">페이지</span>8</a></li>
+                <li><a href="#"><span class="blind">페이지</span>9</a></li>
+                <li><a href="#"><span class="blind">페이지</span>10</a></li>
+            </ul>
+            <button type="button" class="icoBtn_next" aria-label="다음"></button>
+            <button type="button" class="icoBtn_last" aria-label="마지막"></button>
+        </div>
+
+        <div class="btn_wrap">
+            <button type="button" class="btn_primary">등록</button>
+        </div>
+  <!-- ★★★★ 퍼블리셔 페이지 내용 끝 (e) -->
+  </div><!-- container (e) -->
+  </div>
+</body>
+
+</html>

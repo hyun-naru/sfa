@@ -133,6 +133,11 @@
         <p class="txtList remark">조회 조건으로 설정한 정보 기준이며 실제 마감된 성적과 다를 수 있습니다.</p>
       </div>
       <div class="tab_cont_list">
+				<!-- 26.06.12 -->
+				<div class="sort_wrap end">
+					<button type="button" class="btn_primary_reverse m" id="btnExclDown">엑셀다운로드</button>
+				</div>				
+				<!-- //26.06.12 -->
         <div class="sort_wrap">
           <div class="sort">
             <ul class="count">
@@ -143,20 +148,24 @@
           <div class="sortRight">
             <ul class="iptGroup">
               <li>
-                <input type="radio" class="ipt" name="rdo2" id="rdo2_1" checked="">
+                <input type="radio" class="ipt" name="gubunRdo" id="rdo2_1" checked="" value="">
                 <label for="rdo2_1">전체</label>
               </li>
               <li>
-                <input type="radio" class="ipt" name="rdo2" id="rdo2_2">
-                <label for="rdo2_2">당월</label>
+                <input type="radio" class="ipt" name="gubunRdo" id="rdo2_4"  value="0">
+                <label for="rdo2_4">당월입금</label>
               </li>
               <li>
-                <input type="radio" class="ipt" name="rdo2" id="rdo2_3">
-                <label for="rdo2_3">연체</label>
+                <input type="radio" class="ipt" name="gubunRdo" id="rdo2_2"  value="1">
+                <label for="rdo2_2">당월미입급</label>
               </li>
               <li>
-                <input type="radio" class="ipt" name="rdo2" id="rdo2_4">
-                <label for="rdo2_4">입금</label>
+                <input type="radio" class="ipt" name="gubunRdo" id="rdo2_3"  value="2">
+                <label for="rdo2_3">실효예정</label>
+              </li>
+              <li>
+                <input type="radio" class="ipt" name="gubunRdo" id="rdo2_5"  value="3">
+                <label for="rdo2_5">완납</label>
               </li>
             </ul>
           </div>
@@ -253,15 +262,15 @@
           <!-- //조회 테이블 (e) -->
           <!-- No Result (s) -->
           <div class="noresultWrap">
-            <img src="./resources/pt/images/icons/ico_noresult.svg" alt="아이콘:결과없음" class="icon icon_noresult">
+            <img src="../../images/icons/ico_noresult.svg" alt="아이콘:결과없음" class="icon icon_noresult">
             <div class="noresultText">조회 결과가 없습니다.</div>
           </div>
           <!--// No Result (e) -->
         </div>
       
-        <div class="bottom_btn">
+        <!-- 26.06.12<div class="bottom_btn">
           <button type="button" class="btn_primary_reverse l">엑셀다운로드</button>
-        </div>
+        </div> -->
       
         <div class="pagination" role="navigation" aria-label="페이지 선택 영역">
           <button type="button" class="icoBtn_first" aria-label="처음"></button>

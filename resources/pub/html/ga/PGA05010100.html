@@ -103,11 +103,18 @@
             <li>총 <span class="count_num count_num_accent">1,000</span>건</li>
             <li><span class="count_num count_num_accent">1</span>/100페이지</li>
           </ul>
-        </div>
+        </div>        
+        <!-- 26.06.12 -->
         <div class="sortRight">
-          <button type="button" class="btn_white_round m">일괄 위촉</button>
-          <button type="button" class="btn_white_round m">불가 처리</button>
+          <div id="procBtn">
+            <button type="button" class="btn_white_round m" onclick="PGA05010100.approvalEntrusting()">일괄 위촉</button>
+            <button type="button" class="btn_white_round m" onclick="PGA05010100.notEntrusting()">불가 처리</button>
+          </div>
+          <div id="downBtn">
+            <button type="button" class="btn_primary_reverse m" onclick="PGA05010100.downloadExcel()">엑셀다운로드</button>
+          </div>
         </div>
+        <!-- //26.06.12 -->
       </div>
 
       <div class="tabl_area">
@@ -238,9 +245,9 @@
         </table>
       </div>
 
-      <div class="bottom_btn">
+      <!-- 26.06.12<div class="bottom_btn">
         <button type="button" class="btn_primary_reverse l">엑셀다운로드</button>
-      </div>
+      </div> -->
 
       <div class="pagination">
         <a href="#" class="btn_first">처음 페이지로 이동</a>

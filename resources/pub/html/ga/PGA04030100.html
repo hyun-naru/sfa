@@ -66,7 +66,18 @@
     <button type="button" class="btn_primary xl">조회</button>
   </div>
 
-  <h2 class="tit02">업로드 목록</h2>
+  
+  <h2 class="tit02">업로드 목록</h2>  
+  <!-- 26.06.12 -->
+  <div class="sort_wrap end">
+      <button type="button" class="btn_white_round m">다운로드</button>
+      <button type="button" class="btn_white_round m">이미지 변환</button>
+      <div id="authDwn">
+        <button type="button" class="btn_primary_reverse m" id="btnExclDown">엑셀다운로드</button>
+        <button type="button" class="btn_primary_reverse m" id="btnFileRemove">파일삭제</button>
+      </div>
+  </div>
+  <!-- //26.06.12 -->
 
   <div class="sort_wrap">
     <div class="sort">
@@ -77,16 +88,20 @@
     <div class="sortRight">
       <ul class="iptGroup">
         <li>
-          <input type="radio" class="ipt" name="rdo2" id="rdo2_1" checked="">
+          <input type="radio" class="ipt" name="rdo2" id="rdo2_1" checked="" value="00">
           <label for="rdo2_1">전체</label>
         </li>
         <li>
-          <input type="radio" class="ipt" name="rdo2" id="rdo2_2">
+          <input type="radio" class="ipt" name="rdo2" id="rdo2_2" value="01">
           <label for="rdo2_2">대기중</label>
         </li>
         <li>
-          <input type="radio" class="ipt" name="rdo2" id="rdo2_3">
+          <input type="radio" class="ipt" name="rdo2" id="rdo2_3" value="02">
           <label for="rdo2_3">확인완료</label>
+        </li>
+        <li>
+          <input type="radio" class="ipt" name="rdo2" id="rdo2_4" value="03">
+          <label for="rdo2_4">보완요청</label>
         </li>
       </ul>
     </div>
@@ -101,7 +116,8 @@
         <col style="width: 15%;">
         <col style="width: 10%;">
         <col style="width: auto;">
-        <col style="width: 10%;">
+        <col  style="width:10%;">
+        <col style="width: 10%;" id="adminTiff1">
         <col style="width: 15%;">
       </colgroup>
       <thead>
@@ -111,6 +127,7 @@
           <th scope="col">증권번호</th>
           <th scope="col">상품명</th>
           <th scope="col">첨부파일</th>
+          <th scope="col" id="adminTiff2">이미지</th>
           <th scope="col">상태</th>
         </tr>
       </thead>
@@ -121,18 +138,20 @@
           <td><span>Data</span></td>
           <td class="txt_l"><a href="#" class="links pointC1">(무)하나로 연결된 경영인정기보험</a></td>
           <td><a href="#" class="links pointC1">다운로드</a></td>
+          <td><button type="button" class="btn_white_round m">이미지 변환</button></td>
           <td>
             <select class="ipt">
               <option selected="">대기중</option>
             </select>
           </td>
-        </tr>
+        </tr> 
         <tr>
           <td><span>${대리점명}, ${지점명} </span></td>
           <td><span>홍길동(123456)</span></td>
           <td><span>Data</span></td>
           <td class="txt_l"><a href="#" class="links pointC1">(무)하나로 연결된 경영인정기보험</a></td>
           <td><a href="#" class="links pointC1">다운로드</a></td>
+          <td><button type="button" class="btn_white_round m">이미지 변환</button></td>
           <td>
             <select class="ipt">
               <option selected="">확인완료</option>
@@ -145,6 +164,7 @@
           <td><span>Data</span></td>
           <td class="txt_l"><a href="#" class="links pointC1">(무)하나로 연결된 경영인정기보험</a></td>
           <td><a href="#" class="links pointC1">다운로드</a></td>
+          <td><button type="button" class="btn_white_round m">이미지 변환</button></td>
           <td>
             <select class="ipt">
               <option selected="">대기중</option>
@@ -156,7 +176,7 @@
     <!-- //조회 테이블 (e) -->
     <!-- No Result (s) -->
     <div class="noresultWrap">
-      <img src="./resources/pt/images/icons/ico_noresult.svg" alt="아이콘:결과없음" class="icon icon_noresult">
+      <img src="../../images/icons/ico_noresult.svg" alt="아이콘:결과없음" class="icon icon_noresult">
       <div class="noresultText">조회 결과가 없습니다.</div>
     </div>
     <!--// No Result (e) -->

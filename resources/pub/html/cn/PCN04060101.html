@@ -137,6 +137,11 @@
     <div class="sortRight">
       <button type="button" class="btn_white_round m">승인</button>
       <button type="button" class="btn_white_round m">삭제</button>
+      <!-- 26.06.12 -->
+      <div id="downBtn">
+        <button type="button" class="btn_primary_reverse m" onclick="PCN04060101.downloadChClmyList()">엑셀다운로드</button>
+      </div>
+      <!-- //26.06.12 -->
     </div>
   </div>
 
@@ -239,15 +244,15 @@
     </table>
     <!-- No Result (s) -->
     <div class="noresultWrap">
-      <img src="./resources/pt/images/icons/ico_noresult.svg" alt="아이콘:결과없음" class="icon icon_noresult">
+      <img src="../../images/icons/ico_noresult.svg" alt="아이콘:결과없음" class="icon icon_noresult">
       <div class="noresultText">업로드 내역이 없습니다.</div>
     </div>
     <!--// No Result (e) -->
   </div>
 
-  <div class="bottom_btn">
+  <!-- 26.06.12<div class="bottom_btn">
     <button type="button" class="btn_primary_reverse l">엑셀다운로드</button>
-  </div>
+  </div> -->
 
   <div class="pagination" role="navigation" aria-label="페이지 선택 영역">
 		<button type="button" class="icoBtn_first" aria-label="처음"></button>

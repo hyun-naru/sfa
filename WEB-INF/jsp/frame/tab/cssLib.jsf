@@ -1,0 +1,7 @@
+<link type="text/css" rel="stylesheet" href="<c:url value='${custFn:showResPath("/resources/tab/comm/css/ui.jqgrid.css")}'/>"/>
+<link type="text/css" rel="stylesheet" href="<c:url value='${custFn:showResPath("/resources/tab/pt/css/main.css")}'/>"/>
+<link type="text/css" rel="stylesheet" href="<c:url value='${custFn:showResPath("/resources/tab/comm/css/jquery-ui.css")}'/>"/>
+<link type="text/css" rel="stylesheet" href="<c:url value='${custFn:showResPath("/resources/tab/comm/css/swiper.min.css")}'/>"/>
+<link type="text/css" rel="stylesheet" href="<c:url value='${custFn:showResPath("/resources/tab/comm/css/loding.css")}'/>"/>
+<link type="text/css" rel="stylesheet" href="<c:url value='${custFn:showResPath("/resources/tab/pt/css/hl3.css")}'/>"/>
+<link type="text/css" rel="stylesheet" href="<c:url value='${custFn:showResPath("/resources/tab/pt/css/tabIndex.css")}'/>"/>

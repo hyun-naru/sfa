@@ -1,0 +1,3 @@
+<script src="<c:url value='${custFn:showResPath("/resources/tab/pt/js/ui.front.js")}'/>"></script>
+<script src="<c:url value='${custFn:showResPath("/resources/tab/pt/js/ui.common.js")}'/>"></script>
+<script src="<c:url value='${custFn:showResPath("/resources/tab/pt/js/pt.common.js")}'/>"></script>

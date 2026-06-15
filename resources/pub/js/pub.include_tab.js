@@ -70,7 +70,7 @@ var headerHTML =
       <div class="gnb_tab_sub">
         <div class="gnb_tab_sub_wrap">
           <ul class="gnb_tab_sub_cell">
-            <li><a href="./resources/pub/html/sd/PSD02010300M.html" class="url_not">가입설계</a></li>
+            <li><a href="./resources/pub/html/sd/PSD02010300M.html">가입설계</a></li>
             <li><a href="./resources/pub/html/sd/PSD02010200M.html">가입설계</a></li>
             <li><a href="./resources/pub/html/sd/PSD02020100M.html">가입설계 이력조회</a></li>
             <li><a href="./resources/pub/html/sd/PSD08010000M.html">추천플랜관리</a></li>

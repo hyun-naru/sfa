@@ -79,9 +79,9 @@ const myfuncInit = function(){
   }
 
   // Breadcrumb fixed ->초기실행이 특정위치에서는 간혹 안되서 수정했습니다.
-  document.addEventListener('scroll', () => {
-    breadcrumbFixInit();
-  });
+  // document.addEventListener('scroll', () => {
+  //   breadcrumbFixInit();
+  // });
 
   const breadcrumbFixInit = ()=> {
     const headerHeight = header.clientHeight;
@@ -99,9 +99,9 @@ const myfuncInit = function(){
     }
   }
 
-  setTimeout(()=>{
-    breadcrumbFixInit()
-  },10)
+  // setTimeout(()=>{
+  //   breadcrumbFixInit()
+  // },10)
 
   // BreadCrumb close btn
   for (const btnClose of Array.from(footer_menu_btn_closes)) {

@@ -78,6 +78,7 @@ var headerHTML =
           <ul class="gnb_tab_sub_cell">
             <li><a href="javascript:void(0);" class="url_not">청약</a></li>
             <li><a href="./resources/pub/html/sd/PSD07010100M.html">청약조회</a></li>
+            <li><a href="./resources/pub/html/sd/PSD07010200.html">스마트청약 진행조회</a></li>
             <li><a href="./resources/pub/html/sd/PSD08020200.html">청약조회철회</a></li>
           </ul>
           <ul class="gnb_tab_sub_cell">

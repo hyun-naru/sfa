@@ -100,7 +100,7 @@
     </div>
     <div class="sortRight">
       <button type="button" class="btn_white_round m" id="">전자문서보기</button>
-      <button type="button" class="btn_white_round m" id="">URL재전송 및 상세보기</button>
+      <button type="button" class="btn_white_round m" id="" onclick="layerPop.open('popupUrl')">URL재전송 및 상세보기</button>
       <button type="button" class="btn_white_round m" id="">청약취소</button>
       <button type="button" class="btn_white_round m" id="">서면동의서 출력</button>
       <button type="button" class="btn_primary_reverse m" id="">엑셀다운로드</button>
@@ -251,6 +251,164 @@
 
 <!-- ★★★★ 퍼블리셔 페이지 내용 끝 (e) -->
 </div><!-- container (e) -->
+	  
+		    <!-- ★★★★ 퍼블리셔 팝업 내용 시작 (s) -->
+			<!-- popup (s) -->
+			<div class="popWrap" id="popupUrl">
+			    
+			  <div class="popContain">
+			    <div class="popup fullHeight type02">
+			      <div class="popHead">
+			        <h1 class="tit01">모바일청약 진행상태 상세조회</h1>
+			      </div>
+			      <div class="popBody col_1000">
+						<!-- 팝업 내용 시작 (s) -->
+						<section>
+				  			<div class="sort_wrap mb15">
+						        <div class="sort">
+						        <h2 class="tit02 type02">계약관계자 진행상태</h2>
+						        </div>
+						     </div>
+						     
+						     <ul class="formList div2">
+							      <li>
+							        <div class="th">설계사</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>박하나</span>
+                          <button type="button" class="btn_white_round m" id="">URL재전송</button>
+                        </div>
+							        </div>
+							      </li>
+							      <li>
+							        <div class="th">진행상태</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>작성제출완료</span>
+                          <button type="button" class="btn_white_round m" id="">이력보기</button>
+                        </div>
+							        </div>
+							      </li>
+						    </ul>
+						     <ul class="formList div2">
+							      <li>
+							        <div class="th">피보험자</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>박하나</span>
+                          <button type="button" class="btn_white_round m" id="">URL재전송</button>
+                        </div>
+							        </div>
+							      </li>
+							      <li>
+							        <div class="th">진행상태</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>개인정보동의완료</span>
+                          <button type="button" class="btn_white_round m" id="">이력보기</button>
+                        </div>
+							        </div>
+							      </li>
+						    </ul>
+						     <ul class="formList div2">
+							      <li>
+							        <div class="th">계약자</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>박하나</span>
+                          <button type="button" class="btn_white_round m" id="">URL재전송</button>
+                        </div>
+							        </div>
+							      </li>
+							      <li>
+							        <div class="th">진행상태</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>결제정보입력</span>
+                          <button type="button" class="btn_white_round m" id="">이력보기</button>
+                        </div>
+							        </div>
+							      </li>
+						    </ul>
+						     <ul class="formList div2">
+							      <li>
+							        <div class="th">수익자</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>박하나</span>
+                          <button type="button" class="btn_white_round m" id="">URL재전송</button>
+                        </div>
+							        </div>
+							      </li>
+							      <li>
+							        <div class="th">진행상태</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>동의완료</span>
+                          <button type="button" class="btn_white_round m" id="">이력보기</button>
+                        </div>
+							        </div>
+							      </li>
+						    </ul>
+							  <div class="sort_wrap mt20 mb15">
+						      <div class="sort">
+						        <h2 class="tit02 type02">이력보기</h2>
+						      </div>
+						    </div>
+						    <div class="tabl_area"> 
+							    <table>
+							      <caption>순번, 진행상태코드, 진행상태명, 시간을 제공</caption>
+							      <colgroup>
+							      	<col style="width: 60px;">
+							        <col style="width: 20%;">
+							      	<col style="width: auto;">
+							        <col style="width: 25%;">
+							      </colgroup>
+							      <thead>
+							        <tr>
+							          <th scope="col">순번</th>
+							          <th scope="col">진행상태코드</th>
+							          <th scope="col">진행상태명</th>
+							          <th scope="col">시간</th>
+							        </tr>
+							      </thead>
+							      <tbody>
+							        <tr>
+							        	<td>
+							        		1
+							        	</td>
+							        	<td>
+                          343
+							        	</td>
+							        	<td>
+                          동의완료
+							        	</td>
+							        	<td><span class="number">2022.02.02 16:00:00</span></td>
+							        </tr>
+							      </tbody>
+								</table>
+
+								<div class="noresultWrap small_type">
+									<div class="noresultText">데이터가 없습니다.</div>
+								</div>
+				  			</div>
+				  			<div class="bottom_btn flex_wrap jc_fe">
+						      <button type="button" class="btn_primary_reverse m">제외</button>
+						    </div>
+						    
+						</section>
+						<!-- 팝업 내용 끝 (e) -->
+			      </div>
+			      <div class="btn_wrap sticky mb0">
+					    <button type="button" class="btn_white">취소</button>
+					    <button type="button" class="btn_primary">확인</button>
+				</div>
+			      <button type="button" class="icoBtn_close"><span>팝업 닫기</span></button>
+			    </div>
+			  </div>
+			</div>
+			<!-- popup (e) -->
+			<!-- ★★★★ 퍼블리셔 팝업 내용 끝 (e) -->
 <!-- 22.07.21 개발이슈로 footer 삭제 -->
 <!-- <div class="footer"></div> -->
 </div>

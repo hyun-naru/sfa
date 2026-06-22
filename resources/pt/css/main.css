@@ -9056,23 +9056,23 @@ input[type=checkbox][class*=chk_].radio_cm:checked:disabled:hover + label::befor
   margin-right: 8px;
 }
 .client_num div:first-child::before,
-.tabl_area .sdlist .sdlist_info:not(.fw_wrap) li:first-child::before {/* smr */
+.tabl_area .sdlist .sdlist_info:not(.fw_wrap) li:first-child::before {/* 26.06.17 */
   display: none;
 }
-/* smr */
-.sdlist_wrap {
+/* 26.06.17 */
+.tabl_area .sdlist:has(.fw_wrap) {
   overflow: hidden;
 }
 .tabl_area .sdlist .sdlist_info.fw_wrap {
   gap: 10px 0px;     
-  margin-left: -20px;
+  margin-left: -21px;
 }
 .sdlist_info.fw_wrap li {
   padding-left: 10px;
   display: inline-flex;
     align-items: center;
 }
-/* //smr */
+/* //26.06.17 */
 .tabl_area.sd_info table tr td {
   padding: 16px 6px !important;
 }

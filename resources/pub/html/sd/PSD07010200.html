@@ -48,7 +48,7 @@
         </select>
       </div>
     </li>
-    <li class="oneThirdDiv">
+    <li>
       <div class="th">설계사</div>
       <div class="td">
         <select class="ipt">
@@ -56,12 +56,18 @@
         </select>
       </div>
     </li>
-    <li class="twoThirdsDiv">
+    <li>
       <div class="th">진행상태</div>
       <div class="td">
-        <select class="ipt mid">
+        <select class="ipt">
           <option selected="">전체</option>
         </select>
+      </div>
+    </li>
+    <li>
+      <div class="th">증권번호</div>
+      <div class="td">
+        <input type="text" class="ipt"  placeholder="">
       </div>
     </li>
     <li class="twoThirdsDiv">
@@ -84,8 +90,8 @@
         </ul>
       </div>
     </li>
-    <li>
-      <div class="th">증권번호</div>
+    <li class="oneThirdDiv">
+      <div class="th">고객명</div>
       <div class="td">
         <input type="text" class="ipt"  placeholder="">
       </div>
@@ -110,52 +116,6 @@
       <button type="button" class="btn_primary_reverse m" id="">엑셀다운로드</button>
     </div>
   </div>
-  <div class="tabl_area xscroll">
-    <!-- 조회 테이블 (s) -->
-    <table>
-      <caption></caption>
-      <colgroup>
-        <col style="width: auto;">
-      </colgroup>
-      <thead>
-        <tr>
-          <th>선택</th>
-          <th>설계사명</th>
-          <th>계약자명</th>
-          <th>피보험자</th>
-          <th>서면 동의서</th>
-          <th>상품명</th>
-          <th>생성일시</th>
-          <th>만료일자</th>
-          <th>진행상태</th>
-          <th>증권번호</th>
-          <th>청약완료일자</th>
-          <th>합계보험료</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <span class="single">
-              <input type="checkbox" class="ipt notDel uiAct" name="" id="chk_2"><label for="chk_2"></label>
-            </span>
-          </td>
-          <td>홍길동(123456A)</td>
-          <td> <a href="#" class="links">김하나</a> </td>
-          <td> <a href="#" class="links">김하나</a> </td>
-          <td>동의</td>
-          <td class="txt_l">(무)하나로 THE 연결된 종신보험(일반심사형, 해약환급금 일부지급형, 보장형 계약)</td>
-          <td>2022.02.02 16:00:00</td>
-          <td>2022.02.02 16:00:00</td>
-          <td>모바일 회신 성공</td>
-          <td>12345678</td>
-          <td>2022.02.02 16:00:00</td>
-          <td>18,200,100,100</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-   
   <div class="tabl_area mt40"> 
     <!-- 조회 테이블 (s)-->
     <table>
@@ -183,7 +143,14 @@
               <input type="checkbox" class="ipt notDel uiAct" name="" id="chk_2"><label for="chk_2"></label>
             </span>
           </td>
-          <td>김설계</td>
+          <td class="sdlist">
+            <p>G7126886586069094</p>
+            <ul class="sdlist_info fw_wrap">
+              <li>에이플러스에셋</li>
+              <li>부천</li>
+              <li>김이나</li>
+            </ul>
+          </td>
           <td class="txt_l">
             <p>계약자: 김하나</p>
             <p>피보험자: 최하나</p>
@@ -191,28 +158,69 @@
           <td>Y</td>
           <td class="sdlist">
             <p>(무)하나로 THE 연결된 종신보험(일반심사형, 해약환급금 일부지급형, 보장형 계약)</p>
-            <div class="sdlist_wrap">
-              <ul class="sdlist_info fw_wrap">
-                <li>
-                  생성일시 : <span class="number">2022.02.02 16:00:00</span>
-                </li>
-                <li>
-                  만료일자 : <span class="number">2022.02.02 16:00:00</span>
-                </li>
-                <li>
-                  진행상태 : <span>진행대기</span>
-                </li>
-                <li>
-                  증권번호 : <span class="number">12345678</span>
-                </li>
-                <li>
-                  청약완료일자 : <span class="number">2022.02.02 16:00:00</span>
-                </li>
-                <li>
-                  합계보험료 : <span class="number">18,200,100,100</span>원
-                </li>
-              </ul>
-            </div>
+            <ul class="sdlist_info fw_wrap">
+              <li>
+                생성일시 : <span class="number">2022.02.02 16:00:00</span>
+              </li>
+              <li>
+                만료일자 : <span class="number">2022.02.02 16:00:00</span>
+              </li>
+              <li>
+                진행상태 : <span class="auditC3 txt_b">진행대기</span>
+              </li>
+              <li>
+                증권번호 : <span class="number auditC3 txt_b">12345678</span>
+              </li>
+              <li>
+                합계보험료 : <span class="number">18,200,100,100</span>원
+              </li>
+              <li>
+                청약완료일자 : <span class="number">2022.02.02 16:00:00</span>
+              </li>
+            </ul>
+          </td>
+          </tr>
+        <tr>
+          <td>
+            <span class="single">
+              <input type="checkbox" class="ipt notDel uiAct" name="" id="chk_2"><label for="chk_2"></label>
+            </span>
+          </td>
+          <td class="sdlist">
+            <p>G7126886586069094</p>
+            <ul class="sdlist_info fw_wrap">
+              <li>에이플러스에셋</li>
+              <li>부천</li>
+              <li>김이나</li>
+            </ul>
+          </td>
+          <td class="txt_l">
+            <p>계약자: 최하나</p>
+            <p>피보험자: 최하나</p>
+          </td>
+          <td>-</td>
+          <td class="sdlist">
+            <p>(무)하나로 THE 연결된 종신보험(일반심사형, 해약환급금 일부지급형, 보장형 계약)</p>
+            <ul class="sdlist_info fw_wrap">
+              <li>
+                생성일시 : <span class="number">2022.02.02 16:00:00</span>
+              </li>
+              <li>
+                만료일자 : <span class="number">2022.02.02 16:00:00</span>
+              </li>
+              <li>
+                진행상태 : <span class="auditC4 txt_b">진행대기</span>
+              </li>
+              <li>
+                증권번호 : <span class="number auditC4 txt_b">12345678</span>
+              </li>
+              <li>
+                합계보험료 : <span class="number">18,200,100,100</span>원
+              </li>
+              <li>
+                청약완료일자 : <span class="number">2022.02.02 16:00:00</span>
+              </li>
+            </ul>
           </td>
           </tr>
         </tbody>

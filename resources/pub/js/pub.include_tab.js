@@ -132,6 +132,7 @@ var headerHTML =
         <div class="gnb_tab_sub_wrap">
           <ul class="gnb_tab_sub_cell">
             <li><a href="./resources/pub/html/at/PAT01000100.html">활동 입력/조회</a></li>
+            <li><a href="./resources/pub/html/at/PAT01010100.html">활동 입력/조회 - GA등록</a></li>
           </ul>
           <ul class="gnb_tab_sub_cell">
             <li><a href="./resources/pub/html/at/PAT02000100.html">실적(신계약/유지율/수금률) 현황</a></li>

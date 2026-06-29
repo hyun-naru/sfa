@@ -3379,7 +3379,7 @@ html {
   height: calc(100vh - 300px);
 }
 @media screen and (max-width: 1280px) {
-  .popup:not(.alert) .popBody {
+  .popup:not(.alert, .no_nim) .popBody {/*26.06.25*/
     min-height: 400px;
   }
   
@@ -14618,6 +14618,23 @@ label.fileAttach {
   margin-right: 0;
   margin-left: 10px;
 }
+/* 26.06.25 */
+.iptGroup.flexList > li {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 32px;
+}
+.iptGroup.flexList > li + li {
+  margin-top: 18px;
+}
+.iptGroup.flexList > li > button {
+  display: none;
+}
+.iptGroup.flexList > li > div:has(input:checked) + button {
+  display: block;
+}
+/* //26.06.25 */
 
 /* radio - button style */
 .iptFilt {

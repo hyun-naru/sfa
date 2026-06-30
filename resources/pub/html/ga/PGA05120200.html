@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>스텝코드 발급</title>
+  <link rel="stylesheet" href="../../css/main.css">
+  <script type="text/javascript" src="../../js/pub.include.js"></script><!-- 퍼블리싱 (html) 에서만 사용하는 코드입니다. 실제 개발 페이지에선 사용하면 안됨 -->
+  <script type="text/javascript" src="../../js/ui.common.js"></script>
+  <script type="text/javascript" src="/resources/comm/js/common-util.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- container (s) -->
+    <div class="container" id="content">
+<!-- ★★★★ 퍼블리셔 페이지 내용 시작 (s) -->
+    <div class="section">
+      <h1>스텝코드 발급</h1>
+      
+      <ul class="formList">
+        <li>
+          <div class="th">이름</div>
+          <div class="td">
+            <input type="text" class="ipt full" id="hpAuthName vaildationInputArea" placeholder="예: 김하나">
+          </div>
+        </li>
+        <li>
+          <div class="th">주민등록번호</div>
+          <div class="td">
+            <div class="setHalf">
+              <input type="tel" class="ipt" id="hpAuthBirth vaildationInputArea" maxlength="6" title="주민등록번호 앞 생년월일 6자리">
+              <span class="sign">-</span>
+	            <div class="keypad">
+                <input type="password" class="ipt" maxlength="7" title="주민등록번호 뒤 7자리">
+                <button type="button" class="icoBtn_view"><span class="blind">비밀번호 보이기</span></button>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="th">인증수단 선택</div>
+            <div class="td">
+            <ul class="iptFilt">
+              <li>
+                <input type="radio" class="ipt" name="filter0" id="filter0_1">
+                <label for="filter0_1">휴대폰</label>
+              </li>
+              <li>
+                <input type="radio" class="ipt" name="filter0" id="filter0_2" checked="">
+                <label for="filter0_2">신용카드 인증</label>
+              </li>
+              <li>
+                <input type="radio" class="ipt" name="filter0" id="filter0_3">
+                <label for="filter0_3">네이버 인증</label>
+              </li>
+              <li>
+                <input type="radio" class="ipt" name="filter0" id="filter0_4">
+                <label for="filter0_4">PASS 인증</label>
+              </li>
+              <li>
+                <input type="radio" class="ipt" name="filter0" id="filter0_5">
+                <label for="filter0_5">TOSS 인증</label>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <div class="btn_wrap mb60">
+        <button type="button" class="btn_primary">발급확인</button>
+      </div>
+
+
+      <ul class="formList div3">
+        <li>
+          <div class="th">소속대리점</div>
+          <div class="td">
+            <select class="ipt">
+              <option selected="">전체</option>
+            </select>
+          </div>
+        </li>
+        <li>
+          <div class="th">본부</div>
+          <div class="td">
+            <select class="ipt">
+              <option selected="">전체</option>
+            </select>
+          </div>
+        </li>
+        <li>
+          <div class="th">지점명</div>
+          <div class="td">
+            <select class="ipt">
+              <option selected="">전체</option>
+            </select>
+          </div>
+        </li>
+      </ul>
+
+
+    <div class="fontM18 mt60 mb15">
+      스텝코드 발급을 위한 개인(신용)정보 처리에 동의해주세요.
+    </div>
+    <div class="trems_wrap">
+      <div class="trems_allchk">
+
+        <input type="checkbox" class="ipt round" name="" id="chk_1"><label for="chk_1">전체동의</label>
+
+      </div>
+      <ul class="trems_chklist">
+        <li>
+          <span class="single">
+            <input type="checkbox" class="ipt" name="" id="chk_3"><label for="chk_3">[필수] 비밀유지 서양서(대리점 내근직 종사자)를 위한 상세동의서</label>
+          </span>
+          <button class="btn_view" onclick="layerPop.open('pop01')">view</button>
+        </li>
+        <li>
+          <span class="single">
+            <input type="checkbox" class="ipt" name="" id="chk_5"><label for="chk_5">[필수] 개인정보동의 수집&middot;이용&middot;제공&middot;조회를 위한 상세동의서</label>
+          </span>
+          <button class="btn_view" onclick="layerPop.open('pop02')">view</button>
+        </li>
+      </ul>
+
+    </div>
+	
+	<div class="btn_wrap">
+	<button type="button" class="btn_primary">발급확인</button>
+	</div>
+<!-- ★★★★ 퍼블리셔 페이지 내용 끝 (e) -->
+</div><!-- container (e) -->
+
+<!-- popup (s) 비밀유지 서양서(대리점 내근직 종사자) -->
+<div class="popWrap" id="pop01">
+	<div class="popContain">
+		<div class="popup">
+			<div class="popHead">
+				<h1 class="tit01">[필수]비밀유지 서양서(대리점 내근직 종사자)</h1>
+			</div>
+			<div class="popBody col_12">
+			<!-- 팝업 내용 시작 (s) -->
+				<div class="popupAgree">
+					<p class="tit">안내</p>
+					<ol class="txtList numL">
+						<li>안내</li>
+						<li>안내</li>
+						<li>안내</li>
+						<li>안내</li>
+						<li>안내</li>
+					</ol>
+					<p class="tit">안내</p>
+				</div>
+				<div>
+                  <input type="checkbox" class="ipt" name="chk3" id="chk3_1">
+                  <label for="chk3_1">위 내용을 확인하였습니다.</label>
+                </div>
+				<!-- 팝업 내용 끝 (e) -->
+		    </div>
+		    <div class="btn_wrap sticky">
+		        <button type="button" class="btn_primary" id=""><span>확인</span></button>
+		    </div>
+		    <button type="button" class="icoBtn_close"><span>팝업 닫기</span></button>
+		</div>
+	</div>
+</div>
+<!-- popup 비밀유지 서양서(대리점 내근직 종사자) (e) -->
+<!-- popup (s) 개인신용정보의 수집·이용·제공·조회 동의서 -->
+<div class="popWrap" id="pop02">
+	<div class="popContain">
+		<div class="popup">
+			<div class="popHead">
+				<h1 class="tit01">[필수] 개인신용정보의 수집·이용·제공·조회 동의서</h1>
+			</div>
+			<div class="popBody col_12">
+			<!-- 팝업 내용 시작 (s) -->
+				<div class="popupAgree">
+					<p class="tit">안내</p>
+					<h2 class="tit02 mt0 ">1. 개인(신용)정보의 수집&middot;이용에 관한 사항</h2>
+
+					<div class="tabl_area">
+						<table>
+							<caption>수집 및 이용 목적, 보유 및 이용 기간, 수집 및 이용 항목 제공</caption>
+							<colgroup>
+								<col style="width: 14%;">
+								<col style="width: 14%;">
+								<col style="width: auto;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th colspan="2">수집&middot;이용 목적</th>
+									<td>
+										<ul class="txtList dash">
+											<li>안내</li>
+											<li>안내</li>
+											<li>안내</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="2">보유&middot;이용 기간</th>
+									<td>
+										<div class="">
+											<h2 class="tit02 mt0 mb0">- 동의일로부터 거래 종료 후 5년까지</h2>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th rowspan="2">수집&middot;이용할 개인(신용)정보 항목</th>
+									<th class="accent">개인식별정보</th>
+									<td>
+										<div class="alignGroup">
+											<div>
+												<ul class="txtList dash">
+													<li>성명</li>
+												</ul>
+												<p class="coment02">위 개인(신용)정보 <span>수집&middot;이용</span>에 동의하십니까?</p>
+											</div>
+											<ul class="iptGroup vertical">
+						                      <li>
+						                          <input type="radio" class="ipt" name="clcnUtzEstIdtIm" id="clcnUtzEstIdtIm_Y" value="Y" >
+						                          <label for="clcnUtzEstIdtIm_Y">동의함</label>
+						                      </li>
+						                      <li>
+						                          <input type="radio" class="ipt essentialRadio" name="clcnUtzEstIdtIm" id="clcnUtzEstIdtIm_N" value="N" >
+						                          <label for="clcnUtzEstIdtIm_N">동의하지 않음</label>
+						                      </li>
+						                    </ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th class="accent">고유식별정보</th>
+									<td>
+										<div class="alignGroup " >
+											<div>
+												<h2 class="tit02 mt0 mb0">주민등록번호, 외국인등록번호, 여권번호, 운전면허번호</h2>
+												<p class="coment02">위 <span>고유식별정보 제공&middot;이용</span>에 동의하십니까?</p>
+											</div>
+							                    <ul class="iptGroup vertical">
+							                      <li>
+							                          <input type="radio" class="ipt" name="ofEstIdtIm" id="ofEstIdtIm_Y" value="Y" >
+							                          <label for="ofEstIdtIm_Y">동의함</label>
+							                      </li>
+							                      <li>
+							                          <input type="radio" class="ipt essentialRadio" name="ofEstIdtIm" id="ofEstIdtIm_N" value="N" >
+							                          <label for="ofEstIdtIm_N">동의하지 않음</label>
+							                      </li>
+							                    </ul>
+											</div>
+										</td>
+									</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h2 class="tit02">2. 개인(신용)정보의 제공에 관한 동의</h2>
+					<div class="tabl_area">
+						<table>
+							<caption>제공받는 자, 제공받는 자의 이용목적, 보유 및 이용기간, 제공 할 항목 제공</caption>
+							<colgroup>
+								<col style="width: 14%;">
+								<col style="width: 14%;">
+								<col style="width: auto;">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th colspan="2">제공받는 자</th>
+									<td>
+										<ul class="txtList dash bl">
+											<li>안내</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="2">제공받는 자의<br>이용목적</th>
+									<td>
+										<ul class="txtList dash bl">
+											<li>안내</li>
+											<li>안내</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="2">제공받는 자의<br>보유 및 이용기간</th>
+									<td>
+										<ul class="txtList dash bl">
+											<li>제공받는 자의 이용목적을 달성할 때까지(관련 법령상 보존기간을 따름)</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th rowspan="2">제공할 개인(신용)정보의 항목</th>
+									<th class="accent">개인식별정보</th>
+									<td>
+										<div class="alignGroup alCenter" >
+											<div>
+												<ul class="txtList dash">
+													<li>성명</li>
+												</ul>
+												<p class="coment02">위 개인(신용)정보 <span>제공</span>에 동의하십니까?</p>
+											</div>
+											<ul class="iptGroup vertical">
+												<li>
+													<input type="radio" class="ipt" name="ofIdlCrdIm" id="ofIdlCrdIm_Y" value="Y" >
+													<label for="ofIdlCrdIm_Y">동의함</label>
+												</li>
+												<li>
+													<input type="radio" class="ipt essentialRadio" name="ofIdlCrdIm" id="ofIdlCrdIm_N" value="N" >
+													<label for="ofIdlCrdIm_N">동의하지 않음</label>
+												</li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th class="accent">고유식별정보</th>
+									<td>
+										<div class="alignGroup " >
+											<div>
+												<h2 class="tit02 mt0 mb0">주민등록번호, 외국인등록번호, 여권번호, 운전면허번호</h2>
+												<p class="coment02">위 <span>고유식별정보 제공</span>에 동의하십니까?</p>
+											</div>
+												<ul class="iptGroup vertical">
+													<li>
+														<input type="radio" class="ipt" name="ofEstIdtIm" id="ofEstIdtIm_Y" value="Y" >
+														<label for="ofEstIdtIm_Y">동의함</label>
+													</li>
+													<li>
+														<input type="radio" class="ipt essentialRadio" name="ofEstIdtIm" id="ofEstIdtIm_N" value="N" >
+														<label for="ofEstIdtIm_N">동의하지 않음</label>
+													</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<h2 class="tit02">3. 개인(신용)정보의 조회에 관한 사항</h2>
+						<div class="tabl_area mtt24">
+							<table>
+								<caption>조회 대상 기관, 목적, 동의의 효력기간, 개인식별정보, 고유식별정보 제공</caption>
+								<colgroup>
+									<col style="width: 14%;">
+									<col style="width: 14%;">
+									<col style="width: auto;">
+								</colgroup>
+								<thead>
+									<tr>
+										<th colspan="2">조회 대상 기관</th>
+										<td>
+											<p class="coment">공공기관(도로교통공단, 정부 24 등)</p>
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th colspan="2">조회 목적</th>
+										<td>
+											<ul class="txtList dash">
+												<li>안내</li>
+											</ul>
+										</td>
+									</tr>
+									<tr>
+										<th colspan="2">조회 동의의 효력기간</th>
+										<td>
+											<p class="coment">안내</p>
+										</td>
+									</tr>
+									<tr>
+										<th rowspan="3">조회할 개인(신용)정보 항목</th>
+										<th class="accent">개인식별정보</th>
+										<td>
+											<div class="alignGroup alCenter" >
+												<div>
+													<ul class="txtList dash">
+														<li>안내</li>
+														<li>안내</li>
+													</ul>
+													<p class="coment02">위 개인(신용)정보 <span>조회</span>에 동의하십니까?</p>
+												</div>
+												<ul class="iptGroup vertical">
+													<li>
+														<input type="radio" class="ipt" name="inqIdlCrdIm" id="inqIdlCrdIm_Y" value="Y" >
+														<label for="inqIdlCrdIm_Y">동의함</label>
+													</li>
+													<li>
+														<input type="radio" class="ipt essentialRadio" name="inqIdlCrdIm" id="inqIdlCrdIm_N" value="N" >
+														<label for="inqIdlCrdIm_N">동의하지 않음</label>
+													</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th class="accent">고유식별정보</th>
+										<td>
+											<div class="alignGroup">
+												<div>
+													<h2 class="tit02 mt0 mb0 ">주민등록번호, 외국인등록번호, 여권번호, 운전면허번호</h2>
+													<p class="coment02">위 <span>고유식별정보 조회</span>에 동의하십니까?</p>
+												</div>
+												<ul class="iptGroup vertical">
+													<li>
+														<input type="radio" class="ipt" name="inqEstIdtIm" id="inqEstIdtIm_Y" value="Y" >
+														<label for="inqEstIdtIm_Y">동의함</label>
+													</li>
+													<li>
+														<input type="radio" class="ipt essentialRadio" name="inqEstIdtIm" id="inqEstIdtIm_N" value="N" >
+														<label for="inqEstIdtIm_N">동의하지 않음</label>
+													</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				<!-- 팝업 내용 끝 (e) -->
+		    </div>
+		    <div class="btn_wrap sticky">
+		        <button type="button" class="btn_primary" id=""><span>확인</span></button>
+		    </div>
+		    <button type="button" class="icoBtn_close"><span>팝업 닫기</span></button>
+		</div>
+	</div>
+</div>
+<!-- popup 개인신용정보의 수집·이용·제공·조회 동의서 (e) -->
+<!-- 22.07.21 개발이슈로 footer 삭제 -->
+<!-- <div class="footer"></div> -->
+</div>
+</body>
+
+</html>

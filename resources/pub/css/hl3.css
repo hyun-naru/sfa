@@ -3,7 +3,7 @@
 .newPsd{
 	color:#111;
 }
-
+			
 .newPsd *{
 	letter-spacing:-0.6px;
 }
@@ -30,6 +30,7 @@
 	border:1px solid #CDCDCD;
 	border-radius:16px;
 	margin-top:16px;
+	overflow-y:visible; /* 26.01.05 추가 (콤보박스 오버 플로우) */
 }
 .newPsd .whiteBox .tit01,
 .newPsd .whiteBox .tit02{
@@ -82,7 +83,7 @@
 .flexOne{
 	flex:1;
 }
-.fw_wrap{
+.fw_wrap {
 	flex-wrap:wrap;
 }
 .newPsd .iptGroup .flexOne.iptWrap{
@@ -374,6 +375,7 @@
 .whiteBox .formList.line{
 	border:none;
 	padding:0;
+	overflow:visible; /* 26.01.05 추가 (콤보박스 오버 플로우) */
 }
 
 .whiteBox .formList.line > li{
@@ -2102,19 +2104,20 @@ textarea.ipt.type02{
 	bottom:0; left:50%;
 	transform:translateX(-50%);
 	width:100%;
-	min-width:944px;
+	min-width:1110px;/* 26.06.17 */
 	max-width:1460px;
 	height:77px;
 	padding:12px 24px;
 	justify-content: space-between;
+	gap: 30px;/* 26.06.17 */
 	border-radius:12px 12px 0 0;
 	background: linear-gradient(90deg, #16A087 0%, #16A087 40%, #018F72 47.11%, #008E71 100%);
 }
 
 .psdFixed > .flexWrap:first-of-type{
 	justify-content: space-between;
-	width:600px; /* 25.02.25 80% 에서 봐도 안 떨어지게 수정 */
-	min-width: 565px; /* 25.05.23 추가 */
+	width:580px; /* 25.02.25 80% 에서 봐도 안 떨어지게 수정 *//* 26.06.17 */
+	min-width: 552px; /* 25.05.23 추가 *//* 26.06.17 */
 }
 
 .psdFixed .iptFilt.tab{
@@ -2195,24 +2198,50 @@ textarea.ipt.type02{
 	background:#fff;
 	opacity:0.3;
 }
+/* 26.06.17 */
 
-@media screen and (max-width: 1240px){
-	
+.newPsd .psdFixed [class*=btn_navy][class*=_navy].type02.l, 
+.newPsd .psdFixed [class*=btn_primary][class*=_primary].type02.l, 
+.newPsd .psdFixed [class*=btn_gray][class*=_gray].type02.l, 
+.newPsd .psdFixed [class*=btn_red][class*=_red_reverse].type02.l, 
+.newPsd .psdFixed [class*=btn_white][class*=_white].type02.l {
+	min-width: 90px;
+}
+.psdFixed .btn_icon.copy {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6 3C6 1.34315 7.34315 0 9 0H14C14.2652 0 14.5196 0.105357 14.7071 0.292893L21.7071 7.29289C21.8946 7.48043 22 7.73478 22 8V17C22 18.6569 20.6569 20 19 20H18V21C18 22.6569 16.6569 24 15 24H5C3.34315 24 2 22.6569 2 21V7C2 5.34315 3.34315 4 5 4H6V3ZM6 6H5C4.44772 6 4 6.44772 4 7V21C4 21.5523 4.44772 22 5 22H15C15.5523 22 16 21.5523 16 21V20H9C7.34315 20 6 18.6569 6 17V6ZM9 2C8.44772 2 8 2.44772 8 3V17C8 17.5523 8.44771 18 9 18H19C19.5523 18 20 17.5523 20 17V9H16C14.3431 9 13 7.65685 13 6V2H9ZM15 3.41421L18.5858 7H16C15.4477 7 15 6.55228 15 6V3.41421Z' fill='%23ffffff'/%3E%3C/svg%3E");
+	background-size: 26px;
+}
+.psdFixed .flexWrap.end {
+	justify-content: space-between;
+	flex: auto;
+}
+.psdFixed .change_p {
+	color: #fff;
+	font-size:1.6rem;
+}
+.psdFixed .change_p dd{
+	width:100%;
+	font-size:2.4rem;
+	font-weight:700;
+	line-height: 34px;
+    height: 35px;
+}
+@media screen and (max-width: 1300px){
 	.whiteBox .infoArea .infoCell .val .iptWrap{
 		width:100%;
 	}
 	.psdFixed{
+		left:0;
 		padding: 12px;
+		gap: 10px;
+		transform:translateX(0);
 	}
 	.psdFixed > .flexWrap:first-of-type{
-		width:534px;
+		width:500px;
 		min-width: unset; /* 25.05.23 추가 */
 	}
 	.psdFixed > .flexWrap:last-of-type{
 		padding-left:8px;
-	}
-	.psdFixed .iptFilt.tab .ipt + label{
-		width:75px;
 	}
 	.psdFixed .flexWrap button:not(.btn_icon, .icoBtn_del){
 		/* width:9vw; */
@@ -2223,10 +2252,12 @@ textarea.ipt.type02{
 		gap:4px;
 	}
 	.psdFixed .iptFilt.tab{
-		min-width: 160px;
+		min-width: 142px;
 	}
 	.psdFixed .iptFilt.tab .ipt + label{
 	    min-width: 65px;
+		width: 65px;
+		font-size: 1.6rem;
 		height: 40px !important;
     	line-height: 40px !important;
 	}
@@ -2251,18 +2282,15 @@ textarea.ipt.type02{
 		font-size:2.6rem;
 	}
 }
-
-@media screen and (max-width: 944px){
+@media screen and (max-width: 1110px){
+	
 	.psdFixedBox{
 		bottom:0;
-		overflow-x:scroll;
-	}
-	.psdFixed{
-		left:0;
-		transform:translateX(0);
+		overflow-y: hidden;
+		overflow-x: auto;
 	}
 }
-
+/* //26.06.17 */
 /* 가상 숫자 키패드 */
 .virtualKeypad{
 	position:fixed;

@@ -591,11 +591,23 @@ h1,
   font-size: 2.8rem;
   line-height: 1.5;
   margin: 64px 0 48px;
+  /* smr27 */
+  & + .logo_hana {
+    align-items: center;
+    margin: 64px 0 48px;
+  }
+  /* //smr27 */
 }
 @media screen and (min-width: 1921px) {
   h1,
 .tit01 {
     margin: 80px 0 56px;
+    /* smr27 */
+    & + .logo_hana {
+      align-items: center;
+      margin: 80px 0 56px;
+    }
+    /* //smr27 */
   }
 }
 

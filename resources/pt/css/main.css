@@ -15626,10 +15626,12 @@ body:not(.isIE):not(.isFF) .tipWrap.info .icoBtn_tip:after {
       -ms-flex: 1;
           flex: 1;
 }
-.formList.div3 > li:not(.full) {
+.formList.div3 > li:not(.full, .half) {/* 26.06.30 */
   max-width: 400px;
 }
-.formList.div3 > li:not(.full, .twoThirdsDiv) .iptWrap, .formList.div3 > li:not(.full) div:not([class*=set]) > select.ipt, .formList.div3 > li:not(.full) .keypad {
+.formList.div3 > li:not(.full, .twoThirdsDiv) .iptWrap,
+.formList.div3 > li:not(.full) div:not([class*=set]) > select.ipt, 
+.formList.div3 > li:not(.full) .keypad {
   width: 100%;
 }
 .formList.div3 > li:not(.full) .keypad.mid {
@@ -15669,6 +15671,16 @@ body:not(.isIE):not(.isFF) .tipWrap.info .icoBtn_tip:after {
 .formList.div3 > li:not(.full).twoThirdsDiv .setHalf.nowrap > * {
   max-width: 165px;
 }
+/* 26.06.30 */
+.formList.div3 > li:not(.full).half {
+  -webkit-box-flex: 1;
+        -ms-flex: 1 1 50%;
+            flex: 1 1 50%;
+}
+.formList.div3 > li.half .setHalf .iptWrap {
+  width: 175px;
+}
+/* //26.06.30 */
 .formList.line {
   border: 1px solid #e5e5e5;
   border-radius: 15px;
@@ -22416,3 +22428,15 @@ button.swiper-pagination-bullet-active:before {
     min-width: 1100px;
 }
 /* // 2025 캠페인 추가 25.11.13 */
+/* smr1 */
+.tabl_area.pd_small th,
+.tabl_area.pd_small td {
+  padding: 14px 8px;
+}
+@media screen and (max-width: 1280px) {
+  .tabl_area.pd_small th,
+  .tabl_area.pd_small td {
+    padding: 14px 4px;
+  }
+}
+/* //smr1 */

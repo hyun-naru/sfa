@@ -238,6 +238,7 @@ var headerHTML =
             <li><a href="./resources/pub/html/ga/PGA05080100.html">해촉 대상자 DB업로드</a></li>
             <li><a href="./resources/pub/html/ga/PGA05090100.html">조직 변경 심사</a></li>
             <li><a href="./resources/pub/html/ga/PGA05100100.html">조직 변경 대상자 DB업로드</a></li>
+            <li><a href="./resources/pub/html/ga/PGA05120100.html">스텝코드 발급</a></li>
           </ul>
           <ul class="gnb_tab_sub_cell">
             <li><a href="javascript:void(0);" class="url_not">담당제휴 실적현황</a></li>

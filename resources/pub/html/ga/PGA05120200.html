@@ -19,7 +19,9 @@
             // ui.front.js 초기 실행
             layout.init(); // 페이지가 준비가 됐을 때 딱 한번만 실행 (공통 개발팀에서 호출하는게 좋습니다.)
             ui.init(); // 페이지가 동적으로 바뀔때마다 실행 (개발을 붙였더니 뭔가 동작을 안할때 개발페이지 개발자들이 호출하는게 좋습니다.)
-
+			$('.btn_certify').on('click', function(){
+				uiInfo.pt.alert('', '인증이 완료되었습니다.', function(){$('.certify_ok').removeClass('hidden')});				
+			});
 
         });
     </script>
@@ -87,10 +89,10 @@
         </li>
       </ul>
       <div class="btn_wrap mb60">
-        <button type="button" class="btn_primary">발급확인</button>
+        <button type="button" class="btn_primary btn_certify">발급확인</button>
       </div>
 
-
+	<div class="certify_ok hidden">
       <ul class="formList div3">
         <li>
           <div class="th">소속대리점</div>
@@ -147,6 +149,7 @@
 	
 	<div class="btn_wrap">
 	<button type="button" class="btn_primary">동의확인</button>
+	</div>
 	</div>
 <!-- ★★★★ 퍼블리셔 페이지 내용 끝 (e) -->
 </div><!-- container (e) -->

@@ -114,6 +114,7 @@
       <button type="button" class="btn_primary_reverse m" id="">엑셀다운로드</button>
     </div>
   </div>
+   
   <div class="tabl_area pd_small mt40"> 
     <!-- 조회 테이블 (s)-->
     <table>
@@ -127,11 +128,11 @@
       </colgroup>
       <thead>
         <tr>
-          <th>선택</th>
-          <th>설계사명</th>
-          <th>고객명</th>
-          <th>서면 동의서</th>
-          <th>청약내용</th>
+          <th scope="col">선택</th>
+          <th scope="col">설계정보</th>
+          <th scope="col">고객명</th>
+          <th scope="col">서면 동의서</th>
+          <th scope="col">청약내용</th>
         </tr>
       </thead>
       <tbody id="dataList">
@@ -146,7 +147,7 @@
             <ul class="sdlist_info fw_wrap">
               <li>에이플러스에셋</li>
               <li>부천</li>
-              <li>김이나</li>
+              <li>김이나(123456A)</li><!-- 26.07.09 -->
             </ul>
           </td>
           <td class="txt_l">
@@ -189,7 +190,7 @@
             <ul class="sdlist_info fw_wrap">
               <li>에이플러스에셋</li>
               <li>부천</li>
-              <li>김이나</li>
+              <li>김이나(123456A)</li><!-- 26.07.09 -->
             </ul>
           </td>
           <td class="txt_l">
@@ -231,6 +232,51 @@
     </div>
     <!--// No Result (e) -->
   </div>
+  
+  <!-- <div class="tabl_area xscroll">
+    <table>
+      <caption></caption>
+      <colgroup>
+        <col style="width: auto;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">선택</th>
+          <th scope="col">설계사명</th>
+          <th scope="col">계약자명</th>
+          <th scope="col">피보험자</th>
+          <th scope="col">서면 동의서</th>
+          <th scope="col">상품명</th>
+          <th scope="col">생성일시</th>
+          <th scope="col">만료일자</th>
+          <th scope="col">진행상태</th>
+          <th scope="col">증권번호</th>
+          <th scope="col">청약완료일자</th>
+          <th scope="col">합계보험료</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="single">
+              <input type="checkbox" class="ipt notDel uiAct" name="" id="chk_2"><label for="chk_2"></label>
+            </span>
+          </td>
+          <td>홍길동(123456A)</td>
+          <td> <a href="#" class="links">김하나</a> </td>
+          <td> <a href="#" class="links">김하나</a> </td>
+          <td>동의</td>
+          <td class="txt_l">(무)하나로 THE 연결된 종신보험(일반심사형, 해약환급금 일부지급형, 보장형 계약)</td>
+          <td>2022.02.02 16:00:00</td>
+          <td>2022.02.02 16:00:00</td>
+          <td>모바일 회신 성공</td>
+          <td>12345678</td>
+          <td>2022.02.02 16:00:00</td>
+          <td>18,200,100,100</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
   <button type="button" class="btn_primary_reverse l mt20">엑셀다운로드</button>
   <div class="pagination" role="navigation" aria-label="페이지 선택 영역">
 		<button type="button" class="icoBtn_first" aria-label="처음"></button>
@@ -252,9 +298,11 @@
 	</div>
 
 
-<!-- ★★★★ 퍼블리셔 페이지 내용 끝 (e) -->
-</div><!-- container (e) -->
-	  
+
+</div>
+
+
+
 		    <!-- ★★★★ 퍼블리셔 팝업 내용 시작 (s) -->
 			<!-- popup (s) -->
 			<div class="popWrap" id="popupUrl">
@@ -262,7 +310,7 @@
 			  <div class="popContain">
 			    <div class="popup fullHeight type02">
 			      <div class="popHead">
-			        <h1 class="tit01">모바일청약 진행상태 상세조회</h1>
+			        <h1 class="tit01">스마트청약 진행상태 상세조회</h1><!-- 26.07.09 -->
 			      </div>
 			      <div class="popBody col_12">
 						<!-- 팝업 내용 시작 (s) -->
@@ -274,6 +322,24 @@
 						     </div>
 						     
 						     <ul class="formList div2">
+							      <!-- <li>
+							        <div class="th">설계사</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>박하나</span>
+                          <button type="button" class="btn_white_round m" id="">URL재전송</button>
+                        </div>
+							        </div>
+							      </li>
+							      <li>
+							        <div class="th">진행상태</div>
+							        <div class="td">
+                        <div class="flexWrap full jc_sb">
+                          <span>작성제출완료</span>
+                          <button type="button" class="btn_white_round m" id="">이력보기</button>
+                        </div>
+							        </div>
+							      </li> -->
 							      <li>
 							        <div class="th">피보험자</div>
 							        <div class="td">
@@ -385,15 +451,8 @@
 			</div>
 			<!-- popup (e) -->
 			<!-- ★★★★ 퍼블리셔 팝업 내용 끝 (e) -->
-
-</div>
-
-
-
-
-
-<!-- 22.07.21 개발이슈로 footer 삭제 -->
-<!-- <div class="footer"></div> -->
+<!-- ★★★★ 퍼블리셔 페이지 내용 끝 (e) -->
+</div><!-- container (e) -->
 </div>
 </body>
 

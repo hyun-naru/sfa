@@ -591,23 +591,23 @@ h1,
   font-size: 2.8rem;
   line-height: 1.5;
   margin: 64px 0 48px;
-  /* smr27 */
+  /* 26.07.02 */
   & + .logo_hana {
     align-items: center;
     margin: 64px 0 48px;
   }
-  /* //smr27 */
+  /* //26.07.02 */
 }
 @media screen and (min-width: 1921px) {
   h1,
 .tit01 {
     margin: 80px 0 56px;
-    /* smr27 */
+    /* 26.07.02 */
     & + .logo_hana {
       align-items: center;
       margin: 80px 0 56px;
     }
-    /* //smr27 */
+    /* //26.07.02 */
   }
 }
 
@@ -3607,7 +3607,7 @@ html {
   line-height: 1.5;
   color: #444;
 }
-.popup .popBody .txtList.numL li {
+.popup .popBody .txtList.numL:not(.no_bl) li {
   font-family: "Spoqa Han Sans Neo", "Roboto", sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
@@ -22440,7 +22440,7 @@ button.swiper-pagination-bullet-active:before {
     min-width: 1100px;
 }
 /* // 2025 캠페인 추가 25.11.13 */
-/* smr1 */
+/* 26.07.06 */
 .tabl_area.pd_small th,
 .tabl_area.pd_small td {
   padding: 14px 8px;
@@ -22451,4 +22451,4 @@ button.swiper-pagination-bullet-active:before {
     padding: 14px 4px;
   }
 }
-/* //smr1 */
+/* //26.07.06 */

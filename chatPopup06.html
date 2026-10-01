@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="Shortcut Icon" href="./resources/pt/images/fav/favicon.png">
+    <link rel="stylesheet" type="text/css" href="./WEB-INF/jsp/frame/pt/cssLib.css" />
+
+    <script src="./resources/comm/js/jquery-3.5.1.min.js"></script>
+    <script src="./resources/comm/js/jquery.form.min.js"></script>
+    <script src="./resources/comm/js/jquery.serializeObject.min.js"></script>
+    <script src="./resources/comm/js/jquery-ui.js"></script>
+    <script src="./resources/comm/js/jquery.ui.monthpicker.js"></script>
+    <script src="./resources/comm/js/jquery.cookie.js"></script>
+    <script src="./resources/comm/js/jquery.blockUI.js"></script>
+    <script src="./resources/comm/js/jquery.MultiFile.js"></script>
+    <script src="./resources/comm/js/swiper.min.js"></script>
+    <script src="./resources/comm/js/lightslider.js"></script>
+    <script src="./resources/comm/js/common-transaction.js"></script>
+    <script src="./resources/comm/js/common-numeral.min.js"></script>
+    <script src="./resources/comm/js/common-moment.min.js"></script>
+    <script src="./resources/comm/js/common-str.js"></script>
+    <script src="./resources/comm/js/common-util.js"></script>
+    <script src="./resources/comm/js/common-code.js"></script>
+    <script src="./resources/comm/js/common-storage.js"></script>
+    <script src="./resources/comm/js/common-timeout.js"></script>
+    <script src="./resources/comm/js/sfaApp.interface.js"></script>
+    <script src="./resources/pt/js/ui.front.js"></script>
+    <script src="./resources/pt/js/pt.common.js"></script>
+    <title>채팅 상담 팝업</title>
+    <script>
+        let isMoLanding = false;	//모바일 랜딩의 경우
+        $(document).ready(function () {
+            layout.init(); 
+            ui.init(); 
+        });
+    </script>
+    <style>
+        body, html, .wrapper {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .chat-container {
+            width: 400px;
+            height: 799px;
+            background-color: #ffffff;
+            border-radius: 12px;
+        }
+
+        .chat-header {
+            background-color: #00857E; 
+            color: #ffffff;
+            padding: 16px 20px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            min-height: 58px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-live-btn {
+            position:relative;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            width: 100%;
+        }
+        /* 오른쪽 중간 플로팅 토글 버튼 */
+        .btn-toggle-flow,
+        .btn-toggle-flow:focus {
+            width: 100%;
+            height: 30px;
+            color: #ffffff;
+            background-color: rgb(0, 107, 101, 0.7);
+            /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' id='Layer_1' style='enable-background:new 0 0 32 32;' version='1.1' viewBox='0 0 32 32' xml:space='preserve' fill='%23006b65'%3E%3Cpath d='M14,28V8.8l-4.62,4.62C8.986,13.814,8.516,14,8,14c-0.984,0-2-0.813-2-2c0-0.531,0.193-0.994,0.58-1.38l7.958-7.958C14.866,2.334,15.271,2,16,2s1.08,0.279,1.447,0.646l7.973,7.974C25.807,11.006,26,11.469,26,12c0,1.188-1.016,2-2,2c-0.516,0-0.986-0.186-1.38-0.58L18,8.8V28c0,1.104-0.896,2-2,2S14,29.104,14,28z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 55% 55%; */
+            border-radius: 10px 10px 0 0;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-toggle-flow:hover {
+            background-color: rgb(0, 107, 101, 0.7);
+            /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' id='Layer_1' style='enable-background:new 0 0 32 32;' version='1.1' viewBox='0 0 32 32' xml:space='preserve' fill='%23ffffff'%3E%3Cpath d='M14,28V8.8l-4.62,4.62C8.986,13.814,8.516,14,8,14c-0.984,0-2-0.813-2-2c0-0.531,0.193-0.994,0.58-1.38l7.958-7.958C14.866,2.334,15.271,2,16,2s1.08,0.279,1.447,0.646l7.973,7.974C25.807,11.006,26,11.469,26,12c0,1.188-1.016,2-2,2c-0.516,0-0.986-0.186-1.38-0.58L18,8.8V28c0,1.104-0.896,2-2,2S14,29.104,14,28z'/%3E%3C/svg%3E"); */
+        }
+        .btn-toggle-flow.active {
+            border-radius: 0 0 10px 10px;
+        }
+        .chat-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: calc(100% - 58px);
+        }
+        /* chat-flow 스타일 및 트랜지션 */
+        .chat-content .chat-flow { 
+            position: relative;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            gap: 12px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            transition: flex 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-sizing: border-box;
+        }
+        .chat-content:has(.chat-live:not(.collapsed)) .chat-flow {
+            flex: 1; /* 라이브 대화창 높이(350px)를 제외한 상단 나머지 영역을 가변 채움 */
+        }
+        /* 오른쪽 라이브 대화 영역 */
+        .chat-live {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            /* 슬라이딩 높이 제한 및 트랜지션 설정 */
+            height: calc(100% - 30px); 
+            white-space: nowrap;
+            box-sizing: border-box;
+            transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-in-out;
+            opacity: 1;
+        }
+
+        /* collapsed(숨김) 상태 스타일 */
+        .chat-content .chat-live.collapsed {
+            flex: 0 !important;
+            height: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            opacity: 0;
+        }
+
+        /* flow-box 패딩 영역 잔여 방지 */
+        .chat-content .flow-box {
+            position: relative;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .chat-content .flow-box > div {   
+            margin-top: 12px;
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;      
+            padding: 20px;
+            height: calc(100% - 48px);
+            overflow-y: auto;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 1.4rem;
+            line-height: 1.4;
+            word-break: break-word;
+            white-space: normal;
+            box-sizing: border-box;
+        }
+
+        .message.received {
+            background-color: #f1f3f5;
+            color: #333333;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message.sent {
+            background-color: #00857E;
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            background-color: #ffffff;
+            border-top: 1px solid #f1f3f5;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 10px 14px;
+            border: none;
+            outline: none;
+            font-size: 1.6rem;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input-area input:focus {
+            border-color: #00857E;
+        }
+
+        .chat-input-area .btn-send {
+            width: 48px;
+            height: 48px;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            background-color: #00857E;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 43.59 40.14' style='&%2310;'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:none;stroke:%23fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EAsset 1%3C/title%3E%3Cg id='Layer_2' data-name='Layer 2'%3E%3Cpath class='cls-1' d='M21.46,1C9.83,1,1,8.74,1,18.28a12.83,12.83,0,0,0,5.41,11h0A15.59,15.59,0,0,1,6,37.4a1.35,1.35,0,0,0,1.74,1.66l10.59-3.75a23.26,23.26,0,0,0,3.26.25c11.63,0,21-7.74,21-17.28S33.09,1,21.46,1Z'/%3E%3Cpath class='cls-1' d='M18.15,35.31a23.69,23.69,0,0,1-6.8-2.44'/%3E%3Ccircle cx='12.84' cy='18.87' r='2.37' fill='%23fff'/%3E%3Ccircle cx='22.12' cy='18.87' r='2.37' fill='%23fff'/%3E%3Ccircle cx='31.4' cy='18.87' r='2.37' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: 32px;
+            background-position: 9px center; 
+        }
+
+        .chat-input-area .btn-send:hover {
+            background-color: #006b65;
+        }
+
+        .btn_area {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 90% !important;
+        }
+
+        .iptWrap {
+            display: block;
+            width: 90% !important;
+        }
+
+        .list-btn {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .btn_label,
+        .btn_label:focus {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 90% !important;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 1.2rem;
+            background-color: #f9f9f9;
+            border: 1px solid #dbe1e6;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn_label:hover {
+            background-color: #EFF8F5;
+            border: 1px solid #dbe1e6;
+        }
+
+        .btn_label .tit {
+            display: flex;
+            gap: 4px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .flag.light {
+            padding: 2px 6px;
+            height: 24px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+        }
+
+        .btn_label .info span:first-child {
+            color: #666666;
+            font-weight: bold;
+        }
+
+        .btn-floating,
+        .btn-floating:focus {
+            position: absolute;
+            top: 20px;
+            right: 8px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.4rem;
+            z-index: 1000;
+            background-color: #d8d8d8;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cscript xmlns=''/%3E%3Cpath style='fill:none' d='M0 0h16v16H0z'/%3E%3Cg%3E%3Cpath d='M200.649 145.763A6 6 0 1 1 203 141a6.037 6.037 0 0 1-.068.908' style='stroke-miterlimit:10;stroke:%23333;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3Cpath d='m201 140.321 2 2 2-2' style='stroke-linejoin:round;stroke:%23333;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 16px 16px;
+        }
+
+        .btn-floating:hover {
+            background-color: #999;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cscript xmlns=''/%3E%3Cpath style='fill:none' d='M0 0h16v16H0z'/%3E%3Cg%3E%3Cpath d='M200.649 145.763A6 6 0 1 1 203 141a6.037 6.037 0 0 1-.068.908' style='stroke-miterlimit:10;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3Cpath d='m201 140.321 2 2 2-2' style='stroke-linejoin:round;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper" id="wrapper">
+    <div class="chat-container">
+        <div class="chat-header">
+            <div>
+                <span>고객상담 채팅</span>
+            </div>
+        </div>
+        <div class="chat-content">
+            <div class="chat-flow" id="chatFlow" role="region" aria-label="대화 진행 영역">
+                <div class="flow-box" id="flow01">
+                    안녕하세요. AI영업지원봇입니다.<br>
+                    무엇을 도와드릴까요?
+                    <div class="btn_area">
+                        <button type="button" class="btn_white m">모니터링 재발송</button>
+                        <button type="button" class="btn_white m">기타 업무 요청</button>
+                        <button type="button" class="btn_white m">계약 심사 상태 조회</button>
+                        <button type="button" class="btn_white m">보험금 심사 상태 조회</button>
+                        <button type="button" class="btn_white m">인수기준 Q&A</button>
+                        <button type="button" class="btn_white m">일반 Q&A</button>
+                    </div>
+                </div>
+                <div class="flow-box" id="flow02">
+                    모니터링 재발송 대상을 알려주세요
+                    <div class="iptWrap search active_searchBtn">
+                        <input type="text" class="ipt search active_searchBtn uiAct" placeholder="고객명 또는 증권번호 검색" value="" title="고객명 또는 증권번호">
+                        <button type="button" class="icoBtn_search" aria-label="검색"></button>
+                        <button class="icoBtn_del" tabindex="-1"><span class="blind">해당 필드 입력값 삭제</span></button>
+                    </div>
+                    <div class="list-btn">
+                        <button type="button" class="btn_label">
+                            <span class="tit"><span class="blind">고객명</span> 김하나<span class="flag light sky">3건</span></span>
+                            <span class="info"><span>생년월일(성별) :</span> 810101(여자)</span>
+                            <span class="info"><span>휴대폰번호 :</span> 010-1234-5678</span>
+                            <span class="info"><span>적합성진단 :</span> 자료없음</span>
+                        </button>
+                        <button type="button" class="btn_label">
+                            <span class="tit"><span class="blind">고객명</span> 김하나<span class="flag light sky">3건</span></span>
+                            <span class="info"><span>생년월일(성별) :</span> 810101(여자)</span>
+                            <span class="info"><span>휴대폰번호 :</span> 010-1234-5678</span>
+                            <span class="info"><span>적합성진단 :</span> 자료없음</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flow-box" id="flow03">
+                    이지훈 고객님의 모니터링 재발송을 <br>요청하시겠습니까?
+                    <div class="btn_area">
+                        <button type="button" class="btn_white m">네</button>
+                        <button type="button" class="btn_white m">아니오</button>
+                    </div>
+                </div>
+                <div class="flow-box" id="flow04">
+                    모니터링 재발송이 완료되었습니다.
+                </div>
+                <button type="button" class="btn-floating" id="btnBack" aria-controls="chatFlow" aria-label="처음 단계로 돌아가기"></button>
+            </div>
+            <div class="chat-live-btn">
+                <button type="button" class="btn-toggle-flow" id="btnToggleFlow" aria-label="ai 챗봇 열기" aria-expanded="false">ai 챗봇 열기 ▼</button>
+            </div>
+            <!-- id="chatLive" 및 collapsed 클래스 적용 -->
+            <div class="chat-live collapsed" id="chatLive">
+                <div class="chat-messages" id="chatMessages" aria-live="polite">
+                    <div class="message received">안녕하세요! 무엇을 도와드릴까요?</div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." onkeypress="handleKeyPress(event)" title="메시지 입력 필드">
+                    <button type="button" onclick="sendMessage()" aria-label="메시지 전송" class="btn-send"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnBack = document.getElementById('btnBack');
+        const flow01 = document.getElementById('flow01');
+        const flow02 = document.getElementById('flow02');
+        const flow03 = document.getElementById('flow03');
+        const flow04 = document.getElementById('flow04');
+        const flowBoxes = document.getElementsByClassName('flow-box');
+
+        const searchInput = flow02.querySelector('.ipt.search');
+        const searchBtn = flow02.querySelector('.icoBtn_search');
+        const delBtn = flow02.querySelector('.icoBtn_del');
+        const listBtnArea = flow02.querySelector('.list-btn');
+
+        // 토글 제어 요소
+        const chatLive = document.getElementById('chatLive');
+        const btnToggleFlow = document.getElementById('btnToggleFlow');
+
+        // 버튼 클릭 시 펼치기/접기 토글
+        btnToggleFlow.addEventListener('click', function() {
+            const isCollapsed = chatLive.classList.toggle('collapsed');
+            
+            // 접근성 상태 업데이트
+            btnToggleFlow.setAttribute('aria-expanded', !isCollapsed);
+            btnToggleFlow.setAttribute('aria-label', isCollapsed ? 'ai 챗봇 대화 열기' : 'ai 챗봇 대화 닫기');
+            btnToggleFlow.textContent = isCollapsed ? 'ai 챗봇 열기 ▼' : 'ai 챗봇 닫기 ▲';
+        });
+        
+        for (let i = 0; i < flowBoxes.length; i++) {
+            flowBoxes[i].setAttribute('tabindex', '-1'); // 프로그래밍 방식 포커스 허용
+        }
+
+
+        // 초기화 함수
+        function initFlow(isUserAction = false) {
+            switchFlow(flow01);
+            btnBack.style.display = 'none';
+
+            if (searchInput) searchInput.value = '';
+            if (listBtnArea) listBtnArea.style.display = 'none';
+
+            if (isUserAction) {
+                flow01.focus();
+            }
+        }
+
+        // 화면 단계 전환 공통 함수
+        function switchFlow(targetFlow) {
+            [flow01, flow02, flow03, flow04].forEach(f => f.style.display = 'none');
+            
+            targetFlow.style.display = 'block';
+            targetFlow.focus(); // [핵심] 변경된 영역으로 포커스 이동하여 음성 출력 유도
+        }
+        initFlow();
+
+        btnBack.addEventListener('click', function() {
+            initFlow(true);
+        });
+
+        // 1. flow01 -> flow02 이동
+        flow01.addEventListener('click', function(e) {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+
+            switchFlow(flow02);
+            btnBack.style.display = 'block';
+            
+            setTimeout(() => {
+                const searchInput = flow02.querySelector('.ipt.search');
+                if (searchInput) searchInput.focus();
+            }, 50);
+        });
+// 2. flow02: 검색 처리
+        function executeSearch() {
+            if (listBtnArea) {
+                listBtnArea.style.display = 'flex';
+                const firstItem = listBtnArea.querySelector('button');
+                if (firstItem) firstItem.focus();
+            }
+        }
+
+        if (searchBtn) searchBtn.addEventListener('click', executeSearch);
+
+        if (searchInput) {
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    executeSearch();
+                }
+            });
+        }
+
+        if (delBtn) {
+            delBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                searchInput.focus();
+                if (listBtnArea) listBtnArea.style.display = 'none';
+            });
+        }
+
+        // 3. flow02 -> flow03 이동
+        listBtnArea.addEventListener('click', function(e) {
+            const labelBtn = e.target.closest('.btn_label');
+            if (!labelBtn) return;
+
+            const titElement = labelBtn.querySelector('.tit').cloneNode(true);
+            titElement.querySelectorAll('.blind, .flag').forEach(el => el.remove());
+            const customerName = titElement.textContent.trim();
+
+            flow03.innerHTML = `
+                ${customerName} 고객님의 모니터링 재발송을 <br>요청하시겠습니까?
+                <div class="btn_area">
+                    <button type="button" class="btn_white m btn-yes">네</button>
+                    <button type="button" class="btn_white m btn-no">아니오</button>
+                </div>
+            `;
+
+            switchFlow(flow03);
+        });
+
+        // 4. flow03 선택 처리
+        flow03.addEventListener('click', function(e) {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+
+            if (btn.classList.contains('btn-yes') || btn.textContent.trim() === '네') {
+                switchFlow(flow04);
+            } else {
+                switchFlow(flow02);
+            }
+        });
+    });
+
+    // 채팅 메시지 전송 로직
+    const chatMessages = document.getElementById('chatMessages');
+    const messageInput = document.getElementById('messageInput');
+
+    function handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    }
+
+    function sendMessage() {
+        const text = messageInput.value.trim();
+        if (!text) return;
+
+        appendMessage(text, 'sent');
+        messageInput.value = '';
+
+        setTimeout(() => {
+            receiveMessage('전송하신 "' + text + '"에 대한 서버 응답입니다.');
+        }, 1000);
+    }
+
+    function receiveMessage(text) {
+        appendMessage(text, 'received');
+    }
+
+    function appendMessage(text, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', type);
+        messageDiv.textContent = text;
+        
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    </script>
+
+</body>
+</html>

@@ -87,7 +87,7 @@
         }
         
         .btn-toggle-flow:hover {
-            background-color: rgb(0, 107, 101, 0.7);
+            background-color: rgb(0, 107, 101);
             /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' id='Layer_1' style='enable-background:new 0 0 32 32;' version='1.1' viewBox='0 0 32 32' xml:space='preserve' fill='%23ffffff'%3E%3Cpath d='M14,28V8.8l-4.62,4.62C8.986,13.814,8.516,14,8,14c-0.984,0-2-0.813-2-2c0-0.531,0.193-0.994,0.58-1.38l7.958-7.958C14.866,2.334,15.271,2,16,2s1.08,0.279,1.447,0.646l7.973,7.974C25.807,11.006,26,11.469,26,12c0,1.188-1.016,2-2,2c-0.516,0-0.986-0.186-1.38-0.58L18,8.8V28c0,1.104-0.896,2-2,2S14,29.104,14,28z'/%3E%3C/svg%3E"); */
         }
         .btn-toggle-flow.active {
@@ -203,7 +203,8 @@
             border-color: #00857E;
         }
 
-        .chat-input-area .btn-send {
+        .chat-input-area .btn-send,
+        .chat-input-area .btn-send:focus {
             width: 48px;
             height: 48px;
             color: #ffffff;
@@ -399,6 +400,9 @@
         btnToggleFlow.addEventListener('click', function() {
             const isCollapsed = chatLive.classList.toggle('collapsed');
             
+            // 버튼 활성화 클래스 토글 (열려있으면 active 추가, 닫히면 제거)
+            btnToggleFlow.classList.toggle('active', !isCollapsed);
+
             // 접근성 상태 업데이트
             btnToggleFlow.setAttribute('aria-expanded', !isCollapsed);
             btnToggleFlow.setAttribute('aria-label', isCollapsed ? 'ai 챗봇 대화 열기' : 'ai 챗봇 대화 닫기');

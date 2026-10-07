@@ -28,7 +28,6 @@
     <script src="./resources/comm/js/common-timeout.js"></script>
     <script src="./resources/comm/js/sfaApp.interface.js"></script>
     <script src="./resources/pt/js/ui.front.js"></script>
-    <script src="./resources/pt/js/ui.common.js"></script>
     <script src="./resources/pt/js/pt.common.js"></script>
     <title>채팅 상담 팝업</title>
     <script>
@@ -57,7 +56,7 @@
             background-color: #00857E; 
             color: #ffffff;
             padding: 16px 20px;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
@@ -85,7 +84,7 @@
             padding: 4px 10px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             margin-right: 12px;
             transition: background-color 0.2s;
         }
@@ -98,20 +97,22 @@
             position: relative;
             display: flex;
             justify-content: space-between;
-            height: calc(100% - 54px);
+            height: calc(100% - 60px);
         }
 
         /* chat-flow 스타일 및 트랜지션 */
         .chat-content .chat-flow { 
             position: relative;
-            padding: 20px;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             line-height: 1.6;
             gap: 12px;
             overflow-y: auto;
             flex: 1;
             display: flex;
             flex-direction: column;
+            text-align: left;
+            transition: flex 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-sizing: border-box;
         }
 
         /* 오른쪽 라이브 대화 영역 */
@@ -138,6 +139,13 @@
             opacity: 0;
         }
 
+        /* flow-box 패딩 영역 잔여 방지 */
+        .chat-content .flow-box {
+            position: relative;
+            width: 90%;
+            padding: 20px;
+        }
+
         .chat-content .flow-box > div {   
             margin-top: 12px;
         }
@@ -153,11 +161,12 @@
 
         .message {
             max-width: 75%;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 1.4rem;
-            line-height: 1.4;
+            padding: 12px 16px;
+            font-size: 1.6rem;
+            line-height: 1.5;
             word-break: break-word;
+            white-space: normal;
+            box-sizing: border-box;
         }
 
         .message.received {
@@ -187,7 +196,7 @@
             border: 1px solid #dbe1e6;
             border-radius: 20px;
             outline: none;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             transition: border-color 0.2s;
         }
 
@@ -204,7 +213,7 @@
             padding: 0 18px;
             margin-left: 8px;
             cursor: pointer;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
             transition: background-color 0.2s;
         }
@@ -215,14 +224,17 @@
 
         .btn_area {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 8px;
-            max-width: 60%;
         }
-
+        .btn_area {
+            button {
+                width: calc(50% - 4px);
+            }
+        }
         .iptWrap {
             display: block;
-            width: 60%;
+            width: 100%;
         }
 
         .list-btn {
@@ -235,10 +247,10 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
-            width: 60%;
+            width: 100%;
             padding: 12px 16px;
             text-align: left;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             background-color: #f9f9f9;
             border: 1px solid #dbe1e6;
             border-radius: 8px;
@@ -254,16 +266,10 @@
         .btn_label .tit {
             display: flex;
             gap: 4px;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
         }
 
-        .flag.light {
-            padding: 2px 6px;
-            height: 24px;
-            font-size: 1.2rem;
-            border-radius: 12px;
-        }
 
         .btn_label .info span:first-child {
             color: #666666;
@@ -293,6 +299,13 @@
             background-color: #999;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cscript xmlns=''/%3E%3Cpath style='fill:none' d='M0 0h16v16H0z'/%3E%3Cg%3E%3Cpath d='M200.649 145.763A6 6 0 1 1 203 141a6.037 6.037 0 0 1-.068.908' style='stroke-miterlimit:10;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3Cpath d='m201 140.321 2 2 2-2' style='stroke-linejoin:round;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3C/g%3E%3C/svg%3E");
         }
+        .q-box {
+            display: block;
+            width: 100%;
+            background-color: #f1f3f5;
+            padding: 12px 16px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -307,19 +320,27 @@
         <div class="chat-content">
             <div class="chat-flow" id="chatFlow" role="region" aria-label="대화 진행 영역">
                 <div class="flow-box" id="flow01">
-                    안녕하세요. AI영업지원봇입니다.<br>
+                    <div class="q-box">
+                        안녕하세요. AI 영업지원봇입니다.<br>
                     무엇을 도와드릴까요?
+                    </div>
                     <div class="btn_area">
-                        <button type="button" class="btn_white m">모니터링 재발송</button>
-                        <button type="button" class="btn_white m">기타 업무 요청</button>
-                        <button type="button" class="btn_white m">계약 심사 상태 조회</button>
-                        <button type="button" class="btn_white m">보험금 심사 상태 조회</button>
-                        <button type="button" class="btn_white m">인수기준 Q&A</button>
-                        <button type="button" class="btn_white m">일반 Q&A</button>
+                        <button type="button" id="btn_flow01" class="btn_white l">서류재발송</button>
+                        <button type="button" id="btn_flow02" class="btn_white l">모니터링 재발송</button>
+                        <button type="button" id="btn_flow03" class="btn_white l">반송</button>
+                        <button type="button" id="btn_flow04" class="btn_white l">빠른청약철회</button>
+                        <button type="button" id="btn_flow05" class="btn_white l">미성년자녀 연락처 예외처리</button>
+                        <button type="button" id="btn_flow06" class="btn_white l">변액자격등록</button>
+                        <button type="button" id="btn_flow07" class="btn_white l">보험금 심사 상태 조회</button>
+                        <button type="button" id="btn_flow08" class="btn_white l">사용인 확인(인사화면)</button>
+                        <button type="button" id="btn_flow09" class="btn_white l">인수기준 Q&A</button>
+                        <button type="button" id="btn_flow10" class="btn_white l">일반 Q&A</button>
                     </div>
                 </div>
                 <div class="flow-box" id="flow02">
-                    모니터링 재발송 대상을 알려주세요
+                    <div class="q-box">
+                        서류 재발송 대상을 검색해 주세요.
+                    </div>
                     <div class="iptWrap search active_searchBtn">
                         <input type="text" class="ipt search active_searchBtn uiAct" placeholder="고객명 또는 증권번호 검색" value="" title="고객명 또는 증권번호">
                         <button type="button" class="icoBtn_search" aria-label="검색"></button>
@@ -327,28 +348,44 @@
                     </div>
                     <div class="list-btn">
                         <button type="button" class="btn_label">
-                            <span class="tit"><span class="blind">고객명</span> 김하나<span class="flag light sky">3건</span></span>
-                            <span class="info"><span>생년월일(성별) :</span> 810101(여자)</span>
-                            <span class="info"><span>휴대폰번호 :</span> 010-1234-5678</span>
-                            <span class="info"><span>적합성진단 :</span> 자료없음</span>
+                            <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
+                            <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
+                            <span class="info"><span>판매인 : </span><span>미결</span></span>
+                            <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
+                            <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
                         </button>
                         <button type="button" class="btn_label">
-                            <span class="tit"><span class="blind">고객명</span> 김하나<span class="flag light sky">3건</span></span>
-                            <span class="info"><span>생년월일(성별) :</span> 810101(여자)</span>
-                            <span class="info"><span>휴대폰번호 :</span> 010-1234-5678</span>
-                            <span class="info"><span>적합성진단 :</span> 자료없음</span>
+                            <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
+                            <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
+                            <span class="info"><span>판매인 : </span><span>미결</span></span>
+                            <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
+                            <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
                         </button>
                     </div>
                 </div>
                 <div class="flow-box" id="flow03">
-                    이지훈 고객님의 모니터링 재발송을 <br>요청하시겠습니까?
+                    <div class="q-box">
+                        재발송할 서류를 선택해 주세요.
+                    </div>
                     <div class="btn_area">
-                        <button type="button" class="btn_white m">네</button>
-                        <button type="button" class="btn_white m">아니오</button>
+                        <button type="button" class="btn_white l">청약서류</button>
+                        <button type="button" class="btn_white l">가입설계서</button>
+                        <button type="button" class="btn_white l">증권</button>
                     </div>
                 </div>
                 <div class="flow-box" id="flow04">
-                    모니터링 재발송이 완료되었습니다.
+                    <div class="q-box">
+                        발송 대상자를 선택해주세요.
+                    </div>
+                    <div class="btn_area">
+                        <button type="button" class="btn_white l">계약자 : 이하나 (010-1234-5678)</button>
+                        <button type="button" class="btn_white l">피보험자 : 이하나 (010-1234-5678)</button>
+                    </div>
+                </div>
+                <div class="flow-box" id="flow05">
+                    <div class="q-box">
+                        요청하신 서류 재발송이 완료되었습니다.
+                    </div>
                 </div>
             </div>
             <div class="chat-live-btn">
@@ -361,8 +398,8 @@
                 </div>
                 
                 <div class="chat-input-area">
-                    <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." onkeypress="handleKeyPress(event)">
-                    <button onclick="sendMessage()">전송</button>
+                    <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." onkeypress="handleKeyPress(event)" title="메시지 입력 필드">
+                    <button type="button" onclick="sendMessage()" aria-label="메시지 전송" class="btn-send">전송</button>
                 </div>
             </div>
         </div>
@@ -376,6 +413,7 @@
         const flow02 = document.getElementById('flow02');
         const flow03 = document.getElementById('flow03');
         const flow04 = document.getElementById('flow04');
+        const flow05 = document.getElementById('flow05');
         const flowBoxes = document.getElementsByClassName('flow-box');
 
 
@@ -391,6 +429,9 @@
         // 버튼 클릭 시 펼치기/접기 토글
         btnToggleFlow.addEventListener('click', function() {
             const isCollapsed = chatLive.classList.toggle('collapsed');
+            
+            // 버튼 활성화 클래스 토글 (열려있으면 active 추가, 닫히면 제거)
+            btnToggleFlow.classList.toggle('active', !isCollapsed);
             
             // 접근성 상태 업데이트
             btnToggleFlow.setAttribute('aria-expanded', !isCollapsed);
@@ -415,7 +456,7 @@
         }
         // 화면 단계 전환 공통 함수
         function switchFlow(targetFlow) {
-            [flow01, flow02, flow03, flow04].forEach(f => f.style.display = 'none');
+            [flow01, flow02, flow03, flow04, flow05].forEach(f => f.style.display = 'none');
             
             targetFlow.style.display = 'block';
             targetFlow.focus(); // [핵심] 변경된 영역으로 포커스 이동하여 음성 출력 유도
@@ -435,7 +476,6 @@
             btnBack.style.display = 'block';
             
             setTimeout(() => {
-                const searchInput = flow02.querySelector('.ipt.search');
                 if (searchInput) searchInput.focus();
             }, 50);
         });
@@ -469,35 +509,26 @@
         }
 
         // 3. flow02 -> flow03 이동
+        if (listBtnArea) {
         listBtnArea.addEventListener('click', function(e) {
             const labelBtn = e.target.closest('.btn_label');
             if (!labelBtn) return;
 
-            const titElement = labelBtn.querySelector('.tit').cloneNode(true);
-            titElement.querySelectorAll('.blind, .flag').forEach(el => el.remove());
-            const customerName = titElement.textContent.trim();
-
-            flow03.innerHTML = `
-                ${customerName} 고객님의 모니터링 재발송을 <br>요청하시겠습니까?
-                <div class="btn_area">
-                    <button type="button" class="btn_white m btn-yes">네</button>
-                    <button type="button" class="btn_white m btn-no">아니오</button>
-                </div>
-            `;
-
             switchFlow(flow03);
         });
+        }
 
-        // 4. flow03: 네/아니오 선택
+        // 4. flow03 선택 처리
         flow03.addEventListener('click', function(e) {
             const btn = e.target.closest('button');
-            if (!btn) return;
-
-            if (btn.classList.contains('btn-yes') || btn.textContent.trim() === '네') {
+            if (!btn || btn.classList.contains('btnBack')) return;
                 switchFlow(flow04);
-            } else {
-                switchFlow(flow02);
-            }
+        });
+        // 5. flow04 선택 처리
+        flow04.addEventListener('click', function(e) {
+            const btn = e.target.closest('button');
+            if (!btn || btn.classList.contains('btnBack')) return;
+            switchFlow(flow05);
         });
     });
 

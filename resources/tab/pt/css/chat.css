@@ -238,7 +238,7 @@
             gap: 4px;
         }
 
-        .arbtn-label {
+        .btn-label {
             display: flex;
             flex-direction: column;
             gap: 4px;
@@ -252,13 +252,13 @@
             cursor: pointer;
         }
 
-        .arbtn-label:hover, 
-        .arbtn-label:focus {
+        .btn-label:hover, 
+        .btn-label:focus {
             background-color: #EFF8F5;
             border: 1px solid #dbe1e6;
         }
 
-        .arbtn-label .tit {
+        .btn-label .tit {
             display: flex;
             gap: 4px;
             font-size: 1.6rem;
@@ -266,7 +266,7 @@
         }
 
 
-        .arbtn-label .info span:first-child {
+        .btn-label .info span:first-child {
             color: #666666;
             font-weight: bold;
         }

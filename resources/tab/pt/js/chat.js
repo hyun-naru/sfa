@@ -113,7 +113,7 @@ window.initChat = function() {
     // 3. flow02 -> flow03
     if (listBtnArea) {
         listBtnArea.onclick = function(e) {
-            const labelBtn = e.target.closest('.btn_label');
+            const labelBtn = e.target.closest('.arbtn-label');
             if (!labelBtn) return;
 
             switchFlow(flow03);

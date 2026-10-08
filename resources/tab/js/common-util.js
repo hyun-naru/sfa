@@ -183,7 +183,11 @@ commonUtil.bizTemp = function(examBankCode, examBankAcc) {
  * @return N/A
  */
 var layerPop = {
+	$targetBtn: null,// 2026 웹접근성
 	bottomOpen : function(layerId, init, initParam, callback, callbackParam) {
+
+		layerPop.$targetBtn = $(document.activeElement); // 2026 웹접근성
+
 		var idPop = $('#' + layerId);
 		/**
 		 *  2중 팝업시 마지막 팝업 상위 지정
@@ -250,6 +254,9 @@ var layerPop = {
 		}
 	},
 	open : function(layerId, init, initParam, callback, callbackParam){
+		
+		layerPop.$targetBtn = $(document.activeElement); // 2026 웹접근성
+
 		var idPop = $('#' + layerId);
 		var winLastW = $('body').outerWidth();
 		/**
@@ -365,20 +372,16 @@ var layerPop = {
 		}
 	},
 	close : function(layerId, callback, callbackParam){
-		$('#' + layerId).css('opacity', 0).removeAttr('tabindex').removeClass('nowOpen').fadeOut();
-		$('#' + layerId).find('.pop_focus').remove();
-
-		if (!!event) {	//버튼을 클릭하지 않으면 event가 존재하지 않음.
-			if (!!$(event.target).get(0) && !!$(event.target).get(0).nodeName) {
-				if($(event.target).get(0).nodeName.toLowerCase() != "button"){
-					$(event.target).get(0).parentNode.focus();
-				} else {
-					$(event.target).focus();
-				}
-			}
-		}
-
-
+		/* 2026 웹접근성 */
+		var idPop = $('#' + layerId);
+		idPop.css('opacity', 0).removeAttr('tabindex').removeClass('nowOpen').fadeOut();
+		idPop.off('keydown.focustrap'); // 포커스 이벤트 해제
+		// 원래 열었던 버튼으로 정확히 복원
+        if (layerPop.$targetBtn && layerPop.$targetBtn.length) {
+            layerPop.$targetBtn.focus();
+            layerPop.$targetBtn = null; // 초기화
+        }
+		/* //2026 웹접근성 */
 		if ($('div.wrapper').length > 0) {	//PC
 			var popLength = $('.wrapper .popWrap.nowOpen').length;
 			if (popLength < 1) {
@@ -412,45 +415,56 @@ var layerPop = {
 			callback(callbackParam);
 		}
 	},
-	focus : function(layerId) {
-		var layer = $('#' + layerId);
-		//레이어 팝업 포커스 및 웹접근성 처리(레리어 안의 포커스 처리위한 사전작업) : 내부사이트이기 때문에 필요 없을 수도 있는 소스
-		if(!layer.find('.popup').hasClass('pop_focus')){
-			layer.find('.popup').prepend('<a href="javascript:;" class="pop_focus waTxt start">팝업 컨텐츠 시작</a>');
-			layer.find('.popup').append('<a href="javascript:;" class="pop_focus waTxt last">팝업 컨텐츠 끝</a>');
-		}
-		layer.find('.popup').attr('tabindex', '0');
 
-		var elCont = layer.children('.popup');
-		var elContTabbable = elCont.find("button:not([disabled]), input:not([type='hidden'], [disabled]), select:not([disabled]), iframe, textarea:not([disabled]), [href], [tabindex]:not([tabindex='-1'])");
-		var elContTabbableFirst = elContTabbable && elContTabbable.first();
-		var elContTabbableLast = elContTabbable && elContTabbable.last();
+    focus: function(layerId) {
+        var layer = $('#' + layerId);
+        /* 2026 웹접근성 */
+        var elCont = layer.find('.popup');
 
-		if (elContTabbable.length > 0) {
-			elContTabbableFirst.focus().on('keydown', function(event) {
-			    // 레이어 열리자마자 초점 받을 수 있는 첫번째 요소로 초점 이동
-			    if (event.shiftKey && (event.keyCode || event.which) === 9) {
-			        // Shift + Tab키 : 초점 받을 수 있는 첫번째 요소에서 마지막 요소로 초점 이동
-			        event.preventDefault();
-			        elContTabbableLast.focus();
-			    }
-			});
-		} else {
-			elCont.attr('tabindex', '0').focus().on('keydown', function(event){
-			    if ((event.keyCode || event.which) === 9) event.preventDefault();
-			    // Tab키 / Shift + Tab키 : 초점 받을 수 있는 요소가 없을 경우 레이어 밖으로 초점 이동 안되게
-			});
-		}
+        // 팝업 자체에 포커스 먼저 부여 (사용자가 Tab 누르면 내부 진입)
+        elCont.attr('tabindex', '-1').focus();
 
-		elContTabbableLast.on('keydown', function(event) {
-		    if (!event.shiftKey && (event.keyCode || event.which) === 9) {
-		        // Tab키 : 초점 받을 수 있는 마지막 요소에서 첫번째 요소으로 초점 이동
-		        event.preventDefault();
-		        elContTabbableFirst.focus();
-		    }
-		});
+        // 팝업 내 접근 가능한 요소 찾기
+        var selector = "button:not([disabled]), input:not([type='hidden']):not([disabled]), select:not([disabled]), iframe, textarea:not([disabled]), a[href], [tabindex]:not([tabindex='-1'])";
+        var focusable = elCont.find(selector).filter(':visible');
+		if (focusable.length > 0) {
+            var first = focusable.first();
+            var last = focusable.last();
+
+            // Tab / Shift+Tab 포커스 순환
+            layer.off('keydown.focustrap').on('keydown.focustrap', function(e) {
+                if (e.keyCode !== 9) return;
+
+                var activeEl = document.activeElement;
+
+                // 팝업 자체에 포커스가 있을 때 Tab 시 내부 진입
+                if (activeEl === elCont[0] || activeEl === layer[0]) {
+                    e.preventDefault();
+                    if (e.shiftKey) {
+                        last.focus();
+                    } else {
+                        first.focus();
+                    }
+                    return;
+                }
+
+                if (e.shiftKey && activeEl === first[0]) {
+                    e.preventDefault();
+                    last.focus(); // Shift+Tab : 첫번째 -> 마지막
+                } else if (!e.shiftKey && activeEl === last[0]) {
+                    e.preventDefault();
+                    first.focus(); // Tab : 마지막 -> 첫번째
+                }
+            });
+        } else {
+            layer.off('keydown.focustrap').on('keydown.focustrap', function(e) {
+                if (e.keyCode === 9) e.preventDefault();
+            });
+        }
+        /* //2026 웹접근성 */
 	}
 };
+
 
 
 
@@ -463,7 +477,9 @@ var layerPop = {
  * @author 70121(박상호)
  * @return N/A
  */
-const uiInfo = {
+const uiInfo = {	
+	$targetBtn: null, //2026 웹접근성
+
 	mo : {
 		alert : function(contents, callback){
 			this.alertOpen(contents, callback);
@@ -902,6 +918,7 @@ const uiInfo = {
 		 * @param3 : callback함수 : alert의 '확인' 버튼 클릭 후 전달되는 콜백
 		 */
 		alertOpen : function(title, contents, callback){
+			uiInfo.$targetBtn =$(document.activeElement); //2026 웹접근성
 			if (!!title && title.indexOf('\n') >= 0) {
 				title = title.replace(/\n/gi, '<br>');
 			} else if (!title) {
@@ -990,6 +1007,7 @@ const uiInfo = {
 		 * @param4 : noCallback : 함수 : confirm의 '아니오' 버튼 클릭 후 전달되는 콜백
 		 */
 		confirmOpen : function(type, title, contents, yesCallback, noCallback){
+			uiInfo.$targetBtn =$(document.activeElement); //2026 웹접근성
 			if (title.indexOf('\n') >= 0) {
 				title = title.replace(/\n/gi, '<br>');
 			} else if (!contents) {
@@ -1087,11 +1105,13 @@ const uiInfo = {
 					$('body').prop('style').removeProperty('top');
 				}
 			}
-			if($(event.target).get(0).nodeName.toLowerCase() != "button"){
-				$(event.target).get(0).parentNode.focus();
-			} else {
-				$(event.target).focus();
+			/* 2026 웹접근성 */
+            // 저장해둔 원래 버튼으로 정확히 포커스 복원
+            if (uiInfo.$targetBtn && uiInfo.$targetBtn.length) {
+                uiInfo.$targetBtn.focus();
+                uiInfo.$targetBtn = null;
 			}
+			/* //2026 웹접근성 */
 			if(typeof callback === "function") {
 				callback();
 			}

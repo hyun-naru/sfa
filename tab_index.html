@@ -116,14 +116,16 @@
         <!-- container (e) -->
         <div class="floating_box">
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup02.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
-            <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup03.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button>
+            <button type="button" class="btn_chat" id="btn_chat01"><span class="blind">챗봇 오픈</span></button>
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup01.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup04.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
-            <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup05.html', 'chatPopup', 'width=400,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button>
-            <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup06.html', 'chatPopup', 'width=400,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="layerPop.open('chatPopup', 'chatPopup.html');">
                 <span class="blind">챗봇 오픈</span>
             </button> -->
+            <!-- onclick 방식 사용 시 -->
+            <button type="button" class="btn_chat" id="btn_chat" onclick="layerPop.open('chatPopup', function() { pop_init('chatPopup', 'chatPopup03.html'); });">
+                <span class="blind">챗봇 오픈</span>
+            </button>
         <!-- popup (s) -->
         <div class="popWrap newPsd" id="popup">
             <div class="popContain">
@@ -144,7 +146,7 @@
         </div>
         <!-- popup (e) -->
         <!-- popup (s) -->
-        <div class="popWrap newPsd" id="chatPopup">
+        <div class="popWrap newPsd chat" id="chatPopup">
             <div class="popContain">
                 <div class="popup fullHeight">
                     <div class="popHead">
@@ -167,6 +169,9 @@
 </body>
 <script>
     $(document).ready(function () {
+
+
+
         let isScrolling = false;
         const $tabWrap = $('.tab_page_list');
         const $tabs = $tabWrap.find('.tab_bar_item > li');
@@ -849,7 +854,97 @@
             observer.observe(targetNode, config);
         }
     });
-    
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnChat = document.getElementById('btn_chat01');
+        
+        if (btnChat) {
+            btnChat.addEventListener('click', function() {
+                const popupUrl = 'chatPopup03.html';
+                const popupName = 'chatPopup';
+
+                // 1. 기본 너비를 80%로 계산하되, 최대 1000px을 넘지 않도록 제한
+                const calculatedWidth = Math.floor(window.screen.availWidth * 0.8);
+                const width = Math.min(calculatedWidth, 1000); // 1000px 이상이면 1000으로 고정
+
+                // 2. 높이 계산 (50%)
+                const height = Math.floor(window.screen.availHeight * 0.8);
+
+                // 3. 중앙 정렬 위치 계산
+                const left = Math.floor((window.screen.availWidth - width) / 2);
+                const top = Math.floor((window.screen.availHeight - height) / 2);
+
+                const popupFeatures = `width=${width},height=${height},left=${left},top=${top}`;
+                
+                window.open(popupUrl, popupName, popupFeatures);
+            });
+        }
+    });
+
+
+
+
+
+    var pop_init = function(layerId, initUrl, callback, callbackParam) {
+        // 팝업 jQuery 객체 정의
+        var idPop = $('#' + layerId);
+
+        if (typeof initUrl === 'string' && initUrl.indexOf('.html') !== -1) {
+            var cssUrl = "./resources/tab/pt/css/chat.css";
+            var jsUrl = "./resources/tab/pt/js/chat.js";
+
+            // CSS 중복 방지 로드
+            if ($('link[href="' + cssUrl + '"]').length === 0) {
+                $('head').append('<link rel="stylesheet" type="text/css" href="' + cssUrl + '" />');
+            }
+
+            var $cont = idPop.find('.popBody');
+            if ($cont.length === 0) $cont = idPop.find('.popup');
+            if ($cont.length === 0) $cont = idPop;
+
+            $cont.load(initUrl + ' .chat-content', function(response, status, xhr) {
+                if (status === "error") {
+                    console.error("팝업 로드 실패:", xhr.status, xhr.statusText);
+                    return;
+                }
+
+                idPop.show();
+
+                // 공통 실행 함수: chat.js 로드 완료 후 또는 이미 스크립트가 존재할 때 호출
+                var runInit = function() {
+                    // 새로 들어온 DOM에 이벤트를 재바인딩
+                    if (typeof window.initChat === 'function') {
+                        window.initChat();
+                    }
+                    if (typeof callback === 'function') {
+                        callback(callbackParam);
+                    }
+                };
+
+                // chat.js 태그가 없을 때만 스크립트 생성
+                if ($('script[src*="chat.js"]').length === 0) {
+                    var script = document.createElement('script');
+                    script.src = jsUrl;
+                    script.onload = function() {
+                        runInit();
+                    };
+                    document.head.appendChild(script);
+                } else {
+                    // 이미 chat.js가 불러와져 있는 상태(두 번째 팝업 호출 시)
+                    runInit();
+                }
+            });
+        } else {
+            idPop.show();
+            if (typeof initUrl === 'function') {
+                initUrl();
+            }
+            if (typeof callback === 'function') {
+                callback(callbackParam);
+            }
+        }
+    };
 </script>
 
 </html>

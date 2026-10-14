@@ -144,13 +144,39 @@
         }
 
         /* flow-box 패딩 영역 잔여 방지 */
-        .chat-content .flow-box {
+        .chat-flow .flow-box {
             position: relative;
-            width: 90%;
-            padding: 20px;
+            height: 100%;
+            width: 100%;  
+            padding: 20px;  
         }
 
-        .chat-content .flow-box > div {   
+        .chat-flow .flow-box .flow-content {   
+            padding-bottom: 100px; /* 버튼 영역 높이만큼 패딩 추가 */
+        }
+        
+        .chat-flow .flow-box .flow-content + .btn-area {
+            position: fixed;
+            bottom: 60px;
+            left: 20px;
+            right: 20px;
+            background-color: #ffffff;
+            z-index: 0;
+         }
+        .chat-flow.fix-no .flow-box .flow-content + .btn-area {
+            position: static;
+        }
+        .btn-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .btn-area {
+            button {
+                width: calc(50% - 4px);
+            }
+        }
+        .chat-content .flow-content div + div {   
             margin-top: 12px;
         }
 
@@ -278,11 +304,17 @@
             cursor: pointer;
         }
 
-        .btn-label:hover,
-        .btn-label:focus {
+        
+        input:checked + .btn-label, 
+        input + .btn-label:hover, 
+        input + .btn-label:focus {
             background-color: #EFF8F5;
-            border: 1px solid #dbe1e6;
         }
+        input:checked + .btn-label, 
+        input + .btn-label:focus {
+            border-color: #006b65;
+        }
+
 
         .btn-label .tit {
             display: flex;
@@ -295,8 +327,16 @@
         .btn-label .info span:first-child {
             color: #666666;
         }
-
-        .btn-floating,
+        .btn-floating {
+            min-height: 32px;
+            padding: 4px 16px;
+            font-size: 1.3rem;
+            color: #ffffff;
+            background-color: #3e5370;
+            border: 1px solid #3e5370;
+            border-radius: 0;
+        }
+        /* .btn-floating,
         .btn-floating:focus {
             position: absolute;
             top: 20px;
@@ -318,7 +358,7 @@
         .btn-floating:hover {
             background-color: #999;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cscript xmlns=''/%3E%3Cpath style='fill:none' d='M0 0h16v16H0z'/%3E%3Cg%3E%3Cpath d='M200.649 145.763A6 6 0 1 1 203 141a6.037 6.037 0 0 1-.068.908' style='stroke-miterlimit:10;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3Cpath d='m201 140.321 2 2 2-2' style='stroke-linejoin:round;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3C/g%3E%3C/svg%3E");
-        }
+        } */
         .q-box {
             display: block;
             width: 100%;

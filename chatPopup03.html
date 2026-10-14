@@ -54,66 +54,107 @@
             </div>
             <div class="chat-flow" id="chatFlow" role="region" aria-label="대화 진행 영역">
                 <div class="flow-box" id="flow01">
+                    <div class="flow-content">
                     <div class="q-box">
                         안녕하세요. AI 영업지원봇입니다.<br>
                     무엇을 도와드릴까요?
                     </div>
-                    <div class="btn_area">
-                        <button type="button" id="btn_flow01" class="btn_white l">서류재발송</button>
-                        <button type="button" id="btn_flow02" class="btn_white l">모니터링 재발송</button>
-                        <button type="button" id="btn_flow03" class="btn_white l">반송</button>
-                        <button type="button" id="btn_flow04" class="btn_white l">빠른청약철회</button>
-                        <button type="button" id="btn_flow05" class="btn_white l">미성년자녀 연락처 예외처리</button>
-                        <button type="button" id="btn_flow06" class="btn_white l">변액자격등록</button>
-                        <button type="button" id="btn_flow07" class="btn_white l">보험금 심사 상태 조회</button>
-                        <button type="button" id="btn_flow08" class="btn_white l">사용인 확인(인사화면)</button>
-                        <button type="button" id="btn_flow09" class="btn_white l">인수기준 Q&A</button>
-                        <button type="button" id="btn_flow10" class="btn_white l">일반 Q&A</button>
+                    <div class="btn-area">
+                        <button type="button" id="REQ-CH-002" class="btn_white l">모니터링 재발송</button>
+                        <button type="button" id="REQ-CH-003" class="btn_white l">반송</button>
+                        <button type="button" id="REQ-CH-004" class="btn_white l">빠른청약철회</button>
+                        <button type="button" id="REQ-CH-005" class="btn_white l">미성년자녀 연락처 예외처리</button>
+                        <button type="button" id="REQ-CH-006" class="btn_white l">서류재발송</button>
+                        <button type="button" id="REQ-CH-007" class="btn_white l">변액자격등록</button>
+                        <button type="button" id="REQ-CH-008" class="btn_white l">모집자보수교육 수료 등록</button>
+                        <button type="button" id="REQ-CH-009" class="btn_white l">보험금 심사 상태 조회</button>
+                        <button type="button" id="REQ-CH-010" class="btn_white l">사용인 확인(인사화면)</button>
+                        <button type="button" id="REQ-CH-011" class="btn_white l">일반 Q&A</button>
+                    </div>
                     </div>
                 </div>
                 <div class="flow-box" id="flow02">
-                    <div class="q-box">
-                        서류 재발송 대상을 검색해 주세요.
+                    <div class="flow-content">
+                        <div class="q-box">
+                            서류 재발송 대상을 검색해 주세요.
+                        </div>
+                        <div class="iptWrap search active_searchBtn">
+                            <input type="text" class="ipt search active_searchBtn uiAct" placeholder="고객명 또는 증권번호 검색" value="" title="고객명 또는 증권번호">
+                            <button type="button" class="icoBtn_search" aria-label="검색"></button>
+                            <button class="icoBtn_del" tabindex="-1"><span class="blind">해당 필드 입력값 삭제</span></button>
+                        </div>
+                        <div class="list-btn">
+                            <input type="radio" name="selectItem" id="item1" class="blind">
+                            <label for="item1" class="btn-label">
+                                <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
+                                <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
+                                <span class="info"><span>판매인 : </span><span>미결</span></span>
+                                <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
+                                <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
+                            </label>
+                            <input type="radio" name="selectItem" id="item2" class="blind">
+                            <label for="item2" class="btn-label">
+                                <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
+                                <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
+                                <span class="info"><span>판매인 : </span><span>미결</span></span>
+                                <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
+                                <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
+                            </label>
+                        </div>
                     </div>
-                    <div class="iptWrap search active_searchBtn">
-                        <input type="text" class="ipt search active_searchBtn uiAct" placeholder="고객명 또는 증권번호 검색" value="" title="고객명 또는 증권번호">
-                        <button type="button" class="icoBtn_search" aria-label="검색"></button>
-                        <button class="icoBtn_del" tabindex="-1"><span class="blind">해당 필드 입력값 삭제</span></button>
-                    </div>
-                    <div class="list-btn">
-                        <button type="button" class="btn-label">
-                            <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
-                            <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
-                            <span class="info"><span>판매인 : </span><span>미결</span></span>
-                            <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
-                            <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
-                        </button>
-                        <button type="button" class="btn-label">
-                            <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
-                            <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
-                            <span class="info"><span>판매인 : </span><span>미결</span></span>
-                            <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
-                            <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
-                        </button>
+                    <div class="btn-area action-btn">
+                        <button type="button" class="btn_white l">이전</button>
+                        <button type="button" class="btn_primary l">확인</button>
                     </div>
                 </div>
                 <div class="flow-box" id="flow03">
-                    <div class="q-box">
-                        재발송할 서류를 선택해 주세요.
+                    <div class="flow-content">
+                        <div class="q-box">
+                            재발송할 서류를 선택해 주세요.
+                        </div>
+                        <div>
+                            <ul class="iptFilt div_2">
+                                <li>
+                                    <input type="radio" class="ipt" name="iptFilt3" id="iptFilt3_1">
+                                    <label for="iptFilt3_1">청약서류</label>
+                                </li>
+                                <li>
+                                    <input type="radio" class="ipt" name="iptFilt3" id="iptFilt3_2" checked="">
+                                    <label for="iptFilt3_2">가입설계서</label>
+                                </li>
+                                <li>
+                                    <input type="radio" class="ipt" name="iptFilt3" id="iptFilt3_3" checked="">
+                                    <label for="iptFilt3_3">증권</label>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="btn_area">
-                        <button type="button" class="btn_white l">청약서류</button>
-                        <button type="button" class="btn_white l">가입설계서</button>
-                        <button type="button" class="btn_white l">증권</button>
+                    <div class="btn-area action-btn">
+                        <button type="button" class="btn_white l">이전</button>
+                        <button type="button" class="btn_primary l">확인</button>
                     </div>
                 </div>
                 <div class="flow-box" id="flow04">
-                    <div class="q-box">
-                        발송 대상자를 선택해주세요.
+                    <div class="flow-content">
+                        <div class="q-box">
+                            발송 대상자를 선택해주세요.
+                        </div>
+                        <div>
+                            <ul class="iptFilt div_2">
+                                <li>
+                                    <input type="radio" class="ipt" name="iptFilt4" id="iptFilt4_1">
+                                    <label for="iptFilt4_1">계약자 : 이하나 (010-1234-5678)</label>
+                                </li>
+                                <li>
+                                    <input type="radio" class="ipt" name="iptFilt4" id="iptFilt4_2" checked="">
+                                    <label for="iptFilt4_2">피보험자 : 이하나 (010-1234-5678)</label>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="btn_area">
-                        <button type="button" class="btn_white l">계약자 : 이하나 (010-1234-5678)</button>
-                        <button type="button" class="btn_white l">피보험자 : 이하나 (010-1234-5678)</button>
+                    <div class="btn-area action-btn">
+                        <button type="button" class="btn_white l">이전</button>
+                        <button type="button" class="btn_primary l">확인</button>
                     </div>
                 </div>
                 <div class="flow-box" id="flow05">

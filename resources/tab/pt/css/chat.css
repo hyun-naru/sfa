@@ -5,6 +5,7 @@
         .popWrap.chat .popHead  {
             background-color: #00857E; 
             color: #ffffff;
+            box-shadow: none;
         }
         .popWrap.chat .popup .popHead h1  {
             color: #ffffff;
@@ -133,10 +134,14 @@
         .chat-content .flow-box {
             position: relative;
             width: 100%;
-            padding: 20px 80px 20px 20px;
+            padding: 20px;
+            height: 100%;
         }
 
-        .chat-content .flow-box > div {   
+        .chat-content .flow-box .flow-content {   
+            height: calc(100% - 60px);
+        }
+        .chat-content .flow-content > div + div {   
             margin-top: 12px;
             width: 100%;
         }
@@ -216,13 +221,19 @@
         .chat-input-area button:hover {
             background-color: #006b65;
         }
-
-        .btn_area {
+        .search-item {
+            display: flex;
+            gap: 8px;
+        }
+        .search-item input {
+            flex: 1;
+        }
+        .btn-area {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
         }
-        .btn_area {
+        .btn-area {
             button {
                 width: calc(50% - 4px);
             }
@@ -231,14 +242,31 @@
             display: block;
             width: 100%;
         }
-
+        .flow-content .iptFilt.div_2 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .flow-content .iptFilt.div_2 li {
+            width: calc(50% - 4px);
+        }
+        
+        .flow-content .iptFilt .ipt + label,
+        .flow-content .iptFilt .ipt:checked + label {
+            height: auto;
+            border-radius: 8px;
+            width: 100%;
+            line-height: 1.6;
+            min-height: 48px;
+            padding: 10px 19px 9px;
+        }
         .list-btn {
             display: flex;
             flex-direction: column;
             gap: 4px;
         }
 
-        .btn-label {
+        input + .btn-label {
             display: flex;
             flex-direction: column;
             gap: 4px;
@@ -252,10 +280,14 @@
             cursor: pointer;
         }
 
-        .btn-label:hover, 
-        .btn-label:focus {
+        input:checked + .btn-label, 
+        input + .btn-label:hover, 
+        input + .btn-label:focus {
             background-color: #EFF8F5;
-            border: 1px solid #dbe1e6;
+        }
+        input:checked + .btn-label, 
+        input + .btn-label:focus {
+            border-color: #006b65;
         }
 
         .btn-label .tit {
@@ -270,8 +302,10 @@
             color: #666666;
             font-weight: bold;
         }
-
-        .btn-floating,
+        .btn_navy_dark.btn-floating {
+            border-radius: 0;
+        }
+        /* .btn-floating,
         .btn-floating:focus {
             position: absolute;
             top: 20px;
@@ -293,7 +327,7 @@
         .btn-floating:hover {
             background-color: #999;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cscript xmlns=''/%3E%3Cpath style='fill:none' d='M0 0h16v16H0z'/%3E%3Cg%3E%3Cpath d='M200.649 145.763A6 6 0 1 1 203 141a6.037 6.037 0 0 1-.068.908' style='stroke-miterlimit:10;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3Cpath d='m201 140.321 2 2 2-2' style='stroke-linejoin:round;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3C/g%3E%3C/svg%3E");
-        }
+        } */
         .q-box {
             display: block;
             width: 100%;

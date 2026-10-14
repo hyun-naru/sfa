@@ -7,15 +7,16 @@ window.initChat = function() {
     const flow04 = document.getElementById('flow04');
     const flow05 = document.getElementById('flow05');
     const flowBoxes = document.getElementsByClassName('flow-box');
-
+    
     // 필수 요소가 없으면 중단
     if (!flow01 || !flow02) return;
-
+    
     const searchInput = flow02.querySelector('.ipt.search');
     const searchBtn = flow02.querySelector('.icoBtn_appSrch');
     const delBtn = flow02.querySelector('.icoBtn_del');
     const listBtnArea = flow02.querySelector('.list-btn');
-
+    
+    const chatFlow = document.getElementById('chatFlow');
     const chatLive = document.getElementById('chatLive');
     const btnToggleFlow = document.getElementById('btnToggleFlow');
 
@@ -23,6 +24,9 @@ window.initChat = function() {
     if (btnToggleFlow && chatLive) {
         btnToggleFlow.onclick = function() {
             const isCollapsed = chatLive.classList.toggle('collapsed');
+            if (chatFlow) {
+                chatFlow.classList.toggle('fix-no', !isCollapsed);
+            }
             btnToggleFlow.classList.toggle('active', !isCollapsed);
             btnToggleFlow.setAttribute('aria-expanded', !isCollapsed);
             btnToggleFlow.setAttribute('aria-label', isCollapsed ? 'ai 챗봇 대화 열기' : 'ai 챗봇 대화 닫기');
@@ -48,8 +52,8 @@ window.initChat = function() {
         switchFlow(flow01);
         if (btnBack) btnBack.style.display = 'none';
 
-        if (searchInput) searchInput.value = '';
-        if (listBtnArea) listBtnArea.style.display = 'none';
+        // if (searchInput) searchInput.value = '';
+        // if (listBtnArea) listBtnArea.style.display = 'none';
 
         if (isUserAction && flow01 && typeof flow01.focus === 'function') {
             flow01.focus();
@@ -81,42 +85,53 @@ window.initChat = function() {
     }
 
     // 2. flow02 검색
-    function executeSearch() {
-        if (listBtnArea) {
-            listBtnArea.style.display = 'flex';
-            const firstItem = listBtnArea.querySelector('button');
-            if (firstItem) firstItem.focus();
-        }
-    }
+    // function executeSearch() {
+    //     if (listBtnArea) {
+    //         listBtnArea.style.display = 'flex';
+    //         const firstRadio = listBtnArea.querySelector('input[type="radio"]');
+    //         if (firstRadio) firstRadio.focus();
+    //     }
+    // }
 
-    if (searchBtn) searchBtn.onclick = executeSearch;
+    // if (searchBtn) searchBtn.onclick = executeSearch;
 
-    if (searchInput) {
-        searchInput.onkeypress = function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                executeSearch();
-            }
-        };
-    }
+    // if (searchInput) {
+    //     searchInput.onkeypress = function(e) {
+    //         if (e.key === 'Enter') {
+    //             e.preventDefault();
+    //             executeSearch();
+    //         }
+    //     };
+    // }
 
-    if (delBtn) {
-        delBtn.onclick = function() {
-            if (searchInput) {
-                searchInput.value = '';
-                searchInput.focus();
-            }
-            if (listBtnArea) listBtnArea.style.display = 'none';
-        };
-    }
+    // if (delBtn) {
+    //     delBtn.onclick = function() {
+    //         if (searchInput) {
+    //             searchInput.value = '';
+    //             searchInput.focus();
+    //         }
+    //         if (listBtnArea) listBtnArea.style.display = 'none';
+    //     };
+    // }
 
-    // 3. flow02 -> flow03
-    if (listBtnArea) {
-        listBtnArea.onclick = function(e) {
-            const labelBtn = e.target.closest('.btn-label');
-            if (!labelBtn) return;
+    // flow02 내 하단 .action-btn 버튼 제어만 수행 (.btn-label 선택 이동 제거)
+    if (flow02) {
+        flow02.onclick = function(e) {
+            const btn = e.target.closest('button');
+            if (!btn) return;
 
+            const btnArea = btn.closest('.action-btn');
+            if (btnArea) {
+                const buttons = btnArea.querySelectorAll('button');
+                // 첫 번째 버튼 (이전): flow01로 이동
+                if (btn === buttons[0]) {
+                    switchFlow(flow01);
+                } 
+                // 마지막 버튼 (다음/확인): flow03으로 이동
+                else if (btn === buttons[buttons.length - 1]) {
             switchFlow(flow03);
+                }
+            }
         };
     }
 
@@ -125,7 +140,19 @@ window.initChat = function() {
         flow03.onclick = function(e) {
             const btn = e.target.closest('button');
             if (!btn || btn.classList.contains('btnBack')) return;
+
+            const btnArea = btn.closest('.action-btn');
+            if (btnArea) {
+                const buttons = btnArea.querySelectorAll('button');
+                // 첫 번째 버튼 (이전): flow02로 이동
+                if (btn === buttons[0]) {
+                    switchFlow(flow02);
+                } 
+                // 마지막 버튼 (다음/확인): flow04로 이동
+                else {
             switchFlow(flow04);
+                }
+            }
         };
     }
 
@@ -134,7 +161,19 @@ window.initChat = function() {
         flow04.onclick = function(e) {
             const btn = e.target.closest('button');
             if (!btn || btn.classList.contains('btnBack')) return;
+
+            const btnArea = btn.closest('.action-btn');
+            if (btnArea) {
+                const buttons = btnArea.querySelectorAll('button');
+                // 첫 번째 버튼 (이전): flow03으로 이동
+                if (btn === buttons[0]) {
+                    switchFlow(flow03);
+                } 
+                // 마지막 버튼 (다음/확인): flow05로 이동
+                else {
             switchFlow(flow05);
+                }
+            }
         };
     }
 };

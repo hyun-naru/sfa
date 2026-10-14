@@ -34,6 +34,7 @@ window.initChat = function() {
         flowBoxes[i].setAttribute('tabindex', '-1');
     }
 
+    // 단계 전환 공통 함수
     function switchFlow(targetFlow) {
         if (!targetFlow) return;
         [flow01, flow02, flow03, flow04, flow05].forEach(f => {
@@ -44,12 +45,13 @@ window.initChat = function() {
         if (typeof targetFlow.focus === 'function') targetFlow.focus();
     }
 
+    // 초기화 함수
     function initFlow(isUserAction = false) {
         switchFlow(flow01);
         if (btnBack) btnBack.style.display = 'none';
 
-        if (searchInput) searchInput.value = '';
-        if (listBtnArea) listBtnArea.style.display = 'none';
+        // if (searchInput) searchInput.value = '';
+        // if (listBtnArea) listBtnArea.style.display = 'none';
 
         if (isUserAction && flow01 && typeof flow01.focus === 'function') {
             flow01.focus();
@@ -59,13 +61,14 @@ window.initChat = function() {
     // 초기 화면 진입
     initFlow();
 
+    // 우측 하단 플로팅 처음으로 버튼
     if (btnBack) {
         btnBack.onclick = function() {
             initFlow(true);
         };
     }
 
-    // 1. flow01 이벤트
+    // 1. flow01: 메인 옵션 선택 시 flow02로 이동
     if (flow01) {
         flow01.onclick = function(e) {
             const btn = e.target.closest('button');
@@ -80,12 +83,13 @@ window.initChat = function() {
         };
     }
 
-    // 2. flow02 검색
+    // 2. flow02 검색 처리
+    /*
     function executeSearch() {
         if (listBtnArea) {
             listBtnArea.style.display = 'flex';
-            const firstItem = listBtnArea.querySelector('button');
-            if (firstItem) firstItem.focus();
+            const firstRadio = listBtnArea.querySelector('input[type="radio"]');
+            if (firstRadio) firstRadio.focus();
         }
     }
 
@@ -109,32 +113,67 @@ window.initChat = function() {
             if (listBtnArea) listBtnArea.style.display = 'none';
         };
     }
+    */
+    // flow02 내 하단 .action-btn 버튼 제어만 수행 (.btn-label 선택 이동 제거)
+    if (flow02) {
+        flow02.onclick = function(e) {
+            const btn = e.target.closest('button');
+            if (!btn) return;
 
-    // 3. flow02 -> flow03
-    if (listBtnArea) {
-        listBtnArea.onclick = function(e) {
-            const labelBtn = e.target.closest('.btn-label');
-            if (!labelBtn) return;
-
-            switchFlow(flow03);
+            const btnArea = btn.closest('.action-btn');
+            if (btnArea) {
+                const buttons = btnArea.querySelectorAll('button');
+                // 첫 번째 버튼 (이전): flow01로 이동
+                if (btn === buttons[0]) {
+                    switchFlow(flow01);
+                } 
+                // 마지막 버튼 (다음/확인): flow03으로 이동
+                else if (btn === buttons[buttons.length - 1]) {
+                    switchFlow(flow03);
+                }
+            }
         };
     }
 
-    // 4. flow03
+    // 3. flow03 버튼 제어
     if (flow03) {
         flow03.onclick = function(e) {
             const btn = e.target.closest('button');
             if (!btn || btn.classList.contains('btnBack')) return;
-            switchFlow(flow04);
+
+            const btnArea = btn.closest('.action-btn');
+            if (btnArea) {
+                const buttons = btnArea.querySelectorAll('button');
+                // 첫 번째 버튼 (이전): flow02로 이동
+                if (btn === buttons[0]) {
+                    switchFlow(flow02);
+                } 
+                // 마지막 버튼 (다음/확인): flow04로 이동
+                else {
+                    switchFlow(flow04);
+                }
+            }
         };
     }
 
-    // 5. flow04
+    // 4. flow04 버튼 제어
     if (flow04) {
         flow04.onclick = function(e) {
             const btn = e.target.closest('button');
             if (!btn || btn.classList.contains('btnBack')) return;
-            switchFlow(flow05);
+
+            const btnArea = btn.closest('.action-btn');
+            if (btnArea) {
+                const buttons = btnArea.querySelectorAll('button');
+                // 첫 번째 버튼 (이전): flow03으로 이동
+                if (btn === buttons[0]) {
+                    switchFlow(flow03);
+                } 
+                // 마지막 버튼 (다음/확인): flow05로 이동
+                else {
+                    switchFlow(flow05);
+                }
+            }
         };
     }
 };
@@ -146,7 +185,7 @@ if (document.readyState === 'loading') {
     window.initChat();
 }
 
-// 메시지 관련 전역 함수
+// 라이브 대화 메시지 전역 함수
 window.handleKeyPress = function(event) {
     if (event.key === 'Enter') sendMessage();
 };

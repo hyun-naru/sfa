@@ -56,12 +56,16 @@
                 <button type="button" class="btn_navy_dark m btn-floating" id="btnBack" aria-controls="chatFlow" aria-label="처음 단계로 돌아가기">처음으로</button>
                 <div class="flow-box" id="flow01">
                     <div class="flow-content">
+                        <div class="df-end">
+                            <button type="button" class="btn_primary_reverse m">생일/상령일 도래(10명)</button>
+                            <button type="button" class="btn_red_reverse m">실효임박(2명)</button>
+                        </div>
                         <div class="q-box">
                             안녕하세요. AI 영업지원봇입니다.<br>
                         무엇을 도와드릴까요?
                         </div>
                         <div class="btn-area">
-                            <button type="button" id="REQ-CH-002" class="btn_white l">모니터링 결과확인</button>
+                            <button type="button" id="REQ-CH-002" class="btn_white l">모니터링 결과</button>
                             <button type="button" id="REQ-CH-003" class="btn_white l">반송</button>
                             <button type="button" id="REQ-CH-004" class="btn_white l">청약서 재발송</button>
                             <button type="button" id="REQ-CH-005" class="btn_white l">가입설계서 재발송</button>
@@ -82,22 +86,26 @@
                             <button class="icoBtn_del" tabindex="-1"><span class="blind">해당 필드 입력값 삭제</span></button>
                         </div>
                         <div class="list-btn">
-                            <input type="radio" name="selectItem" id="item1" class="blind">
-                            <label for="item1" class="btn-label">
-                                <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
-                                <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
-                                <span class="info"><span>판매인 : </span><span>미결</span></span>
-                                <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
-                                <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
-                            </label>
-                            <input type="radio" name="selectItem" id="item2" class="blind">
-                            <label for="item2" class="btn-label">
-                                <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
-                                <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
-                                <span class="info"><span>판매인 : </span><span>미결</span></span>
-                                <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
-                                <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
-                            </label>
+                            <div>
+                                <input type="radio" name="selectItem" id="item1" class="blind">
+                                <label for="item1" class="btn-label">
+                                    <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
+                                    <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
+                                    <span class="info"><span>판매인 : </span><span>미결</span></span>
+                                    <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
+                                    <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="radio" name="selectItem" id="item2" class="blind">
+                                <label for="item2" class="btn-label">
+                                    <span class="tit"><span>증권번호 : </span><span>12345678</span></span>
+                                    <span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
+                                    <span class="info"><span>판매인 : </span><span>미결</span></span>
+                                    <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
+                                    <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="btn-area action-btn">

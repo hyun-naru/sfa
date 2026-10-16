@@ -116,8 +116,12 @@
         <!-- container (e) -->
         <div class="floating_box">
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup02.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
-            <button type="button" class="btn_chat" id="btn_chat01"><span class="blind">챗봇 오픈</span></button>
-            <button type="button" class="btn_chat" id="btn_chat02"><span class="blind">챗봇 오픈</span></button>
+            <button type="button" class="btn_chat" id="btn_chat01"><span class="blind">챗봇 오픈</span>청약서</button>
+            <button type="button" class="btn_chat" id="btn_chat02"><span class="blind">챗봇 오픈</span>가입설계서</button>
+            <button type="button" class="btn_chat" id="btn_chat03"><span class="blind">챗봇 오픈</span>증권</button>
+            <button type="button" class="btn_chat" id="btn_chat04"><span class="blind">챗봇 오픈</span>사용인</button>
+            <button type="button" class="btn_chat" id="btn_chat05"><span class="blind">챗봇 오픈</span>상령일</button>
+            <button type="button" class="btn_chat" id="btn_chat06"><span class="blind">챗봇 오픈</span>실효</button>
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup01.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup04.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="layerPop.open('chatPopup', 'chatPopup.html');">
@@ -860,6 +864,11 @@
     document.addEventListener('DOMContentLoaded', function() {
         const btnChat = document.getElementById('btn_chat01');
         const btnChat2 = document.getElementById('btn_chat02');
+        const btnChat3 = document.getElementById('btn_chat03');
+        const btnChat4 = document.getElementById('btn_chat04');
+        const btnChat5 = document.getElementById('btn_chat05');
+        const btnChat6 = document.getElementById('btn_chat06');
+
 
         // 팝업 오픈 공통 함수
         function openChatPopup(popupUrl) {
@@ -884,14 +893,34 @@
         // btn_chat01 클릭 시
         if (btnChat) {
             btnChat.addEventListener('click', function() {
-                openChatPopup('REQ-CH-006.html');
+                openChatPopup('REQ-CH-004.html');
             });
         }
 
         // btn_chat02 클릭 시 (원하는 URL로 변경)
         if (btnChat2) {
             btnChat2.addEventListener('click', function() {
+                openChatPopup('REQ-CH-005.html'); // <-- 연결할 URL 변경
+            });
+        }
+        if (btnChat3) {
+            btnChat3.addEventListener('click', function() {
+                openChatPopup('REQ-CH-006.html'); // <-- 연결할 URL 변경
+            });
+        }
+        if (btnChat4) {
+            btnChat4.addEventListener('click', function() {
                 openChatPopup('REQ-CH-010.html'); // <-- 연결할 URL 변경
+            });
+        }
+        if (btnChat5) {
+            btnChat5.addEventListener('click', function() {
+                openChatPopup('REQ-CH-012.html'); // <-- 연결할 URL 변경
+            });
+        }
+        if (btnChat6) {
+            btnChat6.addEventListener('click', function() {
+                openChatPopup('REQ-CH-013.html'); // <-- 연결할 URL 변경
             });
         }
     });

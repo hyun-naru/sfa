@@ -139,10 +139,12 @@
             position: relative;
             width: 100%;
             padding: 20px;
-            height: 100%;
         }
 
-        .chat-content .flow-box .flow-content {   
+        .chat-content .flow-box:has(div.action-btn) {
+            height: 100%;
+        }
+        .chat-content .flow-box:has(div.action-btn) .flow-content {   
             height: calc(100% - 60px);
         }
         .chat-content .flow-content > div + div {   
@@ -303,8 +305,7 @@
 
 
         .btn-label .info span:first-child {
-            color: #666666;
-            font-weight: bold;
+            color: #666;
         }
         .btn_navy_dark.btn-floating {
             border-radius: 0;

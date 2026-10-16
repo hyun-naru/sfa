@@ -116,6 +116,7 @@
         <!-- container (e) -->
         <div class="floating_box">
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup02.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
+            <button type="button" class="btn_chat" id="btn_chat07"><span class="blind">챗봇 오픈</span>모니터링</button>
             <button type="button" class="btn_chat" id="btn_chat01"><span class="blind">챗봇 오픈</span>청약서</button>
             <button type="button" class="btn_chat" id="btn_chat02"><span class="blind">챗봇 오픈</span>가입설계서</button>
             <button type="button" class="btn_chat" id="btn_chat03"><span class="blind">챗봇 오픈</span>증권</button>
@@ -868,6 +869,7 @@
         const btnChat4 = document.getElementById('btn_chat04');
         const btnChat5 = document.getElementById('btn_chat05');
         const btnChat6 = document.getElementById('btn_chat06');
+        const btnChat7 = document.getElementById('btn_chat07');
 
 
         // 팝업 오픈 공통 함수
@@ -921,6 +923,11 @@
         if (btnChat6) {
             btnChat6.addEventListener('click', function() {
                 openChatPopup('REQ-CH-013.html'); // <-- 연결할 URL 변경
+            });
+        }
+        if (btnChat7) {
+            btnChat7.addEventListener('click', function() {
+                openChatPopup('REQ-CH-002.html'); // <-- 연결할 URL 변경
             });
         }
     });

@@ -47,6 +47,8 @@ window.initChat = function() {
     const flow03 = document.getElementById('flow03');
     const flow04 = document.getElementById('flow04');
     const flow05 = document.getElementById('flow05');
+    const flow06 = document.getElementById('flow06');
+    const flow07 = document.getElementById('flow07');
     const flowBoxes = document.getElementsByClassName('flow-box');
 
     if (!flow01 || !flow02) return;
@@ -104,7 +106,7 @@ window.initChat = function() {
     // 단계 전환 공통 함수
     function switchFlow(targetFlow) {
         if (!targetFlow) return;
-        [flow01, flow02, flow03, flow04, flow05].forEach(f => {
+        [flow01, flow02, flow03, flow04, flow05, flow06, flow07].forEach(f => {
             if (f) f.style.display = 'none';
         });
         
@@ -220,6 +222,54 @@ window.initChat = function() {
                 else if (btn === buttons[buttons.length - 1]) {
                     showFlowLoading(() => {
                         switchFlow(flow05);
+                    }, 400);
+                }
+            }
+        };
+    }
+    // 4. flow04 버튼 제어
+    if (flow05) {
+        flow05.onclick = function(e) {
+            const btn = e.target.closest('button');
+            if (!btn || btn.classList.contains('btnBack')) return;
+
+            const btnArea = btn.closest('.action-btn');
+            if (btnArea) {
+                const buttons = btnArea.querySelectorAll('button');
+                // 이전 버튼
+                if (btn === buttons[0]) {
+                    showFlowLoading(() => {
+                        switchFlow(flow04);
+                    }, 300);
+                } 
+                // 다음 버튼
+                else if (btn === buttons[buttons.length - 1]) {
+                    showFlowLoading(() => {
+                        switchFlow(flow06);
+                    }, 400);
+                }
+            }
+        };
+    }
+    // 4. flow04 버튼 제어
+    if (flow06) {
+        flow06.onclick = function(e) {
+            const btn = e.target.closest('button');
+            if (!btn || btn.classList.contains('btnBack')) return;
+
+            const btnArea = btn.closest('.action-btn');
+            if (btnArea) {
+                const buttons = btnArea.querySelectorAll('button');
+                // 이전 버튼
+                if (btn === buttons[0]) {
+                    showFlowLoading(() => {
+                        switchFlow(flow05);
+                    }, 300);
+                } 
+                // 다음 버튼
+                else if (btn === buttons[buttons.length - 1]) {
+                    showFlowLoading(() => {
+                        switchFlow(flow07);
                     }, 400);
                 }
             }

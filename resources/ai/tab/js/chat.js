@@ -136,7 +136,7 @@ window.initChat = function() {
         };
     }
 
-    // 1. flow01: 클릭 시 로딩 후 flow02 이동
+    // flow01: 클릭 시 로딩 후 flow02 이동
     if (flow01) {
         flow01.onclick = function(e) {
             const btn = e.target.closest('button');
@@ -153,7 +153,7 @@ window.initChat = function() {
         };
     }
 
-    // 2. flow02 버튼 제어 (.action-btn 전용)
+    // flow02 버튼 제어 (.action-btn 전용)
     if (flow02) {
         flow02.onclick = function(e) {
             const btn = e.target.closest('button');
@@ -178,7 +178,7 @@ window.initChat = function() {
         };
     }
 
-    // 3. flow03 버튼 제어
+    // flow03 버튼 제어
     if (flow03) {
         flow03.onclick = function(e) {
             const btn = e.target.closest('button');
@@ -203,7 +203,7 @@ window.initChat = function() {
         };
     }
 
-    // 4. flow04 버튼 제어
+    // flow04 버튼 제어
     if (flow04) {
         flow04.onclick = function(e) {
             const btn = e.target.closest('button');
@@ -227,7 +227,7 @@ window.initChat = function() {
             }
         };
     }
-    // 4. flow04 버튼 제어
+    // flow05 버튼 제어
     if (flow05) {
         flow05.onclick = function(e) {
             const btn = e.target.closest('button');
@@ -251,7 +251,7 @@ window.initChat = function() {
             }
         };
     }
-    // 4. flow04 버튼 제어
+    // flow06 버튼 제어
     if (flow06) {
         flow06.onclick = function(e) {
             const btn = e.target.closest('button');

@@ -223,9 +223,10 @@
         
         .chat-flow .flow-box .flow-content + .btn-area {
             position: fixed;
-            bottom: 60px;
-            left: 20px;
-            right: 20px;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            padding: 0 20px 20px;
             background-color: #ffffff;
             z-index: 0;
          }
@@ -245,7 +246,11 @@
         .chat-content .flow-content div + div:not(.setAddr)  {   
             margin-top: 12px;
         }
-
+        .flow-content .iptFilt .ipt + label {
+            padding: 6px 10px 7px;
+            height: auto;
+            min-height: 48px;
+        }
         .chat-messages {
             display: flex;
             flex-direction: column;

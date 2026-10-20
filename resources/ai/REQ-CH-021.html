@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="Shortcut Icon" href="./resources/pt/images/fav/favicon.png">
+    <link rel="stylesheet" type="text/css" href="../tab/pt/css/cssLib.css" />
+
+    <script src="../comm/js/jquery-3.5.1.min.js"></script>
+    <script src="../comm/js/jquery.form.min.js"></script>
+    <script src="../comm/js/jquery.serializeObject.min.js"></script>
+    <script src="../comm/js/jquery-ui.js"></script>
+    <script src="../comm/js/jquery.ui.monthpicker.js"></script>
+    <script src="../comm/js/jquery.cookie.js"></script>
+    <script src="../comm/js/jquery.blockUI.js"></script>
+    <script src="../comm/js/jquery.MultiFile.js"></script>
+    <script src="../comm/js/swiper.min.js"></script>
+    <script src="../comm/js/lightslider.js"></script>
+    <script src="../comm/js/common-transaction.js"></script>
+    <script src="../comm/js/common-numeral.min.js"></script>
+    <script src="../comm/js/common-moment.min.js"></script>
+    <script src="../comm/js/common-str.js"></script>
+    <script src="../comm/js/common-util.js"></script>
+    <script src="../comm/js/common-code.js"></script>
+    <script src="../comm/js/common-storage.js"></script>
+    <script src="../comm/js/common-timeout.js"></script>
+    <script src="../comm/js/sfaApp.interface.js"></script>
+    <script src="../pt/js/ui.front.js"></script>
+    <script src="../pt/js/pt.common.js"></script>
+    <link rel="stylesheet" type="text/css" href="./tab/css/chat.css" />
+    <script src="./tab/js/chat.js"></script>
+    <title>채팅 상담 팝업</title>
+    <script>
+        let isMoLanding = false;	//모바일 랜딩의 경우
+        $(document).ready(function () {
+            layout.init(); 
+            ui.init(); 
+        });
+    </script>
+    <style>
+    </style>
+</head>
+<body>
+<div class="wrapper" id="wrapper">
+    <div class="chat-container">
+        <div class="chat-header">
+            <span>고객상담 채팅</span>
+        </div>
+        <div class="chat-content">
+            <div class="btn-group">
+                <button type="button" class="btn-toggle-flow" id="btnToggleFlow">ai 챗봇 열기 ▼</button>    
+            </div>
+            <div class="chat-flow" id="chatFlow" role="region" aria-label="대화 진행 영역">
+                <button type="button" class="btn_navy_dark m btn-floating" id="btnBack" aria-controls="chatFlow" aria-label="처음 단계로 돌아가기">처음으로</button>
+                <div class="flow-box" id="flow01">
+                    <div class="flow-content">
+                        <div class="df-end">
+                            <button type="button" class="btn_primary_reverse m">생일/상령일 도래(10명)</button>
+                            <button type="button" class="btn_red_reverse m">당월실효/임박(5명)</button>
+                        </div>
+                        <div class="q-box">
+                            안녕하세요. AI 영업지원봇입니다.<br>
+                            무엇을 도와드릴까요?
+                        </div>
+                        <div class="btn-area">
+                            <button type="button" id="REQ-CH-002" class="btn_white l">모니터링 결과</button>
+                            <button type="button" id="REQ-CH-003" class="btn_white l">반송</button>
+                            <!-- <button type="button" id="REQ-CH-004" class="btn_white l">빠른청약철회</button>
+                            <button type="button" id="REQ-CH-005" class="btn_white l">미성년자녀 연락처 예외처리</button> -->
+                            <!-- <button type="button" id="REQ-CH-004" class="btn_white l">청약서재발송</button> -->
+                            <button type="button" id="REQ-CH-005" class="btn_white l">가입설계서 재발송</button>
+                            <!-- <button type="button" id="REQ-CH-006" class="btn_white l">증권재발송</button> -->
+                            <!-- <button type="button" id="REQ-CH-007" class="btn_white l">변액자격등록</button>
+                            <button type="button" id="REQ-CH-008" class="btn_white l">모집자보수교육 수료 등록</button>
+                            <button type="button" id="REQ-CH-009" class="btn_white l">보험금 심사 상태 조회</button> -->
+                            <button type="button" id="REQ-CH-012" class="btn_white l">사용인 확인</button>
+                            <!-- <button type="button" id="REQ-CH-013" class="btn_white l">일반 Q&A</button> -->
+                            <button type="button" id="REQ-CH-023" class="btn_white l">보완건 조회</button>
+                            <button type="button" id="REQ-CH-024" class="btn_white l">개인정보 동의 현황 조회</button>
+                            <button type="button" id="REQ-CH-014" class="btn_white l">보험상식</button>
+                            <button type="button" id="REQ-CH-015" class="btn_white l">보험용어설명</button>
+                            <button type="button" id="REQ-CH-016" class="btn_white l">보험과세금</button>
+                            <button type="button" id="REQ-CH-017" class="btn_white l">사고보험금 접수방법 안내</button>
+                            <button type="button" id="REQ-CH-018" class="btn_white l">사고보험금 지급 절차 안내</button>
+                            <button type="button" id="REQ-CH-019" class="btn_white l">사고보험금 청구 사유별 안내</button>
+                            <button type="button" id="REQ-CH-020" class="btn_white l">사고보험금 청구 서류 양식 다운로드</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flow-box" id="flow02">
+                    <div class="flow-content">
+                        <div class="list-btn">
+                            <div class="btn-label">
+                                <span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+                                <span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
+                                <span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+                                <span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+                                <span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+                            </div>
+                            <div class="btn-label">
+                                <span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+                                <span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
+                                <span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+                                <span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+                                <span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+                            </div>
+                            <div class="btn-label">
+                                <span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+                                <span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
+                                <span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+                                <span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+                                <span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+                            </div>
+                            <div class="btn-label">
+                                <span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+                                <span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
+                                <span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+                                <span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+                                <span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+                            </div>
+                            <div class="btn-label">
+                                <span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+                                <span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
+                                <span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+                                <span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+                                <span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+                            </div>
+                            <div class="btn-label">
+                                <span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+                                <span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
+                                <span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+                                <span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+                                <span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+                            </div>
+                            <div class="btn-label">
+                                <span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+                                <span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
+                                <span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+                                <span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+                                <span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+                            </div>
+                            <div class="btn-label">
+                                <span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+                                <span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
+                                <span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+                                <span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+                                <span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+            <!-- id="chatLive" 및 collapsed 클래스 적용 -->
+            <div class="chat-live collapsed" id="chatLive">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message received">안녕하세요! 무엇을 도와드릴까요?</div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." onkeypress="handleKeyPress(event)" title="메시지 입력 필드">
+                    <button type="button" onclick="sendMessage()" aria-label="메시지 전송" class="btn-send">전송</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+</script>
+</body>
+</html>

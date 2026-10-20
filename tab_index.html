@@ -116,21 +116,21 @@
         <!-- container (e) -->
         <div class="floating_box">
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup02.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
-            <button type="button" class="btn_chat" id="btn_chat07"><span class="blind">챗봇 오픈</span>모니터링</button>
-            <button type="button" class="btn_chat" id="btn_chat08"><span class="blind">챗봇 오픈</span>반송</button>
-            <button type="button" class="btn_chat" id="btn_chat01"><span class="blind">챗봇 오픈</span>청약서</button>
-            <button type="button" class="btn_chat" id="btn_chat02"><span class="blind">챗봇 오픈</span>가입설계서</button>
-            <button type="button" class="btn_chat" id="btn_chat03"><span class="blind">챗봇 오픈</span>증권</button>
+            <button type="button" class="btn_chat" id="btn_chat01"><span class="blind">챗봇 오픈</span>모니터링</button>
+            <button type="button" class="btn_chat" id="btn_chat02"><span class="blind">챗봇 오픈</span>반송</button>
+            <button type="button" class="btn_chat" id="btn_chat03"><span class="blind">챗봇 오픈</span>가입설계서</button>
             <button type="button" class="btn_chat" id="btn_chat04"><span class="blind">챗봇 오픈</span>사용인</button>
-            <button type="button" class="btn_chat" id="btn_chat05"><span class="blind">챗봇 오픈</span>상령일</button>
-            <button type="button" class="btn_chat" id="btn_chat06"><span class="blind">챗봇 오픈</span>실효</button>
+            <button type="button" class="btn_chat" id="btn_chat05"><span class="blind">챗봇 오픈</span>보완건조회</button>
+            <button type="button" class="btn_chat" id="btn_chat06"><span class="blind">챗봇 오픈</span>개인정보동의현황</button>
+            <button type="button" class="btn_chat" id="btn_chat07"><span class="blind">챗봇 오픈</span>상령일</button>
+            <button type="button" class="btn_chat" id="btn_chat08"><span class="blind">챗봇 오픈</span>실효</button>
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup01.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="window.open('chatPopup04.html', 'chatPopup', 'width=1200,height=800,resizable=yes,scrollbars=yes');"><span class="blind">챗봇 오픈</span></button> -->
             <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="layerPop.open('chatPopup', 'chatPopup.html');">
                 <span class="blind">챗봇 오픈</span>
             </button> -->
             <!-- onclick 방식 사용 시 -->
-            <button type="button" class="btn_chat" id="btn_chat" onclick="layerPop.open('chatPopup', function() { pop_init('chatPopup', 'REQ-CH-006.html'); });">
+            <button type="button" class="btn_chat" id="btn_chat" onclick="layerPop.open('chatPopup', function() { pop_init('chatPopup', './resources/ai/REQ-CH-007.html'); });">
                 <span class="blind">챗봇 오픈</span>
             </button>
         <!-- popup (s) -->
@@ -872,6 +872,7 @@
         const btnChat6 = document.getElementById('btn_chat06');
         const btnChat7 = document.getElementById('btn_chat07');
         const btnChat8 = document.getElementById('btn_chat08');
+        const btnChat9 = document.getElementById('btn_chat09');
 
 
         // 팝업 오픈 공통 함수
@@ -897,44 +898,49 @@
         // btn_chat01 클릭 시
         if (btnChat) {
             btnChat.addEventListener('click', function() {
-                openChatPopup('REQ-CH-004.html');
+                openChatPopup('./resources/ai/REQ-CH-002.html');
             });
         }
 
         // btn_chat02 클릭 시 (원하는 URL로 변경)
         if (btnChat2) {
             btnChat2.addEventListener('click', function() {
-                openChatPopup('REQ-CH-005.html'); // <-- 연결할 URL 변경
+                openChatPopup('./resources/ai/REQ-CH-003.html'); // <-- 연결할 URL 변경
             });
         }
         if (btnChat3) {
             btnChat3.addEventListener('click', function() {
-                openChatPopup('REQ-CH-006.html'); // <-- 연결할 URL 변경
+                openChatPopup('./resources/ai/REQ-CH-007.html'); // <-- 연결할 URL 변경
             });
         }
         if (btnChat4) {
             btnChat4.addEventListener('click', function() {
-                openChatPopup('REQ-CH-010.html'); // <-- 연결할 URL 변경
+                openChatPopup('./resources/ai/REQ-CH-012.html'); // <-- 연결할 URL 변경
             });
         }
         if (btnChat5) {
             btnChat5.addEventListener('click', function() {
-                openChatPopup('REQ-CH-012.html'); // <-- 연결할 URL 변경
+                openChatPopup('./resources/ai/REQ-CH-021.html'); // <-- 연결할 URL 변경
             });
         }
         if (btnChat6) {
             btnChat6.addEventListener('click', function() {
-                openChatPopup('REQ-CH-013.html'); // <-- 연결할 URL 변경
+                openChatPopup('./resources/ai/REQ-CH-022.html'); // <-- 연결할 URL 변경
             });
         }
         if (btnChat7) {
             btnChat7.addEventListener('click', function() {
-                openChatPopup('REQ-CH-002.html'); // <-- 연결할 URL 변경
+                openChatPopup('./resources/ai/REQ-CH-023.html'); // <-- 연결할 URL 변경
             });
         }
         if (btnChat8) {
             btnChat8.addEventListener('click', function() {
-                openChatPopup('REQ-CH-003.html'); // <-- 연결할 URL 변경
+                openChatPopup('./resources/ai/REQ-CH-024.html'); // <-- 연결할 URL 변경
+            });
+        }
+        if (btnChat9) {
+            btnChat9.addEventListener('click', function() {
+                openChatPopup('./resources/ai/REQ-CH-014.html'); // <-- 연결할 URL 변경
             });
         }
     });
@@ -948,8 +954,8 @@
         var idPop = $('#' + layerId);
 
         if (typeof initUrl === 'string' && initUrl.indexOf('.html') !== -1) {
-            var cssUrl = "./resources/tab/pt/css/chat.css";
-            var jsUrl = "./resources/tab/pt/js/chat.js";
+            var cssUrl = "./resources/ai/tab/css/chat.css";
+            var jsUrl = "./resources/ai/tab/js/chat.js";
 
             // CSS 중복 방지 로드
             if ($('link[href="' + cssUrl + '"]').length === 0) {

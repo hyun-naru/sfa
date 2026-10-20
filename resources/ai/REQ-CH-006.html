@@ -6,31 +6,31 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <link rel="Shortcut Icon" href="./resources/pt/images/fav/favicon.png">
-    <link rel="stylesheet" type="text/css" href="./resources/tab/pt/css/cssLib.css" />
+    <link rel="stylesheet" type="text/css" href="../tab/pt/css/cssLib.css" />
 
-    <script src="./resources/comm/js/jquery-3.5.1.min.js"></script>
-    <script src="./resources/comm/js/jquery.form.min.js"></script>
-    <script src="./resources/comm/js/jquery.serializeObject.min.js"></script>
-    <script src="./resources/comm/js/jquery-ui.js"></script>
-    <script src="./resources/comm/js/jquery.ui.monthpicker.js"></script>
-    <script src="./resources/comm/js/jquery.cookie.js"></script>
-    <script src="./resources/comm/js/jquery.blockUI.js"></script>
-    <script src="./resources/comm/js/jquery.MultiFile.js"></script>
-    <script src="./resources/comm/js/swiper.min.js"></script>
-    <script src="./resources/comm/js/lightslider.js"></script>
-    <script src="./resources/comm/js/common-transaction.js"></script>
-    <script src="./resources/comm/js/common-numeral.min.js"></script>
-    <script src="./resources/comm/js/common-moment.min.js"></script>
-    <script src="./resources/comm/js/common-str.js"></script>
-    <script src="./resources/comm/js/common-util.js"></script>
-    <script src="./resources/comm/js/common-code.js"></script>
-    <script src="./resources/comm/js/common-storage.js"></script>
-    <script src="./resources/comm/js/common-timeout.js"></script>
-    <script src="./resources/comm/js/sfaApp.interface.js"></script>
-    <script src="./resources/pt/js/ui.front.js"></script>
-    <script src="./resources/pt/js/pt.common.js"></script>
-    <link rel="stylesheet" type="text/css" href="./resources/ai/tab/css/chat.css" />
-    <script src="./resources/ai/tab/js/chat.js"></script>
+    <script src="../comm/js/jquery-3.5.1.min.js"></script>
+    <script src="../comm/js/jquery.form.min.js"></script>
+    <script src="../comm/js/jquery.serializeObject.min.js"></script>
+    <script src="../comm/js/jquery-ui.js"></script>
+    <script src="../comm/js/jquery.ui.monthpicker.js"></script>
+    <script src="../comm/js/jquery.cookie.js"></script>
+    <script src="../comm/js/jquery.blockUI.js"></script>
+    <script src="../comm/js/jquery.MultiFile.js"></script>
+    <script src="../comm/js/swiper.min.js"></script>
+    <script src="../comm/js/lightslider.js"></script>
+    <script src="../comm/js/common-transaction.js"></script>
+    <script src="../comm/js/common-numeral.min.js"></script>
+    <script src="../comm/js/common-moment.min.js"></script>
+    <script src="../comm/js/common-str.js"></script>
+    <script src="../comm/js/common-util.js"></script>
+    <script src="../comm/js/common-code.js"></script>
+    <script src="../comm/js/common-storage.js"></script>
+    <script src="../comm/js/common-timeout.js"></script>
+    <script src="../comm/js/sfaApp.interface.js"></script>
+    <script src="../pt/js/ui.front.js"></script>
+    <script src="../pt/js/pt.common.js"></script>
+    <link rel="stylesheet" type="text/css" href="./tab/css/chat.css" />
+    <script src="./tab/js/chat.js"></script>
     <title>채팅 상담 팝업</title>
     <script>
         let isMoLanding = false;	//모바일 랜딩의 경우
@@ -58,28 +58,41 @@
                     <div class="flow-content">
                         <div class="df-end">
                             <button type="button" class="btn_primary_reverse m">생일/상령일 도래(10명)</button>
-                            <button type="button" class="btn_red_reverse m">실효임박(5명)</button>
+                            <button type="button" class="btn_red_reverse m">당월실효/임박(5명)</button>
                         </div>
                         <div class="q-box">
                             안녕하세요. AI 영업지원봇입니다.<br>
-                        무엇을 도와드릴까요?
+                            무엇을 도와드릴까요?
                         </div>
                         <div class="btn-area">
                             <button type="button" id="REQ-CH-002" class="btn_white l">모니터링 결과</button>
                             <button type="button" id="REQ-CH-003" class="btn_white l">반송</button>
-                            <button type="button" id="REQ-CH-004" class="btn_white l">청약서 재발송</button>
+                            <!-- <button type="button" id="REQ-CH-004" class="btn_white l">빠른청약철회</button>
+                            <button type="button" id="REQ-CH-005" class="btn_white l">미성년자녀 연락처 예외처리</button> -->
+                            <!-- <button type="button" id="REQ-CH-004" class="btn_white l">청약서재발송</button> -->
                             <button type="button" id="REQ-CH-005" class="btn_white l">가입설계서 재발송</button>
-                            <button type="button" id="REQ-CH-006" class="btn_white l">증권 재발송</button>
-                            <button type="button" id="REQ-CH-010" class="btn_white l">사용인 확인(인사화면)</button>
-                            <button type="button" id="REQ-CH-011" class="btn_white l">일반 Q&A</button>
+                            <!-- <button type="button" id="REQ-CH-006" class="btn_white l">증권재발송</button> -->
+                            <!-- <button type="button" id="REQ-CH-007" class="btn_white l">변액자격등록</button>
+                            <button type="button" id="REQ-CH-008" class="btn_white l">모집자보수교육 수료 등록</button>
+                            <button type="button" id="REQ-CH-009" class="btn_white l">보험금 심사 상태 조회</button> -->
+                            <button type="button" id="REQ-CH-012" class="btn_white l">사용인 확인</button>
+                            <!-- <button type="button" id="REQ-CH-013" class="btn_white l">일반 Q&A</button> -->
+                            <button type="button" id="REQ-CH-023" class="btn_white l">보완건 조회</button>
+                            <button type="button" id="REQ-CH-024" class="btn_white l">개인정보 동의 현황 조회</button>
+                            <button type="button" id="REQ-CH-014" class="btn_white l">보험상식</button>
+                            <button type="button" id="REQ-CH-015" class="btn_white l">보험용어설명</button>
+                            <button type="button" id="REQ-CH-016" class="btn_white l">보험과세금</button>
+                            <button type="button" id="REQ-CH-017" class="btn_white l">사고보험금 접수방법 안내</button>
+                            <button type="button" id="REQ-CH-018" class="btn_white l">사고보험금 지급 절차 안내</button>
+                            <button type="button" id="REQ-CH-019" class="btn_white l">사고보험금 청구 사유별 안내</button>
+                            <button type="button" id="REQ-CH-020" class="btn_white l">사고보험금 청구 서류 양식 다운로드</button>
                         </div>
                     </div>
                 </div>
                 <div class="flow-box" id="flow02">
                     <div class="flow-content">
                         <div class="q-box">
-                            가입설계서 재발송 대상을 검색해 주세요.<br>
-                            검색기간은 한달입니다.
+                            청약서 재발송 대상을 검색해 주세요.
                         </div>
                         <div class="iptWrap search active_searchBtn">
                             <input type="text" class="ipt search active_searchBtn uiAct" placeholder="고객명 또는 증권번호 검색" value="" title="고객명 또는 증권번호">
@@ -95,7 +108,7 @@
                                     <span class="info"><span>판매인 : </span><span>미결</span></span>
                                     <span class="info"><span>청약일 : </span><span>YYMMDD</span></span>
                                     <span class="info"><span>계약자 : </span><span>이하나(800303/여)</span></span>
-                                </label>
+                                </label>                            
                             </div>
                             <div>
                                 <input type="radio" name="selectItem" id="item2" class="blind">
@@ -117,7 +130,7 @@
                 <div class="flow-box" id="flow03">
                     <div class="flow-content">
                         <div class="q-box">
-                            가입설계서 재발송 대상자를 선택해주세요.
+                            청약서 재발송 대상자를 선택해주세요.
                         </div>
                         <div>
                             <ul class="iptFilt div_2">
@@ -139,7 +152,7 @@
                 </div>
                 <div class="flow-box" id="flow04">
                     <div class="q-box">
-                        요청하신 가입설계서 재발송이 완료되었습니다.
+                        요청하신 청약서 재발송이 완료되었습니다.
                     </div>
                 </div>
             </div>      

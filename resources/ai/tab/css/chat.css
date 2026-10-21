@@ -1,4 +1,14 @@
+@charset "utf-8";
 
+/* =========================================================
+   Chat UI CSS
+   기존 스타일 속성은 유지하고 기능별로 순서 정리
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   01. 플로팅 채팅 버튼
+   --------------------------------------------------------- */
+@charset "utf-8";
 /* ai */
 .floating_box {
   position: fixed;
@@ -30,82 +40,11 @@
 .btn_chat:hover {
   background-color: #006b65;
 }
-.btn_chat.ty2 {
-    background-image: none;
-    color: #fff;
-    font-size: 1.4rem;
-    font-weight: 600;
-    white-space: normal;
-    word-break: break-all;
-    box-sizing: border-box;
-}
 
-/* =========================================================
-   1. flow-box 영역 전체 로딩 오버레이 (Spinner)
-   ========================================================= */
-.chat-flow {
-    position: relative;
-}
 
-.flow-loading-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.7);
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(2px);
-}
-
-.flow-spinner {
-    width: 36px;
-    height: 36px;
-    border: 4px solid #e0e0e0;
-    border-top: 4px solid #00857E;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* =========================================================
-   2. chat-messages 응답 대기 로딩 (Typing Dots)
-   ========================================================= */
-.message.loading-dots {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 12px 18px;
-    min-width: 50px;
-    width: fit-content;
-}
-
-.message.loading-dots span {
-    width: 8px;
-    height: 8px;
-    background-color: #00857E;
-    border-radius: 50%;
-    display: inline-block;
-    animation: typingBounce 1.2s infinite ease-in-out both;
-}
-
-.message.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
-.message.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
-
-@keyframes typingBounce {
-    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-    40% { transform: scale(1); opacity: 1; }
-} 
-        
-        
-        
+/* ---------------------------------------------------------
+   02. 채팅 팝업 전용 오버라이드
+   --------------------------------------------------------- */
 .popWrap.chat .popup {
     padding-bottom: 0;
 }
@@ -135,6 +74,11 @@
 .popWrap.chat .chat-content {
     height: 100%;
 }
+
+
+/* ---------------------------------------------------------
+   03. 채팅 컨테이너 및 헤더
+   --------------------------------------------------------- */
 /* body, html, .wrapper {
     overflow: hidden;
     margin: 0;
@@ -198,6 +142,78 @@
     height: calc(100% - 54px);
 }
 
+
+/* ---------------------------------------------------------
+   04. 로딩 오버레이 및 애니메이션
+   --------------------------------------------------------- */
+/* =========================================================
+   1. flow-box 영역 전체 로딩 오버레이 (Spinner)
+   ========================================================= */
+.chat-flow {
+    position: relative;
+}
+
+.flow-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+}
+
+.flow-spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid #e0e0e0;
+    border-top: 4px solid #00857E;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* =========================================================
+   2. chat-messages 응답 대기 로딩 (Typing Dots)
+   ========================================================= */
+.message.loading-dots {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 18px;
+    min-width: 50px;
+    width: fit-content;
+}
+
+.message.loading-dots span {
+    width: 8px;
+    height: 8px;
+    background-color: #00857E;
+    border-radius: 50%;
+    display: inline-block;
+    animation: typingBounce 1.2s infinite ease-in-out both;
+}
+
+.message.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.message.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+} 
+
+
+/* ---------------------------------------------------------
+   05. 대화 레이아웃 및 플로우 콘텐츠
+   --------------------------------------------------------- */
 /* chat-flow 스타일 및 트랜지션 */
 .chat-content .chat-flow { 
     position: relative;
@@ -245,13 +261,17 @@
 .chat-content .flow-box {
     position: relative;
     width: 100%;
-    padding: 20px;
 }
 
 .chat-content .flow-box:has(div.action-btn) {
     height: 100%;
+    overflow-y: hidden;
 }
-.chat-content .flow-box:has(div.action-btn) .flow-content {   
+.chat-content .flow-box .flow-content {
+    padding: 8px 20px 20px;   
+    overflow-y: auto;
+}
+.chat-content .flow-box:has(div.action-btn) .flow-content {
     height: calc(100% - 60px);
 }
 
@@ -268,6 +288,10 @@
     width: 100%;
 }
 
+
+/* ---------------------------------------------------------
+   06. 채팅 메시지 및 입력 영역
+   --------------------------------------------------------- */
 .chat-messages {
     display: flex;
     flex-direction: column;
@@ -343,6 +367,11 @@
 .chat-input-area button:hover {
     background-color: #006b65;
 }
+
+
+/* ---------------------------------------------------------
+   07. 플로우 입력폼 및 선택 버튼
+   --------------------------------------------------------- */
 .search-item {
     display: flex;
     gap: 8px;
@@ -352,13 +381,20 @@
 }
 .btn-area {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
 }
-.btn-area {
-    button {
-        width: calc(50% - 4px);
-    }
+.btn-area:not(.action-btn) {
+    flex-wrap: wrap;
+}
+.btn-area:not(.action-btn) button {
+    width: calc(50% - 4px);
+}
+.flow-content + .btn-area.action-btn {
+    padding: 0 20px 20px;
+    background-color: #fff !important;
+}
+.flow-content + .btn-area.action-btn button {
+    flex: 1;
 }
 .iptWrap {
     display: block;
@@ -422,33 +458,15 @@ input + .btn-label:focus {
 .btn-label .info span:first-child {
     color: #666;
 }
+
+
+/* ---------------------------------------------------------
+   08. 공통 보조 요소
+   --------------------------------------------------------- */
 .btn_navy_dark.btn-floating {
     border-radius: 0;
     min-height: 36px;
 }
-/* .btn-floating,
-.btn-floating:focus {
-    position: absolute;
-    top: 20px;
-    right: 4px;
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1.4rem;
-    z-index: 1000;
-    background-color: #d8d8d8;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cscript xmlns=''/%3E%3Cpath style='fill:none' d='M0 0h16v16H0z'/%3E%3Cg%3E%3Cpath d='M200.649 145.763A6 6 0 1 1 203 141a6.037 6.037 0 0 1-.068.908' style='stroke-miterlimit:10;stroke:%23333;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3Cpath d='m201 140.321 2 2 2-2' style='stroke-linejoin:round;stroke:%23333;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3C/g%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 16px 16px;
-}
-
-.btn-floating:hover {
-    background-color: #999;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cscript xmlns=''/%3E%3Cpath style='fill:none' d='M0 0h16v16H0z'/%3E%3Cg%3E%3Cpath d='M200.649 145.763A6 6 0 1 1 203 141a6.037 6.037 0 0 1-.068.908' style='stroke-miterlimit:10;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3Cpath d='m201 140.321 2 2 2-2' style='stroke-linejoin:round;stroke:%23fff;stroke-linecap:round;fill:none' transform='translate(-190 -133)'/%3E%3C/g%3E%3C/svg%3E");
-} */
 .q-box {
     display: block;
     width: 100%;

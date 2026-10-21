@@ -23,7 +23,8 @@ function showFlowLoading(callback, delay = 400) {
 
 function showChatLoading() {
     const chatMessages = document.getElementById('chatMessages');
-    if (!chatMessages) return null;
+    if (!chatMessages) return;
+    window.hideChatLoading();
 
     const loadingDiv = document.createElement('div');
     loadingDiv.className = 'message received loading-dots';
@@ -32,7 +33,6 @@ function showChatLoading() {
 
     chatMessages.appendChild(loadingDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    return loadingDiv;
 }
 
 function hideChatLoading() {
@@ -40,30 +40,20 @@ function hideChatLoading() {
     if (loadingDiv) loadingDiv.remove();
 }
 
+// 메인 초기화 함수
 window.initChat = function() {
+    let currentMenuId = null;
+    let currentStep = 1;
+
     const btnBack = document.getElementById('btnBack');
     const flow01 = document.getElementById('flow01');
-    const flow02 = document.getElementById('flow02');
-    const flow03 = document.getElementById('flow03');
-    const flow04 = document.getElementById('flow04');
-    const flow05 = document.getElementById('flow05');
-    const flow06 = document.getElementById('flow06');
-    const flow07 = document.getElementById('flow07');
-    const flowBoxes = document.getElementsByClassName('flow-box');
-    
-    // 필수 요소가 없으면 중단
-    if (!flow01 || !flow02) return;
-    
-    const searchInput = flow02.querySelector('.ipt.search');
-    const searchBtn = flow02.querySelector('.icoBtn_appSrch');
-    const delBtn = flow02.querySelector('.icoBtn_del');
-    const listBtnArea = flow02.querySelector('.list-btn');
-    
     const chatFlow = document.getElementById('chatFlow');
     const chatLive = document.getElementById('chatLive');
     const btnToggleFlow = document.getElementById('btnToggleFlow');
 
-    // 토글 이벤트
+    if (!flow01) return;
+
+    // 접기/펼치기 토글
     if (btnToggleFlow && chatLive) {
         btnToggleFlow.onclick = function() {
             const isCollapsed = chatLive.classList.toggle('collapsed');
@@ -77,234 +67,126 @@ window.initChat = function() {
         };
     }
     
-    for (let i = 0; i < flowBoxes.length; i++) {
-        flowBoxes[i].setAttribute('tabindex', '-1');
+    // Step 제어 함수
+    function renderStep(menuId, step) {
+        // 모든 flow-box 숨김
+        const allBoxes = document.querySelectorAll('.flow-box');
+        allBoxes.forEach(box => box.style.display = 'none');
+
+        if (step === 1 || !menuId) {
+            if (flow01) flow01.style.display = 'block'; // 메인 화면 확실하게 display: block 처리
+            if (btnBack) btnBack.style.display = 'none';
+            currentMenuId = null;
+            currentStep = 1;
+        } else {
+            const target = document.querySelector(`.menu-box[data-menu="${menuId}"][data-step="${step}"]`);
+            if (target) {
+                target.style.display = 'block';
+                if (btnBack) btnBack.style.display = 'block';
+                currentMenuId = menuId;
+                currentStep = step;
+
+                // [REQ-CH-012] 사용인 확인 라디오 토글 초기화
+                if (menuId === 'REQ-CH-012' && step === 3) {
+                    toggleSearchArea();
     }
-
-    // --- flow-box 전용 로딩 스피너 함수 ---
-    function showFlowLoading(callback, delay = 400) {
-        if (!chatFlow) {
-            if (callback) callback();
-            return;
-        }
-
-        const existing = chatFlow.querySelector('.flow-loading-overlay');
-        if (existing) existing.remove();
-
-        const overlay = document.createElement('div');
-        overlay.className = 'flow-loading-overlay';
-        overlay.innerHTML = '<div class="flow-spinner"></div>';
-        chatFlow.appendChild(overlay);
-
-        setTimeout(() => {
-            overlay.remove();
-            if (typeof callback === 'function') callback();
-        }, delay);
-    }
-
-    // 단계 전환 공통 함수
-    function switchFlow(targetFlow) {
-        if (!targetFlow) return;
-        [flow01, flow02, flow03, flow04, flow05, flow06, flow07].forEach(f => {
-            if (f) f.style.display = 'none';
-        });
-        
-        targetFlow.style.display = 'block';
-        if (typeof targetFlow.focus === 'function') targetFlow.focus();
-    }
-
-    function initFlow(isUserAction = false) {
-        switchFlow(flow01);
+            } else {
+                // 매칭되는 step이 없으면 안전하게 메인 화면으로 복귀
+                if (flow01) flow01.style.display = 'block';
         if (btnBack) btnBack.style.display = 'none';
-
-        // if (searchInput) searchInput.value = '';
-        // if (listBtnArea) listBtnArea.style.display = 'none';
-
-        if (isUserAction && flow01 && typeof flow01.focus === 'function') {
-            flow01.focus();
+            }
         }
     }
 
-    // 초기 화면 진입
-    initFlow();
+    // 초기 화면 실행
+    renderStep(null, 1);
 
     if (btnBack) {
         btnBack.onclick = function() {
             showFlowLoading(() => {
-                initFlow(true);
+                renderStep(null, 1);
             }, 300);
         };
     }
 
-    // flow01 이벤트
-    if (flow01) {
-        flow01.onclick = function(e) {
+    // 메뉴 버튼 및 서브 메뉴 버튼 통합 클릭 처리
+    if (chatFlow) {
+        chatFlow.onclick = function(e) {
             const btn = e.target.closest('button');
             if (!btn) return;
 
+            // 이전 버튼 클릭
+            if (btn.classList.contains('btn-prev')) {
             showFlowLoading(() => {
-            switchFlow(flow02);
-            if (btnBack) btnBack.style.display = 'block';
-            
-            setTimeout(() => {
-                if (searchInput) searchInput.focus();
-            }, 50);
-            }, 400);
-        };
+                    // Depth 4 서브 메뉴(예: REQ-CH-014-003-001)에서 뒤로가기 클릭 시 부모 메뉴(REQ-CH-014-003, Step 3)로 이동
+                    if (currentMenuId && currentMenuId.indexOf('REQ-CH-014-003-') === 0 && currentStep === 4) {
+                        renderStep('REQ-CH-014-003', 3);
+                    }
+                    // Depth 3 서브 메뉴(예: REQ-CH-014-001 ~ 007)에서 뒤로가기 클릭 시 부모 메뉴(REQ-CH-014, Step 2)로 이동
+                    else if (currentMenuId && currentMenuId.indexOf('REQ-CH-014-') === 0 && currentStep === 3) {
+                        renderStep('REQ-CH-014', 2);
+                    } else {
+                        renderStep(currentMenuId, currentStep - 1);
+                    }
+                    }, 300);
+                return;
+                } 
+
+            // 2. 다음/확인 버튼 클릭 처리
+            if (btn.classList.contains('btn-next')) {
+                    showFlowLoading(() => {
+                    renderStep(currentMenuId, currentStep + 1);
+                    }, 400);
+                return;
     }
 
-    // 2. flow02 검색
-    // function executeSearch() {
-    //     if (listBtnArea) {
-    //         listBtnArea.style.display = 'flex';
-    //         const firstRadio = listBtnArea.querySelector('input[type="radio"]');
-    //         if (firstRadio) firstRadio.focus();
-    //     }
-    // }
+            // 3. Flow 메인 및 메뉴 depth 버튼 클릭 처리
+            if (btn.id) {
+                const menuId = btn.id;
 
-    // if (searchBtn) searchBtn.onclick = executeSearch;
+                // 클릭된 ID에 대응되는 Step 2 또는 Step 3 박스 검색
+                const targetStep2 = document.querySelector(`.menu-box[data-menu="${menuId}"][data-step="2"]`);
+                const targetStep3 = document.querySelector(`.menu-box[data-menu="${menuId}"][data-step="3"]`);
+                const targetStep4 = document.querySelector(`.menu-box[data-menu="${menuId}"][data-step="4"]`);
 
-    // if (searchInput) {
-    //     searchInput.onkeypress = function(e) {
-    //         if (e.key === 'Enter') {
-    //             e.preventDefault();
-    //             executeSearch();
-    //         }
-    //     };
-    // }
-
-    // if (delBtn) {
-    //     delBtn.onclick = function() {
-    //         if (searchInput) {
-    //             searchInput.value = '';
-    //             searchInput.focus();
-    //         }
-    //         if (listBtnArea) listBtnArea.style.display = 'none';
-    //     };
-    // }
-
-    // flow02 내 하단 .action-btn 버튼 제어만 수행 (.btn-label 선택 이동 제거)
-    if (flow02) {
-        flow02.onclick = function(e) {
-            const btn = e.target.closest('button');
-            if (!btn) return;
-
-            const btnArea = btn.closest('.action-btn');
-            if (btnArea) {
-                const buttons = btnArea.querySelectorAll('button');
-                // 첫 번째 버튼 (이전): flow01로 이동
-                if (btn === buttons[0]) {
+                if (targetStep2) {
                     showFlowLoading(() => {
-                    switchFlow(flow01);
-                    }, 300);
-                } 
-                // 마지막 버튼 (다음/확인): flow03으로 이동
-                else if (btn === buttons[buttons.length - 1]) {
+                        renderStep(menuId, 2);
+                    }, 400);
+                } else if (targetStep3) {
                     showFlowLoading(() => {
-                        switchFlow(flow03);
+                        renderStep(menuId, 3);
+                    }, 400);
+                } else if (targetStep4) {
+                    showFlowLoading(() => {
+                        renderStep(menuId, 4);
                     }, 400);
                 }
             }
         };
     }
 
-    // flow03
-    if (flow03) {
-        flow03.onclick = function(e) {
-            const btn = e.target.closest('button');
-            if (!btn || btn.classList.contains('btnBack')) return;
+    // [REQ-CH-012] 라디오 전환 전용 함수
+    function toggleSearchArea() {
+        const iptFilt3_1 = document.getElementById('iptFilt3_1');
+        const search1 = document.getElementById('search1');
+        const search2 = document.getElementById('search2');
 
-            const btnArea = btn.closest('.action-btn');
-            if (btnArea) {
-                const buttons = btnArea.querySelectorAll('button');
-                // 첫 번째 버튼 (이전): flow02로 이동
-                if (btn === buttons[0]) {
-                    showFlowLoading(() => {
-                        switchFlow(flow02);
-                    }, 300);
-                } 
-                // 다음 버튼
-                else if (btn === buttons[buttons.length - 1]) {
-                    showFlowLoading(() => {
-                        switchFlow(flow04);
-                    }, 400);
-                }
-            }
-        };
+        if (!search1 || !search2) return;
+
+        if (iptFilt3_1 && iptFilt3_1.checked) {
+            search1.style.display = 'block';
+            search2.style.display = 'none';
+        } else {
+            search1.style.display = 'none';
+            search2.style.display = 'flex';
+        }
     }
 
-    // flow04 버튼 제어
-    if (flow04) {
-        flow04.onclick = function(e) {
-            const btn = e.target.closest('button');
-            if (!btn || btn.classList.contains('btnBack')) return;
-
-            const btnArea = btn.closest('.action-btn');
-            if (btnArea) {
-                const buttons = btnArea.querySelectorAll('button');
-                // 이전 버튼
-                if (btn === buttons[0]) {
-                    showFlowLoading(() => {
-                        switchFlow(flow03);
-                    }, 300);
-                } 
-                // 다음 버튼
-                else if (btn === buttons[buttons.length - 1]) {
-                    showFlowLoading(() => {
-                        switchFlow(flow05);
-                    }, 400);
-                }
-            }
-        };
-    }
-    // flow05 버튼 제어
-    if (flow05) {
-        flow05.onclick = function(e) {
-            const btn = e.target.closest('button');
-            if (!btn || btn.classList.contains('btnBack')) return;
-
-            const btnArea = btn.closest('.action-btn');
-            if (btnArea) {
-                const buttons = btnArea.querySelectorAll('button');
-                // 이전 버튼
-                if (btn === buttons[0]) {
-                    showFlowLoading(() => {
-                        switchFlow(flow04);
-                    }, 300);
-                } 
-                // 다음 버튼
-                else if (btn === buttons[buttons.length - 1]) {
-                    showFlowLoading(() => {
-                        switchFlow(flow06);
-                    }, 400);
-                }
-            }
-        };
-    }
-    // flow06 버튼 제어
-    if (flow06) {
-        flow06.onclick = function(e) {
-            const btn = e.target.closest('button');
-            if (!btn || btn.classList.contains('btnBack')) return;
-
-            const btnArea = btn.closest('.action-btn');
-            if (btnArea) {
-                const buttons = btnArea.querySelectorAll('button');
-                // 이전 버튼
-                if (btn === buttons[0]) {
-                    showFlowLoading(() => {
-                        switchFlow(flow05);
-                    }, 300);
-                } 
-                // 다음 버튼
-                else if (btn === buttons[buttons.length - 1]) {
-                    showFlowLoading(() => {
-                        switchFlow(flow07);
-                    }, 400);
-                }
-            }
-        };
-    }
+    const iptFilt3_1 = document.getElementById('iptFilt3_1');
+    const iptFilt3_2 = document.getElementById('iptFilt3_2');
+    if (iptFilt3_1) iptFilt3_1.addEventListener('change', toggleSearchArea);
+    if (iptFilt3_2) iptFilt3_2.addEventListener('change', toggleSearchArea);
 };
 
 // 최초 자동 실행 (윈도우 팝업 및 최초 로드용)
@@ -340,27 +222,6 @@ window.sendMessage = function() {
         hideChatLoading();
         receiveMessage('전송하신 "' + text + '"에 대한 서버 응답입니다.');
     }, 1000);
-};
-
-window.showChatLoading = function() {
-    const chatMessages = document.getElementById('chatMessages');
-    if (!chatMessages) return;
-
-    // 기존 로딩 중복 방지
-    window.hideChatLoading();
-
-    const loadingDiv = document.createElement('div');
-    loadingDiv.className = 'message received loading-dots';
-    loadingDiv.id = 'chatTypingLoading';
-    loadingDiv.innerHTML = '<span></span><span></span><span></span>';
-
-    chatMessages.appendChild(loadingDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-};
-
-window.hideChatLoading = function() {
-    const loadingDiv = document.getElementById('chatTypingLoading');
-    if (loadingDiv) loadingDiv.remove();
 };
 
 window.receiveMessage = function(text) {

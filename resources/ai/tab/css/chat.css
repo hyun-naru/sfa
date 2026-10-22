@@ -53,8 +53,15 @@
     color: #ffffff;
     box-shadow: none;
 }
-.popWrap.chat .popup .popHead h1  {
+.popWrap.chat .popup .popHead h1 {
     color: #ffffff;
+    display: flex;
+    align-items: center;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+.popWrap.chat .popup .popHead h1 img {
+    height: 30px;
 }
 
 .popWrap.chat .icoBtn_close {
@@ -95,13 +102,18 @@
 
 .chat-header {
     background-color: #00857E; 
+}
+.chat-header h1 {
+    margin: 0;
     color: #ffffff;
-    padding: 16px 20px;
+    padding: 12px 20px;
     font-size: 1.8rem;
-    font-weight: bold;
+    font-weight: 600;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+}
+.chat-header h1 img {
+    height: 30px;
 }
 .btn-group {
     position: absolute;

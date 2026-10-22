@@ -54,16 +54,48 @@ window.initChat = function() {
     if (!flow01) return;
 
     // 접기/펼치기 토글
+    // if (btnToggleFlow && chatLive) {
+    //     btnToggleFlow.onclick = function() {
+    //         const isCollapsed = chatLive.classList.toggle('collapsed');
+    //         if (chatFlow) {
+    //             chatFlow.classList.toggle('fix-no', !isCollapsed);
+    //         }
+    //         btnToggleFlow.classList.toggle('active', !isCollapsed);
+    //         btnToggleFlow.setAttribute('aria-expanded', !isCollapsed);
+    //         btnToggleFlow.setAttribute('aria-label', isCollapsed ? 'ai 챗봇 대화 열기' : 'ai 챗봇 대화 닫기');
+    //         btnToggleFlow.textContent = isCollapsed ? 'ai 챗봇 열기 ▼' : 'ai 챗봇 닫기 ▲';
+    //     };
+    // }
     if (btnToggleFlow && chatLive) {
+        // 초기 상태: 펼쳐짐
+        chatLive.classList.remove('collapsed');
+
+        if (chatFlow) {
+            chatFlow.classList.add('fix-no');
+        }
+
+        btnToggleFlow.classList.add('active');
+        btnToggleFlow.setAttribute('aria-expanded', 'true');
+        btnToggleFlow.setAttribute('aria-label', 'ai 챗봇 대화 닫기');
+        btnToggleFlow.textContent = 'ai 챗봇 닫기 ▲';
+
+        // 접기/펼치기 토글
         btnToggleFlow.onclick = function() {
             const isCollapsed = chatLive.classList.toggle('collapsed');
+
             if (chatFlow) {
                 chatFlow.classList.toggle('fix-no', !isCollapsed);
             }
+
             btnToggleFlow.classList.toggle('active', !isCollapsed);
             btnToggleFlow.setAttribute('aria-expanded', !isCollapsed);
-            btnToggleFlow.setAttribute('aria-label', isCollapsed ? 'ai 챗봇 대화 열기' : 'ai 챗봇 대화 닫기');
-            btnToggleFlow.textContent = isCollapsed ? 'ai 챗봇 열기 ▼' : 'ai 챗봇 닫기 ▲';
+            btnToggleFlow.setAttribute(
+                'aria-label',
+                isCollapsed ? 'ai 챗봇 대화 열기' : 'ai 챗봇 대화 닫기'
+            );
+            btnToggleFlow.textContent = isCollapsed
+                ? 'ai 챗봇 열기 ▼'
+                : 'ai 챗봇 닫기 ▲';
         };
     }
     

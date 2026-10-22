@@ -65,6 +65,11 @@
 
 .popWrap.chat .popup header h1 {
     color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+.popWrap.chat .popup header img {
+    height: 30px;
 }
 
 .icoBtn_close::before,

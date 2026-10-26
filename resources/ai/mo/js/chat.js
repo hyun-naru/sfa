@@ -146,24 +146,29 @@ window.initChat = function() {
         chatFlow.onclick = function(e) {
             const btn = e.target.closest('button');
             if (!btn) return;
-
+            
             // 이전 버튼 클릭
             if (btn.classList.contains('btn-prev')) {
-            showFlowLoading(() => {
-                    // Depth 4 서브 메뉴(예: REQ-CH-014-003-001)에서 뒤로가기 클릭 시 부모 메뉴(REQ-CH-014-003, Step 3)로 이동
-                    if (currentMenuId && currentMenuId.indexOf('REQ-CH-014-003-') === 0 && currentStep === 4) {
-                        renderStep('REQ-CH-014-003', 3);
-                    }
-                    // Depth 3 서브 메뉴(예: REQ-CH-014-001 ~ 007)에서 뒤로가기 클릭 시 부모 메뉴(REQ-CH-014, Step 2)로 이동
-                    else if (currentMenuId && currentMenuId.indexOf('REQ-CH-014-') === 0 && currentStep === 3) {
-                        renderStep('REQ-CH-014', 2);
-                    } else {
-                        renderStep(currentMenuId, currentStep - 1);
-                    }
-                    }, 300);
-                return;
-                } 
+                showFlowLoading(() => {
+                    const menuId = currentMenuId;
 
+                    // 마지막 Depth를 제외한 부모 메뉴 ID
+                    const parentMenuId = menuId
+                        .split('-')
+                        .slice(0, -1)
+                        .join('-');
+
+                    if (currentStep === 4) {
+                        renderStep(parentMenuId, 3);
+                    } else if (currentStep === 3) {
+                        renderStep(parentMenuId, 2);
+                    } else {
+                        renderStep(menuId, currentStep - 1);
+                    }
+                }, 300);
+
+                return;
+            }
             // 2. 다음/확인 버튼 클릭 처리
             if (btn.classList.contains('btn-next')) {
                     showFlowLoading(() => {

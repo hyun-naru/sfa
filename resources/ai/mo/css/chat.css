@@ -318,7 +318,7 @@
     width: calc(50% - 4px);
 }
 
-.chat-content .flow-content div + div:not(.setBtnAdd)  {   
+.chat-content .flow-content div + div:not(.setBtnAdd, .step-label, .document-filters)  {   
     margin-top: 12px;
 }
 
@@ -337,7 +337,10 @@
     height: auto;
     min-height: 48px;
 }
-
+.setBtnAdd .selectWrap,
+.document-filters.setBtnAdd [class^=btn_].m {
+    margin: 0 !important;
+}
 .iptWrap {
     display: block;
     width: 100%;
@@ -491,7 +494,6 @@ input + .btn-label:focus {
 /* =========================================================
    10. 공통 버튼 및 보조 요소
    ========================================================= */
-
 
 .df-end {
     display: flex;

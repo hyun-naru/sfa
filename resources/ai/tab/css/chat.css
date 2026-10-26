@@ -412,6 +412,10 @@
     display: block;
     width: 100%;
 }
+.setBtnAdd,
+.setBtnAdd select.ipt {
+    margin: 0;
+}
 .flow-content .iptFilt.div_2 {
     display: flex;
     flex-wrap: wrap;

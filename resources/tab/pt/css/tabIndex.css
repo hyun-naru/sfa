@@ -2,19 +2,14 @@
 nav .nav_wrap {
   height: 60px;
 }
-.header_top .inner .user_util {
-  z-index: 2;
-}
 .header_top .inner .user_util > li.certify_menu {
-  z-index: 1003;
+  z-index: 300;
 }
 nav .nav_wrap .gnb .gnb_cell {
   padding: 16px 30px;
-  z-index: 1;
 }
 nav .nav_wrap .gnb .gnb_cell .gnb_tab_sub {
   top: 100px;
-  z-index: 1002;
 }
 
 /*************** tab page ***************/
@@ -64,6 +59,7 @@ nav .nav_wrap .gnb .gnb_cell .gnb_tab_sub {
   width: 100%;
   min-width: 1200px;
   background: #fff;
+  z-index: 10;
 }
 .tab_sticky.active {
   z-index: 1001;

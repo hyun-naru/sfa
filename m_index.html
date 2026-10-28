@@ -311,9 +311,10 @@
 						<div class="flow-box" id="flow01">
 							<div class="flow-content">
 								<div class="df-end">
-									<button type="button" class="flag_prd5 rev" id="REQ-CH-021">생일/상령일 도래(10명)</button>
-									<button type="button" class="flag_prd3 rev" id="REQ-CH-025">실효임박(5명)</button>
-									<button type="button" class="flag_prd4 rev" id="REQ-CH-022">당월실효(5명)</button>
+									<button type="button" class="flag_prd1" id="REQ-CH-021">이당의 생일(10명)</button>
+									<button type="button" class="flag_prd5" id="REQ-CH-022">상령일 도래(10명)</button>
+									<button type="button" class="flag_prd3 rev" id="REQ-CH-026">실효임박(5명)</button>
+									<button type="button" class="flag_prd4 rev" id="REQ-CH-023">당월실효(5명)</button>
 								</div>
 								<div class="q-box">
 									영업지원 간편 기능 메뉴 입니다.<br>
@@ -324,8 +325,8 @@
 									<!-- <button type="button" id="REQ-CH-003" class="btn_w m">반송</button> -->
 									<button type="button" id="REQ-CH-005" class="btn_w m">가입설계서 재발송</button>
 									<button type="button" id="REQ-CH-012" class="btn_w m">사용인 확인</button>
-									<button type="button" id="REQ-CH-023" class="btn_w m">보완건 조회</button>
-									<button type="button" id="REQ-CH-024" class="btn_w m">개인정보 동의 현황 조회</button>
+									<button type="button" id="REQ-CH-024" class="btn_w m">보완건 조회</button>
+									<button type="button" id="REQ-CH-025" class="btn_w m">개인정보 동의 현황 조회</button>
 									<!-- <button type="button" id="REQ-CH-014" class="btn_w m">보험상식</button>
 									<button type="button" id="REQ-CH-015" class="btn_w m">보험용어설명</button>
 									<button type="button" id="REQ-CH-016" class="btn_w m">보험과세금</button>
@@ -344,10 +345,7 @@
 									검색기간은 한달입니다.
 								</div>
 								<div class="srchIpt">
-									<!-- 관리자 -->
 									<input type="text" class="ipt" placeholder="증권번호" title="증권번호 검색">
-									<!-- 고객 -->
-									<!-- <input type="text" class="ipt" placeholder="고객명" title="고객명 검색"> -->
 									<button type="button" class="icoBtn_appSrch" aria-label="검색"></button>
 								</div>
 								<div class="list-btn">
@@ -373,10 +371,7 @@
 									검색기간은 한달입니다.
 								</div>
 								<div class="srchIpt">
-									<!-- 관리자 -->
 									<input type="text" class="ipt" placeholder="증권번호" title="증권번호 검색">
-									<!-- 고객 -->
-									<!-- <input type="text" class="ipt" placeholder="고객명" title="고객명 검색"> -->
 									<button type="button" class="icoBtn_appSrch" aria-label="검색"></button>
 								</div>
 								<div class="list-btn">
@@ -408,10 +403,7 @@
 							<div class="flow-content">
 								<div class="q-box">가입설계서 재발송 대상을 검색해 주세요.</div>
 								<div class="srchIpt">
-									<!-- 관리자 -->
 									<input type="text" class="ipt" placeholder="증권번호" title="증권번호 검색">
-									<!-- 고객 -->
-									<!-- <input type="text" class="ipt" placeholder="고객명" title="고객명 검색"> -->
 									<button type="button" class="icoBtn_appSrch" aria-label="검색"></button>
 								</div>
 								<div class="list-btn">
@@ -456,6 +448,21 @@
 										</label>
 									</div>
 								</div>
+								<!-- paging (s) -->
+								<div class="paging" role="navigation" aria-label="페이지 선택 영역">
+									<button type="button" class="icoBtn_prev first" aria-label="이전"></button>
+									<button type="button" class="icoBtn_prev" aria-label="첫페이지"></button>
+									<ul>
+										<li class="on"><em><span class="blind">현재 페이지</span>1</em></li>
+										<li><a href="#"><span class="blind">페이지</span>2</a></li>
+										<li><a href="#"><span class="blind">페이지</span>3</a></li>
+										<li><a href="#"><span class="blind">페이지</span>4</a></li>
+										<li><a href="#"><span class="blind">페이지</span>5</a></li>
+									</ul>
+									<button type="button" class="icoBtn_next" aria-label="다음"></button>
+									<button type="button" class="icoBtn_next last" aria-label="마지막페이지"></button>
+								</div>
+    							<!-- paging (e) -->
 							</div>
 							<div class="btn-area action-btn">
 								<button type="button" class="btn_g btn-prev">이전</button>
@@ -497,11 +504,11 @@
 									<ul class="iptFilt div_2">
 										<li>
 											<input type="radio" class="ipt" name="iptFilt3" id="iptFilt3_1">
-											<label for="iptFilt3_1">사번</label>
+											<label for="iptFilt3_1">이름 + 사번</label>
 										</li>
 										<li>
 											<input type="radio" class="ipt" name="iptFilt3" id="iptFilt3_2" checked>
-											<label for="iptFilt3_2">전화번호/이름</label>
+											<label for="iptFilt3_2">이름 + 전화번호</label>
 										</li>
 									</ul>
 								</div>
@@ -514,10 +521,14 @@
 						<div class="flow-box menu-box" id="menu-REQ-CH-012-step3" data-menu="REQ-CH-012" data-step="3">
 							<div class="flow-content">
 								<div class="q-box">사용인 확인 대상을 검색해 주세요.</div>
-
-								<div class="srchIpt" id="search1">
-									<input type="text" class="ipt" placeholder="사번 입력" title="사번 검색">
-									<button type="button" class="icoBtn_appSrch" aria-label="검색"></button>
+								<div class="search-towline" id="search1">
+									<div class="setAddr">
+										<input type="text" class="ipt" placeholder="이름 입력" title="이름 입력">
+									</div>
+									<div class="setBtnAdd">
+										<input type="text" class="ipt" placeholder="사번 입력" title="사번 입력">
+										<button type="button" class="btn_t m">검색</button>
+									</div>
 								</div>
 								<div class="search-towline" id="search2">
 									<div class="setAddr">
@@ -531,14 +542,7 @@
 								<div class="list-btn">
 									<div class="btn-label">
 										<span class="tit"><span>지점장 : </span><span>박하나(G7209116)</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
-										<span class="info"><span>대리점 : </span><span>에이플러스에셋</span></span>
-										<span class="info"><span>본부 : </span><span>에이플러스에셋</span></span>
-										<span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
-									</div>
-									<div class="btn-label">
-										<span class="tit"><span>총무 : </span><span>조하나(G7209117)</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
 										<span class="info"><span>대리점 : </span><span>에이플러스에셋</span></span>
 										<span class="info"><span>본부 : </span><span>에이플러스에셋</span></span>
 										<span class="info"><span>지점 : </span><span>에이플러스에셋</span></span>
@@ -547,72 +551,136 @@
 							</div>
 						</div>
 
-						<!-- [REQ-CH-021] 생일/상령일 도래 -->
+						<!-- [REQ-CH-021] 이달의 생일 -->
 						<div class="flow-box menu-box" id="menu-REQ-CH-021-step2" data-menu="REQ-CH-021" data-step="2">
+							<div class="flow-content">
+								<div class="list-btn">
+									<div class="btn-label">
+										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+										<span class="info"><span>상영일 : </span><span>2026.11.11</span></span>
+										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
+										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+									</div>
+									<div class="btn-label">
+										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+										<span class="info"><span>상영일 : </span><span>2026.11.11</span></span>
+										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
+										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+									</div>
+									<div class="btn-label">
+										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+										<span class="info"><span>상영일 : </span><span>2026.11.11</span></span>
+										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
+										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+									</div>
+									<div class="btn-label">
+										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+										<span class="info"><span>상영일 : </span><span>2026.11.11</span></span>
+										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
+										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+									</div>
+									<div class="btn-label">
+										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+										<span class="info"><span>상영일 : </span><span>2026.11.11</span></span>
+										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
+										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+									</div>
+									<div class="btn-label">
+										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+										<span class="info"><span>상영일 : </span><span>2026.11.11</span></span>
+										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
+										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+									</div>
+									<div class="btn-label">
+										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+										<span class="info"><span>상영일 : </span><span>2026.11.11</span></span>
+										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
+										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+									</div>
+									<div class="btn-label">
+										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
+										<span class="info"><span>상영일 : </span><span>2026.11.11</span></span>
+										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
+										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- [REQ-CH-022] 상령일 도래 -->
+						<div class="flow-box menu-box" id="menu-REQ-CH-022-step2" data-menu="REQ-CH-022" data-step="2">
 							<div class="flow-content">
 								<div class="list-btn">
 									<div class="btn-label">
 										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
 										<span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
 										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
 										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
 									</div>
 									<div class="btn-label">
 										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
 										<span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
 										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
 										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
 									</div>
 									<div class="btn-label">
 										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
 										<span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
 										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
 										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
 									</div>
 									<div class="btn-label">
 										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
 										<span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
 										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
 										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
 									</div>
 									<div class="btn-label">
 										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
 										<span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
 										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
 										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
 									</div>
 									<div class="btn-label">
 										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
 										<span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
 										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
 										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
 									</div>
 									<div class="btn-label">
 										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
 										<span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
 										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
 										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
 									</div>
 									<div class="btn-label">
 										<span class="tit"><span>고객명(생년월일) : </span><span>이하나(901111)</span></span>
 										<span class="tit"><span>상영일 : </span><span>2026.11.11</span></span>
 										<span class="info"><span>연락금지권 설정 여부 : </span><span>N</span></span>
-										<span class="info"><span>휴대폰번호 : </span><span>010-1234-5678</span></span>
+										<span class="info"><span>휴대폰번호 : </span><span><a href="tel:+010-1234-5678">010-1234-5678</a></span></span>
 										<span class="info"><span>나이(보험) : </span><span>36세(35세)</span></span>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<!-- [REQ-CH-022] 당월실효 -->
-						<div class="flow-box menu-box" id="menu-REQ-CH-022-step2" data-menu="REQ-CH-022" data-step="2">
+						<!-- [REQ-CH-023] 당월실효 -->
+						<div class="flow-box menu-box" id="menu-REQ-CH-023-step2" data-menu="REQ-CH-023" data-step="2">
 							<div class="flow-content">
 								<div class="q-box">검색기간은 전월(2026.09)입니다.</div>
 								<div class="list-btn">
@@ -670,15 +738,12 @@
 							</div>
 						</div>
 
-						<!-- [REQ-CH-023] 보완건 조회 -->
-						<div class="flow-box menu-box" id="menu-REQ-CH-023-step2" data-menu="REQ-CH-023" data-step="2">
+						<!-- [REQ-CH-024] 보완건 조회 -->
+						<div class="flow-box menu-box" id="menu-REQ-CH-024-step2" data-menu="REQ-CH-024" data-step="2">
 							<div class="flow-content">
 								<div class="q-box">보완건 대상을 검색해주세요.<br>검색기간은 청약일 기준 한달입니다.</div>
 								<div class="srchIpt">
-									<!-- 관리자 -->
 									<input type="text" class="ipt" placeholder="증권번호" title="증권번호 검색">
-									<!-- 고객 -->
-									<!-- <input type="text" class="ipt" placeholder="고객명" title="고객명 검색"> -->
 									<button type="button" class="icoBtn_appSrch" aria-label="검색"></button>
 								</div>
 								<div class="list-btn">
@@ -731,15 +796,12 @@
 							</div>
 						</div>
 
-						<!-- [REQ-CH-024] 개인정보 동의 현황 조회 -->
-						<div class="flow-box menu-box" id="menu-REQ-CH-024-step2" data-menu="REQ-CH-024" data-step="2">
+						<!-- [REQ-CH-025] 개인정보 동의 현황 조회 -->
+						<div class="flow-box menu-box" id="menu-REQ-CH-025-step2" data-menu="REQ-CH-025" data-step="2">
 							<div class="flow-content">
 								<div class="q-box">개인정보 동의 대상을 검색해주세요.<br>검색기간은 한달입니다.</div>
 								<div class="srchIpt">
-									<!-- 관리자 -->
 									<input type="text" class="ipt" placeholder="증권번호" title="증권번호 검색">
-									<!-- 고객 -->
-									<!-- <input type="text" class="ipt" placeholder="고객명" title="고객명 검색"> -->
 									<button type="button" class="icoBtn_appSrch" aria-label="검색"></button>
 								</div>
 								<div class="list-btn">
@@ -807,8 +869,8 @@
 							</div>
 						</div>
 
-						<!-- [REQ-CH-025] 실효임박 -->
-						<div class="flow-box menu-box" id="menu-REQ-CH-025-step2" data-menu="REQ-CH-025" data-step="2">
+						<!-- [REQ-CH-026] 실효임박 -->
+						<div class="flow-box menu-box" id="menu-REQ-CH-026-step2" data-menu="REQ-CH-026" data-step="2">
 							<div class="flow-content">
 								<div class="q-box">검색기간은 전월(2026.09)입니다.</div>
 								<div class="list-btn">

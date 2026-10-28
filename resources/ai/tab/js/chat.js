@@ -192,7 +192,7 @@ window.initChat = function() {
         if (!search1 || !search2) return;
 
         if (iptFilt3_1 && iptFilt3_1.checked) {
-            search1.style.display = 'block';
+            search1.style.display = 'flex';
             search2.style.display = 'none';
         } else {
             search1.style.display = 'none';

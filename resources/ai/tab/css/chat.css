@@ -300,7 +300,6 @@
     width: 100%;
 }
 
-
 /* ---------------------------------------------------------
    06. 채팅 메시지 및 입력 영역
    --------------------------------------------------------- */
@@ -384,6 +383,10 @@
 /* ---------------------------------------------------------
    07. 플로우 입력폼 및 선택 버튼
    --------------------------------------------------------- */
+button.flag {
+    height: 30px;
+    font-size: 1.4rem;
+}
 .search-item {
     display: flex;
     gap: 8px;
@@ -400,6 +403,13 @@
 }
 .btn-area:not(.action-btn) button {
     width: calc(50% - 4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 0;
+    text-align: center;
+    white-space: normal;
 }
 .flow-content + .btn-area.action-btn {
     padding: 0 20px 20px;
@@ -420,13 +430,24 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    align-items: stretch;
 }
 .flow-content .iptFilt.div_2 li {
-    width: calc(50% - 4px);
+    display: flex;
+    flex: 1;
+    min-width: 0;
 }
-
 .flow-content .iptFilt .ipt + label,
 .flow-content .iptFilt .ipt:checked + label {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 0;
+    height: auto;
+    text-align: center;
+    white-space: normal;
     height: auto;
     border-radius: 8px;
     width: 100%;
@@ -440,6 +461,9 @@
     gap: 4px;
 }
 
+.list-btn > div {
+    position: relative;
+}
 .btn-label {
     display: flex;
     flex-direction: column;
@@ -475,7 +499,9 @@ input + .btn-label:focus {
     color: #666;
 }
 
-
+.list-btn + .pagination {
+    margin-top: 32px !important;
+}
 /* ---------------------------------------------------------
    08. 공통 보조 요소
    --------------------------------------------------------- */

@@ -290,7 +290,7 @@
 .chat-content .flow-box .formList {
     border-top: none;
 }
-.chat-content .flow-box .formList .td {
+.chat-content .flow-box .formList:not(:has(.th)) .td {
     padding: 8px 0;
     border-bottom: none;
 }

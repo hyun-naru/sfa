@@ -129,20 +129,12 @@ window.initChat = function() {
             // 이전 버튼 클릭
             if (btn.classList.contains('btn-prev')) {
                 showFlowLoading(() => {
-                    const menuId = currentMenuId;
-
-                    // 마지막 Depth를 제외한 부모 메뉴 ID
-                    const parentMenuId = menuId
-                        .split('-')
-                        .slice(0, -1)
-                        .join('-');
-
-                    if (currentStep === 4) {
-                        renderStep(parentMenuId, 3);
-                    } else if (currentStep === 3) {
-                        renderStep(parentMenuId, 2);
+                    // 현재 활성화된 menu-box 안에서 이전 step으로 이동하거나
+                    // 구조상 현재 menuId를 유지한 채 step만 -1 감소시킵니다.
+                    if (currentStep > 1) {
+                        renderStep(currentMenuId, currentStep - 1);
                     } else {
-                        renderStep(menuId, currentStep - 1);
+                        renderStep(null, 1);
                     }
                 }, 300);
 
@@ -151,9 +143,28 @@ window.initChat = function() {
 
             // 2. 다음/확인 버튼 클릭 처리
             if (btn.classList.contains('btn-next')) {
+
+                // 반송 메뉴의 확인 버튼일 때만 심사자 확인
+                if (currentMenuId === 'REQ-CH-003' && currentStep === 2) {
+                    const selectedItem = document.querySelector(
+                        'input[name="selectItem3"]:checked'
+                    );
+
+                    const reviewer = selectedItem
+                        ?.closest('.list-btn')
+                        ?.querySelector('.tit:last-of-type span:last-child')
+                        ?.textContent.trim();
+
+                    if (reviewer == null || reviewer === '' || reviewer === '-') {
+                        uiInfo.pt.alert('심사중인 계약은 반송 신청이 불가합니다. 심사자가 배정되어야 합니다.');
+                        return;
+                    }
+                }
+
                 showFlowLoading(() => {
                     renderStep(currentMenuId, currentStep + 1);
                 }, 400);
+
                 return;
             }
 
@@ -182,6 +193,8 @@ window.initChat = function() {
             }
         };
     }
+
+    
 
     // [REQ-CH-012] 라디오 전환 전용 함수
     function toggleSearchArea() {

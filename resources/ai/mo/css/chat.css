@@ -53,7 +53,8 @@
 
 .popWrap.chat .popup {
     padding: 0;
-    height: 100dvh;
+    /* height: 100dvh; */
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -78,7 +79,8 @@
 }
 
 .popWrap.chat .popup .popBody {
-    height: calc(100dvh - 55px);
+    /* height: calc(100dvh - 55px); */
+    height: calc(100vh - 55px);
     
 }
 
@@ -156,16 +158,15 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: inherit;
+    /* height: inherit; */
+    height: auto;
     text-align: left;
     overflow-y: auto;
     transition: flex 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     box-sizing: border-box;
 }
 
-.chat-content:has(.chat-live:not(.collapsed)) .chat-flow {
-    flex: 1; /* 라이브 대화창 높이(350px)를 제외한 상단 나머지 영역을 가변 채움 */
-}
+
 
 /* 오른쪽 라이브 대화 영역 */
 .chat-live {
@@ -179,7 +180,6 @@
     transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease-in-out;
     opacity: 1;
 }
-
 
 /* collapsed(숨김) 상태 스타일 */
 .chat-content .chat-live.collapsed {
@@ -316,12 +316,21 @@
 
 .btn-area:not(.action-btn) button {
     width: calc(50% - 4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 0;
+    text-align: center;
+    white-space: normal;
 }
 
 .chat-content .flow-content div + div:not(.setBtnAdd, .step-label, .document-filters)  {   
     margin-top: 12px;
 }
-
+.srchIpt {
+    margin-bottom: 0;
+}
 .search-towline {
     display: flex;
     flex-direction: column;
@@ -332,6 +341,13 @@
    07. 입력 폼 및 선택 옵션
    ========================================================= */
 
+.flow-content .iptFilt.div_2 {
+    flex-direction: column;
+}
+.flow-content .iptFilt.div_2 li {
+    flex: 1;
+    width: auto;
+}
 .flow-content .iptFilt .ipt + label {
     padding: 6px 10px 7px;
     height: auto;
@@ -353,6 +369,9 @@
     gap: 4px;
 }
 
+.list-btn > div {
+    position: relative;
+}
 
 .btn-label,
 .btn-label:focus {
@@ -396,8 +415,41 @@ input + .btn-label:focus {
 .btn-label .info span:first-child {
     color: #666666;
 }
+.list-btn + .paging {
+    margin-top: 32px !important;
+}
+.flow-box .paging ul {
+    padding: 0;
+}
 
-
+.flow-box .paging .icoBtn_prev.first::before { 
+    left: 10px;
+}
+.flow-box .paging .icoBtn_prev.first::after,
+.flow-box .paging .icoBtn_next.last::after {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #444;
+    border-width: 0 0 1px 1px;
+    background-color: transparent;
+    box-sizing: border-box;
+    transform: translateY(-50%) rotate(45deg);
+}
+.flow-box .paging .icoBtn_next.last::before { 
+    right: 16px;
+}
+.flow-box .paging .icoBtn_next.last::after {
+    left: auto;
+    right: 10px;
+    transform: translateY(-50%) rotate(-135deg);
+}
+a[href^="tel:"] {
+    color: #00857E !important;
+}
 /* =========================================================
    08. 메시지 목록 및 말풍선
    ========================================================= */

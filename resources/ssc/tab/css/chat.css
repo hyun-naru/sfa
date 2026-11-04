@@ -506,8 +506,12 @@ input + .btn-label:focus {
    08. 공통 보조 요소
    --------------------------------------------------------- */
 .btn_navy_dark.btn-floating {
+    position: sticky;
+    left: 0;
+    top: 0;
     border-radius: 0;
     min-height: 36px;
+    z-index: 10;
 }
 .q-box {
     display: block;

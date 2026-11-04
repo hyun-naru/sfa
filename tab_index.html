@@ -36,7 +36,7 @@
     <!-- 퍼블리싱 (html) 에서만 사용하는 코드입니다. 실제 개발 페이지에선 사용하면 안됨 -->
 
     <link rel="stylesheet" type="text/css" href="./resources/pt/css/tabIndex.css" />
-    <link rel="stylesheet" type="text/css" href="./resources/ai/tab/css/chat.css" />
+    <link rel="stylesheet" type="text/css" href="./resources/ssc/tab/css/chat.css" />
     <script>
         let isMoLanding = false;	//모바일 랜딩의 경우
         $(document).ready(function () {
@@ -133,7 +133,7 @@
                 <span class="blind">챗봇 오픈</span>
             </button> -->
             <!-- onclick 방식 사용 시 -->
-            <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="layerPop.open('chatPopup', function() { pop_init('chatPopup', './resources/ai/tab/REQ-CH-001.html'); });">
+            <!-- <button type="button" class="btn_chat" id="btn_chat" onclick="layerPop.open('chatPopup', function() { pop_init('chatPopup', './resources/ssc/tab/REQ-CH-001.html'); });">
                 <span class="blind">챗봇 오픈</span>
             </button> -->
         <!-- popup (s) -->
@@ -160,7 +160,7 @@
             <div class="popContain">
                 <div class="popup fullHeight">
                     <div class="popHead">
-                        <h1 class="tit01"><img src="./resources/ai/images/white_logo.svg">영업지원</h1>
+                        <h1 class="tit01"><img src="./resources/ssc/images/white_logo.svg">영업지원</h1>
                     </div>
                     <div class="popBody col_auto">
                         <!-- 팝업 내용 시작 (s) -->
@@ -459,10 +459,15 @@
                         ui.init($actualCont); // 👈 여기서 $actualCont를 인자로 꼭 넘겨주세요!
                     }
                     // 5. 스크립트 실행 (격리)
-                    // 5. 스크립트 실행 (격리 및 중복 방지)
                     var scripts = doc.querySelectorAll('script');
                     scripts.forEach(function (oldScript) {
                         if (oldScript.src) {
+                            // 🔥 [추가] 경로가 꼬이거나 404를 유발하는 퍼블리싱 인클루드 스크립트는 동적 로드에서 제외
+                            if (oldScript.src.includes('pub.include')) {
+                                console.log("퍼블리싱 인클루드 스크립트는 메인에서 처리하므로 건너뜀:", oldScript.src);
+                                return;
+                            }
+
                             // [중요] 이미 같은 src를 가진 스크립트가 head에 있는지 확인
                             var isAlreadyLoaded = Array.from(document.scripts).some(function (s) {
                                 return s.src === oldScript.src;
@@ -476,9 +481,6 @@
                                 console.log("새 스크립트 로드:", oldScript.src);
                             } else {
                                 console.log("이미 로드된 스크립트 건너뜀:", oldScript.src);
-
-                                // 만약 로드된 스크립트를 재실행해야 하는 초기화 함수가 있다면 
-                                // 여기서 수동으로 호출해줄 수도 있습니다. (예: myfuncInit())
                             }
                         } else {
                             var scriptText = oldScript.textContent.trim();
@@ -893,7 +895,7 @@
         // btn_chat01 클릭 시
         if (btnChat) {
             btnChat.addEventListener('click', function() {
-                openChatPopup('./resources/ai/tab/REQ-CH-001.html');
+                openChatPopup('./resources/ssc/tab/REQ-CH-001.html');
             });
         }
 
@@ -908,10 +910,10 @@
         var idPop = $('#' + layerId);
 
         if (typeof initUrl === 'string' && initUrl.indexOf('.html') !== -1) {
-            var cssUrl = "./resources/ai/tab/css/chat.css";
-            var cssUrl2 = "./resources/ai/comm/css/content.css";
-            var jsUrl = "./resources/ai/tab/js/chat.js";
-            var jsUrl2 = "./resources/ai/comm/js/insu_search.js";
+            var cssUrl = "./resources/ssc/tab/css/chat.css";
+            var cssUrl2 = "./resources/ssc/comm/css/content.css";
+            var jsUrl = "./resources/ssc/tab/js/chat.js";
+            var jsUrl2 = "./resources/ssc/comm/js/insu_search.js";
 
             // CSS 동적 주입 헬퍼
             var loadStyle = function(url) {

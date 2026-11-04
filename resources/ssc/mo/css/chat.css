@@ -68,9 +68,10 @@
     color: #ffffff;
     display: flex;
     align-items: center;
+    padding-left: 0;
 }
 .popWrap.chat .popup header img {
-    height: 30px;
+    height: 26px;
 }
 
 .icoBtn_close::before,

@@ -6,6 +6,9 @@
   box-sizing: border-box;
 }
 
+html body:not(.hana-branch-app) * {
+    outline: none;
+}
 
 .hana-branch-app {
   all: initial;

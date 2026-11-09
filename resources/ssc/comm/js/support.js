@@ -345,7 +345,7 @@
                             var image = r.image.replace(/^\//, '');
                             var imageId = image === imageNames[0] ? 'manualImgFinancial' : 'manualImgNotice';
                             var label = r.text.replace(/\*\*/g, '').replace(/\s+/g, ' ').trim();
-                            html.push('<div class="manual-image-block"><div>' + manualText(r.text) + ' 양식 샘플 (클릭 시 확대)</div><img id="' + imageId + '" src="/' + image + '" alt="' + escapeHtml(label) + '" onclick="HanaSupport.openManualImgModal(\'' + imageId + '\')" class="legacy-image-preview-01"><a href="/' + image + '" download="' + escapeHtml(label + '.png') + '">이미지 다운로드</a></div>');
+                            html.push('<div class="manual-image-block"><div>' + manualText(r.text) + ' 양식 샘플 (클릭 시 확대)</div><img id="' + imageId + '" src="/' + image + '" alt="' + escapeHtml(label) + '" onclick="HanaSupport.openManualImgModal(\'' + imageId + '\')" class="legacy-image-preview-01"><div class="flex-end"><a href="/' + image + '" download="' + escapeHtml(label + '.png') + '" class="btn-down">이미지 다운로드</a><div></div>');
                         }
                     }
                 });

@@ -14,6 +14,9 @@
 .hana-support-app h3 {
     margin-top: 0;
 }
+html body:not(.hana-support-app) * {
+    outline: none;
+}
 /* ==================================================
    02. 공통 레이아웃 및 탭 메뉴
    ================================================== */
@@ -61,7 +64,8 @@
     color: #445fe6;
 }
 
-.hana-support-app button {
+.hana-support-app button,
+.btn-down {
     padding: 9px 16px;
     font-size: 1.4rem;
     color: #008e71;
@@ -3023,6 +3027,19 @@
 .hana-support-app .manual-image-block img {
     margin: 10px 0;
 }
+.hana-support-app .flex-end {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+.btn-down {
+    color: #008e71 !important;
+    padding-right: 28px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cg transform='translate(1.5 .5)'%3E%3Cg transform='translate(.964)'%3E%3Crect width='1' height='7' rx='.5' transform='translate(3.036)' style='fill:%2300857e'/%3E%3Cg transform='rotate(-45 5.432 2.25)'%3E%3Crect width='1' height='5' rx='.5' transform='rotate(90 .5 4.5)' style='fill:%2300857e'/%3E%3Crect width='1' height='5' rx='.5' transform='rotate(180 .5 2.5)' style='fill:%2300857e'/%3E%3C/g%3E%3C/g%3E%3Crect width='1' height='9' rx='.5' transform='rotate(90 -.25 9.25)' style='fill:%2300857e'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center right 10px;
+    background-size: 14px auto;
+}
 .hana-support-app .legacy-block-spacing-43 {
     margin: 20px 0 10px;
     padding-bottom: 6px;
@@ -3488,8 +3505,7 @@
 }
 
 
-.hana-support-app .badge,
-.hana-support-app .suggestion-tag {
+.hana-support-app .badge {
     border-radius: 0;
 }
 

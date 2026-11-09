@@ -133,6 +133,7 @@
   padding: 28px 30px;
   background: white;
   min-height: calc(100vh - 170px);
+  border-radius: 8px;
 }
 
 .hana-branch-app .hbl-page-heading {

@@ -161,6 +161,7 @@
 
 .hana-support-app .container {
     margin: 0 auto;
+    padding-bottom: 0;
     width: 100%;
     max-width: 1400px;
     background: #ffffff;
@@ -364,7 +365,6 @@
     width: 100%;
     margin-top: 15px;
     background: white;
-    border-radius: 8px;
     overflow: visible;
 }
 
@@ -3292,6 +3292,7 @@
     margin-bottom: 0;
     width: 100%;
     max-width: none;
+    border: 1px solid #e5e5e5;
 }
 
 .hana-support-app .table-scroll>table.table-medium {

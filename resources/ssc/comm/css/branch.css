@@ -105,6 +105,7 @@
 .hana-branch-app .container {
     max-width: 1400px;
     margin: 0 auto;
+    padding-bottom: 0;
     background: #ffffff;
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
     border-radius: 8px;

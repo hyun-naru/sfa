@@ -1,6 +1,5 @@
 @charset "utf-8";
 
-
 /* =========================================================
    01. 플로팅 채팅 버튼
    ========================================================= */
@@ -612,4 +611,11 @@ a[href^="tel:"] {
     background-color: #f1f3f5;
     padding: 12px 16px;
     border-radius: 8px;
+}
+
+button[class*="flag_"]:disabled:hover,
+button[class*="flag_"]:disabled {
+    color: #999 !important;
+    background-color: #eee !important;
+    border-color: #eee !important;
 }

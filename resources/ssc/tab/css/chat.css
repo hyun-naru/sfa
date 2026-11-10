@@ -1,14 +1,8 @@
 @charset "utf-8";
 
-/* =========================================================
-   Chat UI CSS
-   기존 스타일 속성은 유지하고 기능별로 순서 정리
-   ========================================================= */
-
 /* ---------------------------------------------------------
    01. 플로팅 채팅 버튼
    --------------------------------------------------------- */
-@charset "utf-8";
 /* ai */
 .floating_box {
   position: fixed;
@@ -526,4 +520,13 @@ input + .btn-label:focus {
     background: url(../../../tab/pt/images/mobile/common/msg_nodata.svg) no-repeat center 40px;
     font-weight: 300;
     color: #333;
+}
+
+button.flag:disabled:hover,
+button.flag:disabled,
+button.flag.pink:disabled,
+button.flag.yellow:disabled {
+    color: #999 !important;
+    background-color: #eee !important;
+    border-color: #eee !important;
 }

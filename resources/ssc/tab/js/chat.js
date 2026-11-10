@@ -120,17 +120,89 @@ window.initChat = function() {
         };
     }
 
+    // [공통] 검색 및 버튼 유효성 검증 함수
+    function executeSearch($el) {
+        const $currentBox = $el.closest('.flow-box');
+        const menuId = $currentBox.data('menu');
+        const step = Number($currentBox.data('step'));
+
+        // [REQ-CH-012] 3단계: 사용인 확인 검색 입력 필드 검증
+        if (menuId === 'REQ-CH-012' && step === 3) {
+            const $visibleSearchItem = $currentBox.find('.search-item:visible');
+            let emptyInput = null;
+            let alertMsg = '검색어를 입력해 주세요.';
+
+            $visibleSearchItem.find('input.ipt').each(function(index) {
+                const $ipt = $(this);
+                if (!$ipt.val().trim()) {
+                    emptyInput = $ipt;
+                    if (index === 0) {
+                        alertMsg = '이름을 입력해 주세요.';
+                    } else if (index === 1) {
+                        const placeholder = $ipt.attr('placeholder') || '';
+                        alertMsg = `${placeholder}을 입력해 주세요.`;
+                    }
+                    return false;
+                }
+            });
+
+            if (emptyInput) {
+                uiInfo.pt.alert('', alertMsg, function() {
+                    emptyInput.focus();
+                });
+                return false;
+            }
+            return true;
+        }
+        let isValid = true;
+        let targetIpt = null;
+
+        // 일반 검색창 입력 필드 검증
+        $currentBox.find('input.ipt.search').each(function() {
+            const $iptField = $(this);
+            if ($iptField.is(':visible') && !$iptField.val().trim()) {
+                isValid = false;
+                targetIpt = $iptField;
+                return false;
+            }
+        });
+
+        if (!isValid && targetIpt) {
+            let msg = '검색어를 입력해 주세요.';
+            if (['REQ-CH-002', 'REQ-CH-003', 'REQ-CH-004', 'REQ-CH-005', 'REQ-CH-024'].includes(menuId)) {
+                msg = '증권번호를 입력해 주세요.';
+            } else if (['REQ-CH-021', 'REQ-CH-022', 'REQ-CH-023', 'REQ-CH-025', 'REQ-CH-026'].includes(menuId)) {
+                msg = '고객명을 입력해 주세요.';
+            }
+
+            uiInfo.pt.alert('', msg, function() {
+                targetIpt.focus();
+            });
+            return false;
+        }
+
+        return true;
+    }
+
     // 메뉴 버튼 및 서브 메뉴 버튼 통합 클릭 처리
     if (chatFlow) {
         chatFlow.onclick = function(e) {
             const btn = e.target.closest('button');
             if (!btn) return;
 
-            // 이전 버튼 클릭
+            // 1. 검색 버튼 또는 .search-item 내부 버튼 클릭 시 유효성 검증
+            if (btn.classList.contains('icoBtn_search') || $(btn).closest('.search-item').length > 0) {
+                if (!executeSearch($(btn))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+                return;
+            }
+
+            // 2. 이전 버튼 클릭
             if (btn.classList.contains('btn-prev')) {
                 showFlowLoading(() => {
-                    // 현재 활성화된 menu-box 안에서 이전 step으로 이동하거나
-                    // 구조상 현재 menuId를 유지한 채 step만 -1 감소시킵니다.
                     if (currentStep > 1) {
                         renderStep(currentMenuId, currentStep - 1);
                     } else {
@@ -141,26 +213,70 @@ window.initChat = function() {
                 return;
             }
 
-            // 2. 다음/확인 버튼 클릭 처리
+            // 3. 다음/확인/신청 버튼 클릭 처리 (컨텐츠별 유효성 검사)
             if (btn.classList.contains('btn-next')) {
+                const $currentBox = $(btn).closest('.flow-box');
+                const menuId = currentMenuId || $currentBox.data('menu');
+                const step = currentStep || Number($currentBox.data('step'));
 
-                // 반송 메뉴의 확인 버튼일 때만 심사자 확인
-                if (currentMenuId === 'REQ-CH-003' && currentStep === 2) {
-                    const selectedItem = document.querySelector(
-                        'input[name="selectItem3"]:checked'
-                    );
+                // [REQ-CH-003 반송 / REQ-CH-004 청약철회] 2단계: 계약 선택 라디오 체크 및 심사자 체크
+                if ((menuId === 'REQ-CH-003' || menuId === 'REQ-CH-004') && step === 2) {
+                    const radioName = menuId === 'REQ-CH-003' ? 'selectItem3' : 'selectItem4';
+                    const selectedItem = document.querySelector(`input[name="${radioName}"]:checked`);
+                    
+                    if (!selectedItem) {
+                        uiInfo.pt.alert('', '신청할 계약을 선택해주세요.');
+                        return;
+                    }
 
-                    const reviewer = selectedItem
-                        ?.closest('.list-btn')
-                        ?.querySelector('.tit:last-of-type span:last-child')
-                        ?.textContent.trim();
+                    // 반송(REQ-CH-003) 전용: 심사자 배정 여부 확인
+                    if (menuId === 'REQ-CH-003') {
+                        const reviewer = selectedItem
+                            ?.closest('.list-btn')
+                            ?.querySelector('.tit:last-of-type span:last-child')
+                            ?.textContent.trim();
 
-                    if (reviewer == null || reviewer === '' || reviewer === '-') {
-                        uiInfo.pt.alert('심사중인 계약은 반송 신청이 불가합니다. 심사자가 배정되어야 합니다.');
+                        if (reviewer == null || reviewer === '' || reviewer === '-') {
+                            uiInfo.pt.alert('', '심사중인 계약은 반송 신청이 불가합니다. 심사자가 배정되어야 합니다.');
+                            return;
+                        }
+                    }
+                }
+
+                // [REQ-CH-003 반송 / REQ-CH-004 청약철회] 3단계: 전달 내용 입력 체크
+                if ((menuId === 'REQ-CH-003' || menuId === 'REQ-CH-004') && step === 3) {
+                    const $textarea = $currentBox.find('textarea.ipt');
+                    if ($textarea.length && !$textarea.val().trim()) {
+                        uiInfo.pt.alert('', '전달 내용을 입력해 주세요.', function() {
+                            $textarea.focus();
+                        });
                         return;
                     }
                 }
 
+                // [REQ-CH-005 가입설계서 재발송] 2단계: 대상 계약 선택 체크
+                if (menuId === 'REQ-CH-005' && step === 2) {
+                    if (!$('input[name="selectItem005"]:checked').length) {
+                        uiInfo.pt.alert('', '가입설계서 재발송 대상을 선택해주세요.');
+                        return;
+                    }
+                }
+
+                // [REQ-CH-005 가입설계서 재발송] 3단계: 라디오 선택 체크 추가
+                if (menuId === 'REQ-CH-005' && step === 3) {
+                    if (!$currentBox.find('input[type="radio"]:checked').length) {
+                        uiInfo.pt.alert('', '재발송 대상을 선택해주세요.');
+                        return;
+                    }
+                }
+                // [REQ-CH-012] 2단계: 검색조건 선택 체크
+                if (menuId === 'REQ-CH-012' && step === 2) {
+                    if (!$currentBox.find('input[type="radio"]:checked').length) {
+                        uiInfo.pt.alert('', '사용인 검색 조건을 선택해주세요.');
+                        return;
+                    }
+                }
+                // 검증 통과 시 다음 Step 진행
                 showFlowLoading(() => {
                     renderStep(currentMenuId, currentStep + 1);
                 }, 400);
@@ -168,11 +284,10 @@ window.initChat = function() {
                 return;
             }
 
-            // 3. Flow 메인 및 메뉴 depth 버튼 클릭 처리
+            // 4. Flow 메인 및 메뉴 depth 버튼 클릭 처리
             if (btn.id) {
                 const menuId = btn.id;
 
-                // 클릭된 ID에 대응되는 Step 2 또는 Step 3 박스 검색
                 const targetStep2 = document.querySelector(`.menu-box[data-menu="${menuId}"][data-step="2"]`);
                 const targetStep3 = document.querySelector(`.menu-box[data-menu="${menuId}"][data-step="3"]`);
                 const targetStep4 = document.querySelector(`.menu-box[data-menu="${menuId}"][data-step="4"]`);
@@ -192,9 +307,18 @@ window.initChat = function() {
                 }
             }
         };
+        
+        // 엔터 키 검색 이벤트 처리
+        chatFlow.onkeypress = function(e) {
+            if (e.key === 'Enter' && e.target.classList.contains('ipt') && e.target.classList.contains('search')) {
+                if (!executeSearch($(e.target))) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }
+        };
     }
-
-    
 
     // [REQ-CH-012] 라디오 전환 전용 함수
     function toggleSearchArea() {
@@ -218,6 +342,7 @@ window.initChat = function() {
     if (iptFilt3_1) iptFilt3_1.addEventListener('change', toggleSearchArea);
     if (iptFilt3_2) iptFilt3_2.addEventListener('change', toggleSearchArea);
 };
+
 
 // 최초 자동 실행
 if (document.readyState === 'loading') {
